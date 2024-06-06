@@ -3,7 +3,7 @@ import {assets} from '../assets/assets'
 
 const Sidebar = () => {
   return (
-    <div className='items-start flex-col h-full hidden lg:flex w-[23%]'>
+    <div className='items-start flex-col h-full hidden lg:flex w-[25%]'>
         <div className="items-start justify-center flex-col bg-[#121212] w-full  py-6 px-8 gap-y-5 rounded flex">
             <div className='flex items-start justify-start gap-x-8'>
                 <img src={assets.home_icon} alt="home" height={25} width={25} />
@@ -20,8 +20,8 @@ const Sidebar = () => {
                     <img src={assets.stack_icon} alt="stack" width={25} height={25}/>
                     <p className='text-white flex-1 ml-8'>Your Library</p>
                     <div className='flex flex-row gap-x-4'>
-                        <img src={assets.arrow_icon} alt="right" height={10} width={25} />
-                        <img src={assets.plus_icon} alt="plus" height={10} width={25} />
+                        <img src={assets.arrow_icon} alt="right" height={10} width={20} />
+                        <img src={assets.plus_icon} alt="plus" height={10} width={20} />
                     </div>
                 </div>
                 <div className='w-full text-white rounded mt-8 py-5 px-4 gap-y-2 flex items-start justify-start flex-col bg-[#ffffff1d]'>

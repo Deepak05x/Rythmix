@@ -1,12 +1,17 @@
 import React from 'react'
+import Display from './components/Display'
 import MusicPlayer from './components/MusicPlayer'
 import Sidebar from './components/Sidebar'
 
 const App = () => {
   return (
-    <div className='px-1 py-2'>
-      <Sidebar />
+    <div className='px-2 pt-2'>
+      <div className='flex flex-row gap-2 h-full'> 
+        <Sidebar />
+        <Display />
+      </div> 
       <MusicPlayer />
+
     </div>
   )
 }
