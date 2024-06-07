@@ -4,14 +4,14 @@ import { assets } from '../assets/assets'
 const MusicPlayer = () => {
   return (
     <div className='flex items-center justify-between w-full  h-full  bg-black py-4 px-2 flex-row'>
-        <div className='lg:flex hidden flex-row gap-x-3 w-full'>
-            <img src={assets.img1} alt="" width={50} height={40} />
-            <div className='text-white flex items-start justify-center flex-col gap-y-2'>
-                <p>Sweater Weather</p>
-                <p className='text-neutral-400 text-sm'>Neighbourhood</p>
+        <div className='flex flex-row gap-x-3 w-full'>
+            <img src={assets.img1} alt="" width={50} height={40} className='max-1280:w-[40px] max-1280:h-[40px]'/>
+            <div className='text-white flex items-start justify-center flex-col gap-y-2 max-1280:gap-0.5'>
+                <p className='max-1280:text-sm'>Sweater Weather</p>
+                <p className='text-neutral-400 text-sm max-1280:text-[12px]'>Neighbourhood</p>
             </div>
         </div>
-        <div className='flex flex-col items-center w-full gap-2'>
+        <div className='flex flex-col items-center w-full gap-2 max-1024:mr-8'>
             <div className='flex flex-row items-center gap-x-4'>
                 <img src={assets.shuffle_icon} alt="" width={17} height={17} />
                 <img src={assets.prev_icon} alt="" width={17} height={17} />

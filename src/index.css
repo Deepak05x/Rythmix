@@ -18,6 +18,7 @@ body{
   opacity: 0.9;
   overflow-x: hidden;
   overflow-y: hidden;
+  width: 100%;
 }
 
 .truncate{
@@ -31,6 +32,7 @@ body{
 
 .left::-webkit-scrollbar{
   height: 1px;
+  width: 1px;
 }
 
 button{
@@ -39,4 +41,5 @@ button{
 
 .down::-webkit-scrollbar{
   height: 1px;
+  width: 1px;
 }
