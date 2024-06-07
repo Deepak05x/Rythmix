@@ -3,7 +3,7 @@ import { assets } from '../assets/assets'
 
 const MusicPlayer = () => {
   return (
-    <div className='flex items-center justify-between w-full  h-full  bg-black py-3 px-2 flex-row mt-2'>
+    <div className='flex items-center justify-between w-full  h-full  bg-black py-4 px-2 flex-row'>
         <div className='lg:flex hidden flex-row gap-x-3 w-full'>
             <img src={assets.img1} alt="" width={50} height={40} />
             <div className='text-white flex items-start justify-center flex-col gap-y-2'>
@@ -11,7 +11,7 @@ const MusicPlayer = () => {
                 <p className='text-neutral-400 text-sm'>Neighbourhood</p>
             </div>
         </div>
-        <div className='flex flex-col items-center w-full gap-4'>
+        <div className='flex flex-col items-center w-full gap-2'>
             <div className='flex flex-row items-center gap-x-4'>
                 <img src={assets.shuffle_icon} alt="" width={17} height={17} />
                 <img src={assets.prev_icon} alt="" width={17} height={17} />
@@ -21,7 +21,7 @@ const MusicPlayer = () => {
             </div>
             <div className='text-white flex flex-row items-center justify-center gap-4 text-sm font-neutral'>
                 <p>0:00</p>
-                <div className='w-[50vw] h-[3px] max-w-[450px] bg-gray-300 rounded-full cursor-pointer'>
+                <div className='w-[50vw] h-[3px] max-w-[400px] bg-gray-300 rounded-full cursor-pointer'>
                     <hr className='h-1 border-none w-0 bg-green-800 rounded-full'/>
                 </div>
                 <p>3:20</p>

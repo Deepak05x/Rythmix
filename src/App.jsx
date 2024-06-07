@@ -6,11 +6,14 @@ import Sidebar from './components/Sidebar'
 const App = () => {
   return (
     <div className='px-2 pt-2'>
-      <div className='flex flex-row gap-2 h-full'> 
+      <div className='flex flex-row gap-2'> 
         <Sidebar />
         <Display />
       </div> 
-      <MusicPlayer />
+      <div className=''>
+        <MusicPlayer />
+      </div>
+      
 
     </div>
   )
