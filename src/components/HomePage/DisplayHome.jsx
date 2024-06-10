@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { useContext } from "react";
-import { TokenContext } from "../App";
+import { TokenContext } from "../../App";
 import { useState } from "react";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";

@@ -1,5 +1,5 @@
 import React from 'react'
-import Display from '../components/Display'
+import Display from '../components/HomePage/Display'
 import MusicPlayer from '../components/MusicPlayer'
 import Sidebar from '../components/Sidebar'
 

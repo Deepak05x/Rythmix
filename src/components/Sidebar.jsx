@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import {assets} from '../assets/assets'
 
 const Sidebar = () => {
@@ -7,7 +8,10 @@ const Sidebar = () => {
         <div className="items-start justify-center flex-col bg-[#121212] w-full  py-6 px-8 gap-y-5 rounded flex">
             <div className='flex items-start justify-start gap-x-8'>
                 <img src={assets.home_icon} alt="home" height={25} width={25} />
-                <p className='text-white'>Home</p>
+                <Link to={'/'}>
+                <p className='text-white'>Home</p>  
+                </Link>
+                
             </div>
             <div className='flex items-start justify-start gap-x-8'>
                 <img src={assets.search_icon} alt="search" height={25} width={25} />
