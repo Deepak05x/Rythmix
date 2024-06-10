@@ -30,6 +30,15 @@ body{
   white-space: normal;
 }
 
+.truncate-sm{
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  text-transform: ellipsis;
+  white-space: normal;
+}
+
 .left::-webkit-scrollbar{
   height: 1px;
   width: 1px;
