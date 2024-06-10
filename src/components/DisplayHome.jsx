@@ -1,11 +1,11 @@
 import React from "react";
-import { assets } from "../assets/assets";
 import axios from "axios";
 import { useContext } from "react";
 import { TokenContext } from "../App";
 import { useState } from "react";
 import { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
+
 
 const DisplayHome = () => {
   const accessToken = useContext(TokenContext);
@@ -47,16 +47,16 @@ const DisplayHome = () => {
       })
       const data = response.data.artists
       setArtists(data)
-      console.log(response.data.artists)
   }
 
-  useEffect(() => {
-    if (accessToken){
-      getAlbums();
-      getPlaylist();
-      getArtist();
-    } 
-  }, [accessToken]);
+ 
+ 
+  useEffect(()=>{
+    getAlbums()
+    getArtist()
+    getPlaylist()
+  },[accessToken])
+  
 
  
 
@@ -78,13 +78,13 @@ const DisplayHome = () => {
         <h1 className="text-white font-semibold text-2xl">Featured Albums</h1>
         <section className="flex flex-row items-start pl-4 gap-12 overflow-x-auto whitespace-nowrap left ">
           {albums.map((item, index) => (
-            <div className="flex flex-col gap-2 w-[200px] shrink-0 max-1280:w-[170px]" key={index}>
+            <Link to={`/albums/${item.id}`} className="flex flex-col gap-2 w-[200px] shrink-0 max-1280:w-[170px]" key={index}  >
               <img src={item.images[0].url} alt="" width={200} height={200} className='rounded-[10px]'/>
               <h4 className="text-white truncate-sm pl-2">{item.name}</h4>
               <p className="text-neutral-400 text-sm w-full truncate pl-2">
                 {item.label}
               </p>
-            </div>
+            </Link>
           ))}
         </section>
         <h1 className="text-white font-semibold text-2xl mt-4">

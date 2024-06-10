@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import ArtistPage from "./pages/ArtistPage";
 import axios from "axios";
+import AlbumPage from "./pages/AlbumPage";
 
 export const TokenContext = createContext();
 
@@ -39,11 +40,14 @@ const App = () => {
         getAccessToken();
     }, []);
 
+    
+
     return (
         <TokenContext.Provider value={accessToken}>
             <Routes>
                 <Route path="/" element={<HomePage />} />
-                <Route path="/artist" element={<ArtistPage />} />
+                {/* <Route path="/artist" element={<ArtistPage />} /> */}
+                <Route path="/albums/:id" element={<AlbumPage/>}/>
             </Routes> 
         </TokenContext.Provider>
     );
