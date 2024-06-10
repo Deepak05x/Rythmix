@@ -3,7 +3,7 @@ import {assets} from '../assets/assets'
 
 const Sidebar = () => {
   return (
-    <div className='items-start flex-col flex w-[25%] max-1280:w-[20%] max-1024:hidden'>
+    <div className='items-start flex-col flex w-[25%] max-1280:w-[20%] max-1024:hidden max-768:hidden max-640:hidden max-425:hidden max-375:hidden'>
         <div className="items-start justify-center flex-col bg-[#121212] w-full  py-6 px-8 gap-y-5 rounded flex">
             <div className='flex items-start justify-start gap-x-8'>
                 <img src={assets.home_icon} alt="home" height={25} width={25} />
@@ -14,11 +14,11 @@ const Sidebar = () => {
                 <p className='text-white'>Search</p>
             </div>
         </div>
-        <div className= 'bg-[#121212] w-full mt-2 py-6 px-3 rounded h-[70vh] overflow-y-auto max-1440:h-[88vh] max-1280:h-[88vh] max-1170:h-[88vh]'>
+        <div className= 'bg-[#121212] w-full mt-2 py-6 px-3 rounded h-[70vh] overflow-y-auto max-1440:h-[88vh] max-1280:h-[88vh] max-1170:h-[88vh] max-2000:h-[90vh]'>
             <div className='w-full'>
                 <div className='flex items-start flex-row justify-between px-3 max-1280:items-center max-1280:px-1'>
                     <img src={assets.stack_icon} alt="stack" width={25} height={25} className='max-1280:w-[20px]'/>
-                    <p className='text-white flex-1 ml-8'>Your Library</p>
+                    <p className='text-white flex-1 ml-8 max-1280:hidden'>Your Library</p>
                     <div className='flex flex-row gap-x-4'>
                         <img src={assets.arrow_icon} alt="right" height={10} width={20} className='max-1280:w-[15px]'/>
                         <img src={assets.plus_icon} alt="plus" height={10} width={20} className='max-1280:w-[15px]'/>

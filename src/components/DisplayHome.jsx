@@ -4,11 +4,11 @@ import { assets } from '../assets/assets'
 const DisplayHome = () => {
   return (
     <div className='flex flex-col w-full h-[70vh] gap-12 overflow-y-auto down max-1280:pr-0'>
-        <div className='flex flex-row w-full gap-8 max-1280:gap-4 max-1024:gap-4'>
-            <button className='bg-white py-1 px-5 rounded-full'>All</button>
-            <button className='bg-[#ffffff1d] py-1 px-5 rounded-full text-white'>Music</button>
-            <button className='bg-[#ffffff1d] py-1 px-5 rounded-full text-white'>Podcasts</button>
-            <button className='bg-[#ffffff1d] py-1 px-5 rounded-full text-white hidden max-1024:flex'>Library</button>
+        <div className='flex flex-row w-full gap-8 max-1280:gap-4 max-1024:gap-4 max-425:gap-3 max-425:text-[15px] max-375:text-[12px] max-375:gap-2'>
+            <button className='bg-white py-1 px-3 rounded-full'>All</button>
+            <button className='bg-[#ffffff1d] py-1 px-3 rounded-full text-white'>Music</button>
+            <button className='bg-[#ffffff1d] py-1 px-3 rounded-full text-white'>Podcasts</button>
+            <button className='bg-[#ffffff1d] py-1 px-3 rounded-full text-white hidden max-1024:flex max-768:flex max-640:flex max-425:flex max-375:flex'>Library</button>
         </div>
         <div className='flex flex-col gap-10'>
           <h1 className='text-white font-semibold text-2xl'>Featured Albums</h1>

@@ -7,8 +7,10 @@ export default {
   theme: {
     extend: {
       screens: {
+        'max-375' : {'min' : '320px' , 'max' : '375px'},
         'max-425': { 'min' : '375px' , 'max' : '425px'},
-        'max-640': { 'min' : '425px' , 'max': '640px' }, // Custom max-width breakpoint
+        'exact-425': { 'raw': '(min-width: 425px) and (max-width: 425px)' },
+        'max-640': { 'min' : '425px' , 'max': '640px' }, 
         'max-768': { 'min' : '640px' , 'max' : '768px'},
         'max-1024': { 'min' : '768px' , 'max' : '1024px'},
         'max-1170' : { 'min' : '1024px' , 'max' : '1170px'},
