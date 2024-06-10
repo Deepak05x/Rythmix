@@ -5,14 +5,30 @@ import { useContext } from "react";
 import { TokenContext } from "../App";
 import { useState } from "react";
 import { useEffect } from "react";
+import { useParams } from "react-router-dom";
 
 const DisplayHome = () => {
   const accessToken = useContext(TokenContext);
   const [albums, setAlbums] = useState([]);
+  const [playList, setPlayList] = useState([])
+  const [artists, setArtists] = useState([])
 
-  const getSingleAlbum = async () => {
+
+  const getPlaylist = async()=>{
+    const url = 'https://api.spotify.com/v1/browse/featured-playlists?limit=10'
+    const response = await axios.get(url,{
+      headers:{
+        Authorization: `Bearer ${accessToken}`
+      }
+    })
+    const data = response.data.playlists.items
+    setPlayList(data)
+  }
+
+
+  const getAlbums = async () => {
     const url =
-      "https://api.spotify.com/v1/albums?ids=382ObEPsp2rxGrnsizN5TX%2C1A2GTWGtFfWp7KSQTwWOyo%2C2noRn2Aes5aoNVsU6iWThc";
+      "https://api.spotify.com/v1/albums?ids=3tjIKRAPBy5Qu4z8F5HmBz%2C3B61kSKTxlY36cYgzvf3cP%2C7k1b8wzjRsSTmIBuRlBrxp%2C7ARtQpvnPN2ucbmVHngLOs%2C4xkM0BwLM9H2IUcbYzpcBI%2C5EYKrEDnKhhcNxGedaRQeK%2C7asdrrGPiGUgv50OATAorX%2C0vmYAygGWZZ4pO6L3xC2kX%2C1OojCidx0eoPKch2M0Kz31%2C2R2YbAP031cY3CpJN78X7e";
     const response = await axios.get(url, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
@@ -20,12 +36,29 @@ const DisplayHome = () => {
     });
     const data = response.data.albums;
     setAlbums(data);
-    console.log(response.data.albums);
   };
 
+  const getArtist = async()=>{
+      const url ='https://api.spotify.com/v1/artists?ids=0Y5tJX1MQlPlqiwlOH1tJY%2C5VVN3xZw1i2qihfITZlvCZ%2C1mYsTxnqsietFxj1OgoGbG%2C4zCH9qm4R2DADamUHMCa6O%2C5cB4d4jPYjMT326sjihQ4m%2C5yoqPvofOHrBc3Z6VZyTsj%2C6VuMaDnrHyPL1p4EHjYLi7'
+      const response = await axios.get(url,{
+        headers:{
+          Authorization: `Bearer ${accessToken}`
+        }
+      })
+      const data = response.data.artists
+      setArtists(data)
+      console.log(response.data.artists)
+  }
+
   useEffect(() => {
-    if (accessToken) getSingleAlbum();
+    if (accessToken){
+      getAlbums();
+      getPlaylist();
+      getArtist();
+    } 
   }, [accessToken]);
+
+ 
 
   return (
     <div className="flex flex-col w-full h-[70vh] gap-12 overflow-y-auto down max-1280:pr-0">
@@ -43,16 +76,13 @@ const DisplayHome = () => {
       </div>
       <div className="flex flex-col gap-10">
         <h1 className="text-white font-semibold text-2xl">Featured Albums</h1>
-        <section className="flex flex-row items-start pl-4 gap-12 overflow-x-auto whitespace-nowrap left">
+        <section className="flex flex-row items-start pl-4 gap-12 overflow-x-auto whitespace-nowrap left ">
           {albums.map((item, index) => (
             <div className="flex flex-col gap-2 w-[200px] shrink-0 max-1280:w-[170px]" key={index}>
               <img src={item.images[0].url} alt="" width={200} height={200} className='rounded-[10px]'/>
               <h4 className="text-white truncate-sm pl-2">{item.name}</h4>
               <p className="text-neutral-400 text-sm w-full truncate pl-2">
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quae,
-                consectetur? Distinctio voluptatibus voluptates quaerat? Fugiat
-                nemo pariatur ad perspiciatis harum, voluptatibus quia, quaerat
-                doloremque corporis repudiandae placeat, debitis totam earum.
+                {item.label}
               </p>
             </div>
           ))}
@@ -61,118 +91,29 @@ const DisplayHome = () => {
           Top Playlists
         </h1>
         <section className="flex flex-row items-start pl-4 gap-12 overflow-x-auto whitespace-nowrap left">
-          <div className="flex flex-col gap-2 w-[200px] shrink-0 max-1280:w-[170px]">
-            <img src={assets.img1} alt="" width={200} height={200} />
-            <h4 className="text-white">Top 50 songs</h4>
-            <p className="text-neutral-400 text-sm w-full truncate">
-              Your weekly update of the most played track is the best
-            </p>
-          </div>
-          <div className="flex flex-col gap-2 w-[200px] shrink-0 max-1280:w-[170px]">
-            <img src={assets.img1} alt="" width={200} height={200} />
-            <h4 className="text-white">Top 50 songs</h4>
-            <p className="text-neutral-400 text-sm w-full truncate">
-              Your weekly update of the most played track is the best
-            </p>
-          </div>
-          <div className="flex flex-col gap-2 w-[200px] shrink-0 max-1280:w-[170px]">
-            <img src={assets.img1} alt="" width={200} height={200} />
-            <h4 className="text-white">Top 50 songs</h4>
-            <p className="text-neutral-400 text-sm w-full truncate">
-              Your weekly update of the most played track is the best
-            </p>
-          </div>
-          <div className="flex flex-col gap-2 w-[200px] shrink-0 max-1280:w-[170px]">
-            <img src={assets.img1} alt="" width={200} height={200} />
-            <h4 className="text-white">Top 50 songs</h4>
-            <p className="text-neutral-400 text-sm w-full truncate">
-              Your weekly update of the most played track is the best
-            </p>
-          </div>
-          <div className="flex flex-col gap-2 w-[200px] shrink-0 max-1280:w-[170px]">
-            <img src={assets.img1} alt="" width={200} height={200} />
-            <h4 className="text-white">Top 50 songs</h4>
-            <p className="text-neutral-400 text-sm w-full truncate">
-              Your weekly update of the most played track is the best
-            </p>
-          </div>
-          <div className="flex flex-col gap-2 w-[200px] shrink-0 max-1280:w-[170px]">
-            <img src={assets.img1} alt="" width={200} height={200} />
-            <h4 className="text-white">Top 50 songs</h4>
-            <p className="text-neutral-400 text-sm w-full truncate">
-              Your weekly update of the most played track is the best
-            </p>
-          </div>
-          <div className="flex flex-col gap-2 w-[200px] shrink-0 max-1280:w-[170px]">
-            <img src={assets.img1} alt="" width={200} height={200} />
-            <h4 className="text-white">Top 50 songs</h4>
-            <p className="text-neutral-400 text-sm w-full truncate">
-              Your weekly update of the most played track is the best
-            </p>
-          </div>
+          {playList.map((item,index)=>(
+            <div className="flex flex-col gap-2 w-[200px] shrink-0 max-1280:w-[170px]" key={index}>
+              <img src={item.images[0].url} alt="" width={200} height={200} className='rounded-[10px]'/>
+              <h4 className="text-white truncate-sm pl-2">{item.name}</h4>
+              <p className="text-neutral-400 text-sm w-full truncate pl-2">
+                {item.description}
+              </p>
+            </div>
+          ))}
         </section>
         <h1 className="text-white font-semibold text-2xl mt-4">Top Artists</h1>
         <section className="flex flex-row items-start pl-4 gap-12 overflow-x-auto whitespace-nowrap left">
-          <div className="flex flex-col gap-2 w-[200px] shrink-0 items-center max-1280:w-[170px]">
-            <img
-              src={assets.img1}
-              alt=""
-              width={200}
-              height={200}
-              className="rounded-full"
-            />
-            <h4 className="text-white">Travis Scott</h4>
-          </div>
-          <div className="flex flex-col gap-2 w-[200px] shrink-0 items-center max-1280:w-[170px]">
-            <img
-              src={assets.img1}
-              alt=""
-              width={200}
-              height={200}
-              className="rounded-full"
-            />
-            <h4 className="text-white">Travis Scott</h4>
-          </div>
-          <div className="flex flex-col gap-2 w-[200px] shrink-0 items-center max-1280:w-[170px]">
-            <img
-              src={assets.img1}
-              alt=""
-              width={200}
-              height={200}
-              className="rounded-full"
-            />
-            <h4 className="text-white">Travis Scott</h4>
-          </div>
-          <div className="flex flex-col gap-2 w-[200px] shrink-0 items-center max-1280:w-[170px]">
-            <img
-              src={assets.img1}
-              alt=""
-              width={200}
-              height={200}
-              className="rounded-full"
-            />
-            <h4 className="text-white">Travis Scott</h4>
-          </div>
-          <div className="flex flex-col gap-2 w-[200px] shrink-0 items-center max-1280:w-[170px]">
-            <img
-              src={assets.img1}
-              alt=""
-              width={200}
-              height={200}
-              className="rounded-full"
-            />
-            <h4 className="text-white">Travis Scott</h4>
-          </div>
-          <div className="flex flex-col gap-2 w-[200px] shrink-0 items-center max-1280:w-[170px]">
-            <img
-              src={assets.img1}
-              alt=""
-              width={200}
-              height={200}
-              className="rounded-full"
-            />
-            <h4 className="text-white">Travis Scott</h4>
-          </div>
+          {artists.map((item,index)=>(
+            <div className="flex flex-col gap-2 w-[200px] shrink-0 items-center max-1280:w-[170px]" key={index}>
+              <img
+                src={item.images[1].url}
+                alt=""
+                className="rounded-full"
+              />
+              <h4 className="text-white">{item.name}</h4>
+            </div>
+          ))}
+          
         </section>
       </div>
     </div>
