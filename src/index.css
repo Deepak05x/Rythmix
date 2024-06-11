@@ -52,3 +52,11 @@ button{
   height: 1px;
   width: 1px;
 }
+
+.heading-col{
+  grid-template-columns: 250px 150px 30px;
+}
+
+.normal-col{
+  grid-template-columns:  250px 150px 30px;
+}
