@@ -1,4 +1,4 @@
-import { assets } from '../../assets/assets'
+import { albumsData, assets } from '../../assets/assets'
 import { TokenContext } from '../../App'
 import { useContext } from 'react'
 import { useState } from 'react'
@@ -14,6 +14,9 @@ const DisplayAlbum = () => {
 
     const [album, setAlbum] = useState([])
     const [mainImage, setMainImage] = useState([])
+    const [albumContent, setAlbumContent] = useState({})
+    const [artist, setArtist] = useState([])
+    const [songs, setSongs] = useState([])
 
     const { id } = useParams()
 
@@ -27,6 +30,9 @@ const DisplayAlbum = () => {
         const data = response.data
         setAlbum(data.tracks.items)
         setMainImage(data.images)
+        setAlbumContent(data)
+        setArtist(data.artists)
+        setSongs(data.tracks.items)
         console.log(response.data)
     }
 
@@ -34,33 +40,51 @@ const DisplayAlbum = () => {
         if(accessToken) getSingleAlbum()
     },[accessToken,id])
 
+    let count = 0
+    songs.map(()=> count++)
+    const arrayLength = count
+
+    const timeConverter = (time)=>{
+        const totalSeconds = Math.floor(time/1000)
+        const minutes = Math.floor(totalSeconds/60)
+        const seconds = totalSeconds % 60
+        const paddedSeconds = seconds.toString().padStart(2, '0');
+
+         return `${minutes}:${paddedSeconds}`;
+
+    }
+
   return (
     <div className="overflow-y-auto flex flex-col gap-12 max-425:gap-8 max-375:gap-8">
-      <section className='flex flex-row w-full max-2000:gap-16 max-1440:gap-12 max-1280:gap-8 max-1170:gap-8 max-1024:gap-12 max-768:gap-8 max-640:gap-8 max-425:flex-col max-425:items-center max-425:gap-8 max-375:flex-col max-375:items-center max-375:gap-4 '>
+      <section className='flex flex-row w-full max-2000:gap-16 max-1440:gap-16 max-1280:gap-8 max-1170:gap-12 max-1024:gap-12 max-768:gap-8 max-640:gap-8 max-425:flex-col max-425:items-center max-425:gap-8 max-375:flex-col max-375:items-center max-375:gap-4 '>
         {mainImage && mainImage[0] && mainImage[0].url && (
-            <img src={mainImage[0].url} alt="" className='max-1440:w-[230px] max-1440:h-[230px] max-1280:h-[180px] max-1280:w-[180px] max-1170:w-[160px] max-1170:h-[160px] max-1024:w-[200px] max-768:w-[180px] max-640:w-[180px] max-425:w-[200px] max-375:w-[180px]'/>
+            <img src={mainImage[0].url} alt="" className=' max-2000:w-[250px] max-1440:w-[230px] max-1440:h-[230px] max-1280:h-[180px] max-1280:w-[180px] max-1170:w-[160px] max-1170:h-[160px] max-1024:w-[200px] max-768:w-[180px] max-640:w-[180px] max-425:w-[200px] max-375:w-[180px]'/>
         )}
-        <div className='flex flex-col items-start justify-end  max-2000:gap-4 max-1440:gap-2 max-1170:gap-2 max-1024:gap-2 max-640:gap-2 max-425:items-center max-425:gap-4 max-375:items-center'>
+        <div className='flex flex-col items-start justify-end  max-2000:gap-8 max-1440:gap-8 max-1170:gap-4 max-1280:gap-6 max-1024:gap-8 max-768:gap-4 max-640:gap-6 max-425:items-start max-425:gap-4 max-375:items-start max-375:gap-4'>
           <h4 className='text-white max-425:hidden max-375:hidden'>Album</h4>
-          <h1 className='text-white text-[80px] max-1280:text-[60px] max-1170:text-[40px] max-768:text-[60px] max-640:text-[40px] max-425:text-[40px] max-375:text-[40px]'>Daily Mix</h1>
-          <p className='text-neutral-400 '>Travis scott, Alexander</p>
-          <p className='text-white max-1280:text-sm max-425:hidden max-375:hidden'>50 Songs</p>
+          <h1 className='text-white text-[20px]'>{albumContent.name}</h1>
+          <div className='flex flex-row gap-4 max-640:flex-col max-640:gap-1 max-425:flex-col max-425:gap-1 max-375:flex-col max-375:gap-1'>
+            {artist.map((item,index)=>(
+              <p className='text-neutral-400'>&bull; {item.name}</p>
+            ))}
+          </div>
+              <p className='text-white max-1280:text-sm max-425:hidden max-375:hidden'>{arrayLength} Songs</p>
         </div>
       </section>
       <hr className='w-full' />
       <section className='flex flex-col  gap-8 overflow-x-hidden down max-2000:gap-14 max-1440:gap-14 max-1280:gap-12  max-1170:gap-12 max-1024:gap-12 max-768:gap-12 max-640:gap-12 max-425:gap-12'>
-        <div className=' grid heading-col justify-between max-1440:px-4 max-1440:gap-16 max-640:hidden max-425:hidden max-375:hidden'>
+        <div className=' grid heading-col justify-between max-1440:px-1 max-1440:gap-16 max-640:hidden max-425:hidden max-375:hidden'>
           <p className='text-neutral-400'>Title</p>
           <p className='text-neutral-400'>Artist</p>
           <img src={assets.clock_icon} alt="" className='max-1440:w-[20px] max-1440:h-[20px] max-1280:w-[20px] max-1170:w-[20px] max-1024:w-[20px] max-768:w-[20px] max-640:w-[20px] max-2000:w-[20px]' />
         </div>
         {album.map((item,index)=>(
-            <div className=' grid max-1440:px-4 w-full cursor-pointer justify-between normal-col max-1280:px-1 max-1170:px-2 max-1024:px-2 max-768:px-2 max-640:px-2 max-640:flex max-2000:px-2 max-425:flex max-375:flex max-375:flex-col max-375:items-start' key={index}>
+            <div className=' grid max-2000:px-1 max-1440:px-1 w-full cursor-pointer justify-between normal-col max-1280:px-1 max-1170:px-1 max-1024:px-1 max-768:px-1 max-640:px-1 max-640:flex max-640:flex-col  max-425:flex max-425:flex-col  max-375:flex max-375:flex-col max-375:items-start' key={index}>
             <div className='flex flex-row gap-4'>
-              <p className='text-white text-start max-1440:text-[18px] font-light truncate-sm max-2000:text-[23px]'>{item.name}</p>
+              <p className='text-white text-start max-1440:text-[18px] font-light  max-2000:text-[18pxpx]'>{item.name}</p>
             </div> 
-              <p className='text-neutral-400 max-1440:text-[15px] max-2000:text-[20px] max-375:ml-12 truncate-sm'>{item.artists[0].name}</p>
-              <p className='text-neutral-400 max-425:hidden max-375:hidden '>2:35</p>
+              <p className='text-neutral-400 max-1440:text-[15px] max-2000:text-[15px]'>{item.artists[0].name}</p>
+              <p className='text-neutral-400 max-425:hidden max-375:hidden max-640:hidden'>{timeConverter(item.duration_ms)}</p>
           </div>
         ))}
         
