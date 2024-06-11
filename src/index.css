@@ -54,9 +54,10 @@ button{
 }
 
 .heading-col{
-  grid-template-columns: 250px 150px 30px;
+  grid-template-columns: 250px 100px 30px;
 }
 
 .normal-col{
-  grid-template-columns:  250px 150px 30px;
+  grid-template-columns:  250px 100px 30px;
 }
+
