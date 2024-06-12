@@ -1,7 +1,7 @@
 import React, { useState, createContext, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage";
-import ArtistPage from "./pages/ArtistPage";
+import PlaylistPage from "./pages/PlaylistPage";
 import axios from "axios";
 import AlbumPage from "./pages/AlbumPage";
 
@@ -47,7 +47,7 @@ const App = () => {
         <TokenContext.Provider value={accessToken}>
             <Routes>
                 <Route path="/" element={<HomePage />} />
-                <Route path="/artist/:id" element={<ArtistPage/>} />
+                <Route path="/artist/:id" element={<PlaylistPage/>} />
                 <Route path="/albums/:id" element={<AlbumPage/>}/>
             </Routes> 
         </TokenContext.Provider>

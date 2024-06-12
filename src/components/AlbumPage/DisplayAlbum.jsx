@@ -33,7 +33,7 @@ const DisplayAlbum = () => {
         setMainImage(data.images)
         setAlbumContent(data)
         setArtist(data.artists)
-        
+        console.log(response.data.tracks.items)
         setSongs(data.tracks.items)
     }
 
@@ -73,7 +73,7 @@ const DisplayAlbum = () => {
         </div>
       </section>
       <hr className='w-full' />
-      <section className='flex flex-col  gap-8 overflow-x-hidden down max-2000:gap-14 max-1440:gap-14 max-1280:gap-12  max-1170:gap-12 max-1024:gap-12 max-768:gap-12 max-640:gap-12 max-425:gap-12'>
+      <section className='flex flex-col  gap-8 overflow-x-hidden down max-2560:gap-14 max-1440:gap-14 max-1280:gap-12  max-1170:gap-12 max-1024:gap-12 max-768:gap-12 max-640:gap-12 max-425:gap-12'>
         <div className=' grid heading-col justify-between max-2560:px-2 max-1440:px-2 max-1170:px-2 max-1024:px-2 max-1440:gap-16 max-640:hidden max-425:hidden max-375:hidden'>
           <p className='text-neutral-400'>Title</p>
           <p className='text-neutral-400'>Artist</p>
@@ -81,10 +81,8 @@ const DisplayAlbum = () => {
         </div>
         {album.map((item,index)=>(
             <div className=' grid  max-2560:px-2 max-1440:px-2 w-full cursor-pointer justify-between normal-col max-1280:px-2 max-1170:px-2 max-1024:px-2 max-768:px-1 max-640:px-1 max-640:flex max-640:flex-col  max-425:flex max-425:flex-col  max-375:flex max-375:flex-col max-375:items-start' key={index}>
-            <div className='flex flex-row gap-4'>
-              <p className='text-white text-start max-1440:text-[18px] font-light '>{item.name}</p>
-            </div> 
-              <p className='text-neutral-400 max-1440:text-[15px] max-2000:text-[15px]'>{item.artists[0].name}</p>
+              <p className='text-white text-start max-1440:text-[16px]  font-light hover:underline'>{item.name}</p>
+              <p className='text-neutral-400 max-1440:text-[15px] max-2000:text-[15px] hover:underline'>{item.artists[0].name}</p>
               <p className='text-neutral-400 max-425:hidden max-375:hidden max-640:hidden'>{timeConverter(item.duration_ms)}</p>
           </div>
         ))}
