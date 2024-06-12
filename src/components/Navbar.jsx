@@ -9,8 +9,8 @@ const Navbar = () => {
             <img src={assets.arrow_right} alt="left" width={35} height={35} className='border-black bg-black rounded-full p-2' />
         </div>
         <div className='w-full flex flex-row items-center justify-end gap-8 max-768:gap-5 max-425:justify-start max-375:justify-start'>
-            <button className='bg-white text-black py-1.5 px-4 rounded-full font-medium max-768:px-[10px] max-768:font-medium max-768:text-sm max-640:text-sm max-425:px-2 max-375:px-2 max-375:text-[10px]'>Explore Rythmix</button>
-            <button className='bg-black text-white py-1.5 px-4 rounded-full font-medium max-768:text-sm max-425:px-3 max-375:px-2 max-375:text-[10px] '>Install App</button>
+            <button className='bg-white text-black py-1.5 px-4 rounded-full font-medium max-768:px-[10px] max-768:font-medium max-768:text-sm max-640:text-sm max-425:px-2 max-375:px-2 max-375:text-[10px] hover:scale-105 transition-all ease-in'>Explore Rythmix</button>
+            <button className='bg-black text-white py-1.5 px-4 rounded-full font-medium max-768:text-sm max-425:px-3 max-375:px-2 max-375:text-[10px] hover:scale-105 transition-all ease-in '>Install App</button>
             <p className='bg-purple-500 py-2 px-4 rounded-full font-medium text-base'>D</p>
         </div>
     </div>

@@ -4,7 +4,7 @@ import { assets } from '../assets/assets'
 
 const MusicPlayer = () => {
   return (
-    <div className='flex items-center justify-between w-full  h-full  bg-[#121212] py-4 px-2 flex-row max-1440:mt-2 max-1280:mt-2 max-1170:mt-2 exact-1024:mt-3 max-1024:mt-3 max-768:mt-1 max-768:justify-between max-640:mt-1 max-425:mt-1 max-375:mt-1 max-2000:mt-1.5'>
+    <div className='flex items-center justify-between w-full  h-full  bg-[#121212] py-4 px-2 flex-row max-1440:mt-2 max-1280:mt-2 max-1170:mt-2 exact-1024:mt-3 max-1024:mt-3 max-768:mt-1 max-768:justify-between max-640:mt-1 max-425:mt-1 max-375:mt-1 max-2560:mt-2'>
         <div className='flex flex-row gap-x-3 w-full max-1024:items-center max-768:w-[10%] max-640:w-[10%] max-375:hidden'>
             <img src={assets.img1} alt="" width={50} height={40} className='max-1280:w-[40px] max-1280:h-[40px] max-1024:w-[30px] max-1024:h-[30px] max-1024:rounded-full max-768:w-[35px] max-768:h-[35px] max-768:rounded-full max-640:rounded-full max-640:w-[30px] max-425:w-[30px] max-425:rounded-full'/>
             <div className='text-white flex items-start justify-center flex-col gap-y-2 max-1280:gap-0.5 max-1024:gap-0 max-768:hidden max-640:hidden max-425:hidden'>

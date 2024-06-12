@@ -3,7 +3,7 @@ import axios from "axios";
 import { useContext } from "react";
 import { TokenContext } from "../../App";
 import { useState } from "react";
-import { useEffect } from "react";
+import { useEffect, useLayoutEffect } from "react";
 import { Link } from "react-router-dom";
 
 
@@ -51,7 +51,7 @@ const DisplayHome = () => {
 
  
  
-  useEffect(()=>{
+  useLayoutEffect(()=>{
     getAlbums()
     getArtist()
     getPlaylist()
@@ -61,16 +61,16 @@ const DisplayHome = () => {
  
 
   return (
-    <div className="flex flex-col w-full h-[75vh] gap-16 overflow-y-auto down max-1280:pr-0 max-2000:gap-20">
+    <div className="flex flex-col w-full h-[75vh] gap-16 overflow-y-auto down max-1280:pr-0 max-2560:gap-20 max-2560:h-[80vh]">
       <div className="flex flex-row w-full gap-8 max-1280:gap-4 max-1024:gap-4 max-425:gap-3 max-425:text-[15px] max-375:text-[12px] max-375:gap-2">
-        <button className="bg-white py-1 px-3 rounded-full">All</button>
-        <button className="bg-[#ffffff1d] py-1 px-3 rounded-full text-white">
+        <button className="bg-white py-1 px-3 rounded-full hover:scale-105 transition-all ease-in">All</button>
+        <button className="bg-[#ffffff1d] py-1 px-3 rounded-full text-white hover:scale-105 transition-all ease-in">
           Music
         </button>
-        <button className="bg-[#ffffff1d] py-1 px-3 rounded-full text-white">
+        <button className="bg-[#ffffff1d] py-1 px-3 rounded-full text-white hover:scale-105 transition-all ease-in">
           Podcasts
         </button>
-        <button className="bg-[#ffffff1d] py-1 px-3 rounded-full text-white hidden max-1024:flex max-768:flex max-640:flex max-425:flex max-375:flex">
+        <button className="bg-[#ffffff1d] py-1 px-3 rounded-full text-white hidden max-1024:flex max-768:flex max-640:flex max-425:flex max-375:flex hover:scale-105 transition-all ease-in">
           Library
         </button>
       </div>
@@ -78,9 +78,9 @@ const DisplayHome = () => {
         <h1 className="text-white font-semibold text-2xl">Featured Albums</h1>
         <section className="flex flex-row items-start pl-4 gap-12 overflow-x-auto whitespace-nowrap left ">
           {albums.map((item, index) => (
-            <Link to={`/albums/${item.id}`} className="flex flex-col gap-2 w-[200px] shrink-0 max-1280:w-[170px]" key={index}  >
-              <img src={item.images[0].url} alt="" width={200} height={200} className='rounded-[10px]'/>
-              <h4 className="text-white truncate-sm pl-2">{item.name}</h4>
+            <Link to={`/albums/${item.id}`} className="flex flex-col gap-4 w-[200px] shrink-0 max-1280:w-[170px]" key={index}  >
+              <img src={item.images[0].url} alt="" width={200} height={200} className='rounded-[10px] hover:scale-105 transition-all ease'/>
+              <h4 className="text-white truncate-sm pl-2 hover:underline">{item.name}</h4>
               <p className="text-neutral-400 text-sm w-full truncate pl-2">
                 {item.label}
               </p>
@@ -92,13 +92,13 @@ const DisplayHome = () => {
         </h1>
         <section className="flex flex-row items-start pl-4 gap-12 overflow-x-auto whitespace-nowrap left">
           {playList.map((item,index)=>(
-            <div className="flex flex-col gap-2 w-[200px] shrink-0 max-1280:w-[170px]" key={index}>
-              <img src={item.images[0].url} alt="" width={200} height={200} className='rounded-[10px]'/>
-              <h4 className="text-white truncate-sm pl-2">{item.name}</h4>
+            <Link to={`/artist/${item.id}`} className="flex flex-col gap-4 w-[200px] shrink-0 max-1280:w-[170px] cursor-pointer" key={index}>
+              <img src={item.images[0].url} alt="" width={200} height={200} className='rounded-[10px] hover:scale-105 transition-all ease'/>
+              <h4 className="text-white truncate-sm pl-2 hover:underline">{item.name}</h4>
               <p className="text-neutral-400 text-sm w-full truncate pl-2">
                 {item.description}
               </p>
-            </div>
+            </Link>
           ))}
         </section>
         <h1 className="text-white font-semibold text-2xl mt-4">Top Artists</h1>

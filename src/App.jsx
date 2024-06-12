@@ -13,6 +13,7 @@ const App = () => {
 
     const [accessToken, setAccessToken] = useState("");
 
+
     const getAccessToken = async () => {
         const url = "https://accounts.spotify.com/api/token";
         const params = new URLSearchParams();
@@ -46,7 +47,7 @@ const App = () => {
         <TokenContext.Provider value={accessToken}>
             <Routes>
                 <Route path="/" element={<HomePage />} />
-                {/* <Route path="/artist" element={<ArtistPage />} /> */}
+                <Route path="/artist/:id" element={<ArtistPage/>} />
                 <Route path="/albums/:id" element={<AlbumPage/>}/>
             </Routes> 
         </TokenContext.Provider>

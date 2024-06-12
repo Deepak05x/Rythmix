@@ -17,7 +17,7 @@ export default {
         'exact-1024': { 'raw': '(min-width: 1024px) and (max-width: 1024px)' },
         'max-1280': { 'min' : '1170px' , 'max' : '1280px'},
         'max-1440': { 'min' : '1280px' , 'max' : '1440px'},
-        'max-2000': { 'min' : '1440px' , 'max' : '2000px'}
+        'max-2560': { 'min' : '1440px' , 'max' : '2560px'}
         // 'max-1023' : { 'min'}
       },
     },
