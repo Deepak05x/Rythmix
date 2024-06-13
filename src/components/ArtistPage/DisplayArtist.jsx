@@ -5,9 +5,12 @@ import { TokenContext } from '../../App'
 import { useState, useEffect, useContext } from 'react'
 import { useParams } from 'react-router-dom'
 
+
 const DisplayArtist = () => {
 
     const [artist, setArtist] = useState({})
+    const [tracks, setTracks] = useState([])
+    const [artistList, setArtistList] = useState([])
 
     const {id} = useParams()
 
@@ -22,13 +25,36 @@ const DisplayArtist = () => {
         })
         const data = response.data
         setArtist(data)
-        console.log(response.data)
     }
 
-    const followerConverter = (count)=>{
-        if(count > 1000000) return `${Math.floor(count/1000000)}M`
-        else if(count > 10000) return `${Math.floor(count/10000)}K`
+    const getArtistTracks = async()=>{
+      const url =  `https://api.spotify.com/v1/artists/${id}/top-tracks`
+      const response = await axios.get(url,{
+        headers:{
+          Authorization: `Bearer ${accessToken}`
+        }
+      })
+      const data = response.data.tracks
+      setTracks(data)
+      setArtistList()
+      console.log(response.data.tracks)
+      
     }
+
+    const tracksList = tracks.map((item,index)=>(
+      [item.artists]
+
+    ))
+
+    const timeConverter = (time)=>{
+      const totalSeconds = Math.floor(time/1000)
+      const minutes = Math.floor(totalSeconds/60)
+      const seconds = totalSeconds % 60
+      const paddedSeconds = seconds.toString().padStart(2, '0');
+  
+       return `${minutes}:${paddedSeconds}`;
+  
+  }
 
     function formatNumberWithCommas(number) {
         return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -36,7 +62,9 @@ const DisplayArtist = () => {
 
     useEffect(()=>{
         getArtist()
-    },[])
+        getArtistTracks()
+        console.log(tracks)
+    },[accessToken])
  
   return (
     <div className="overflow-y-auto flex flex-col gap-12 max-425:gap-8 max-375:gap-8">
@@ -55,19 +83,25 @@ const DisplayArtist = () => {
             </div> 
       </section>
       <hr className='w-full' />
-      <section className='flex flex-col  gap-8 overflow-x-hidden down max-2560:gap-12 max-1440:gap-14 max-1280:gap-12  max-1170:gap-12 max-1024:gap-12 max-768:gap-12 max-640:gap-12 max-425:gap-12'>
-        <div className=' max-2560:px-2 max-1440:px-2 max-1170:px-2 max-1024:px-2 max-1440:gap-16 max-640:hidden max-425:hidden max-375:hidden'>
-          <h1 className='text-[25px] text-white'>Popular</h1>
+      <section className='flex flex-col pb-4 gap-8 overflow-x-hidden down max-2560:gap-12 max-1440:gap-14 max-1280:gap-12  max-1170:gap-12 max-1024:gap-12 max-768:gap-12 max-640:gap-12 max-425:gap-12'>
+        <div className=' grid heading-col justify-between max-2560:px-2 max-1440:px-2 max-1170:px-2 max-1024:px-2 max-1440:gap-16 max-640:hidden max-425:hidden max-375:hidden'>
+          <p className='text-neutral-400 font-semibold text-[20px]'>Title</p>
+          <p className='text-neutral-400 font-semibold text-[20px]'>Popularity</p>
+          <img src={assets.clock_icon} alt="" className='max-1440:w-[20px] max-1440:h-[20px] max-1280:w-[20px] max-1170:w-[20px] max-1024:w-[20px] max-768:w-[20px] max-640:w-[20px] max-2560:w-[20px]' />
         </div>
-        <div className=' grid max-2560:px-2 max-1440:px-2 w-full cursor-pointer justify-between normal-col max-1280:px-2 max-1170:px-2 max-1024:px-2 max-768:px-1 max-640:px-1 max-640:flex max-640:flex-col  max-425:flex max-425:flex-col  max-375:flex max-375:flex-col max-375:items-start'>
-            <div className='flex flex-row gap-4'>
-              <p className='text-white text-start max-1440:text-[16px] font-light hover:underline'>Feein</p>
-            </div> 
-              <p className='text-neutral-400 max-1440:text-[15px] max-2000:text-[15px] hover:underline'>5,00,00,000</p>
-              <p className='text-neutral-400 max-425:hidden max-375:hidden max-640:hidden'>3:25</p>
-        </div>
+        {tracks.map((item,index)=>(
+          <div className=' grid  max-2560:px-2 max-1440:px-2 w-full cursor-pointer justify-between normal-col max-1280:px-2 max-1170:px-2 max-1024:px-2 max-768:px-1 max-640:px-1 max-640:flex max-640:flex-col  max-425:flex max-425:flex-col  max-375:flex max-375:flex-col max-375:items-start'>
+              <div className='flex flex-row gap-4'>
+                <p className='text-white text-start max-1440:text-[16px] font-light hover:underline'>{item.name}</p>
+              </div> 
+                <p className='text-neutral-400 max-1440:text-[15px] max-2000:text-[15px] hover:underline'>
+                  {item.popularity}/100
+                </p>
+                <p className='text-neutral-400 max-425:hidden max-375:hidden max-640:hidden'>{timeConverter(item.duration_ms)}</p>
+          </div>
+        ))}
+        
       </section>
-      <p className='text-neutral-400 hover:text-white px-2'>See more</p>
     </div>
   )
 }

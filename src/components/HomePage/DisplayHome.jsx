@@ -110,7 +110,7 @@ const DisplayHome = () => {
                 alt=""
                 className="rounded-full"
               />
-              <h4 className="text-white">{item.name}</h4>
+              <h4 className="text-white hover:underline">{item.name}</h4>
             </Link>
           ))}
           

@@ -50,9 +50,7 @@ const timeConverter = (time)=>{
     const minutes = Math.floor(totalSeconds/60)
     const seconds = totalSeconds % 60
     const paddedSeconds = seconds.toString().padStart(2, '0');
-
      return `${minutes}:${paddedSeconds}`;
-
 }
 
   return (
@@ -77,10 +75,10 @@ const timeConverter = (time)=>{
         </div> 
       </section>
       <hr className='w-full' />
-      <section className='flex flex-col  gap-8 overflow-x-hidden down max-2560:gap-14 max-1440:gap-14 max-1280:gap-12  max-1170:gap-12 max-1024:gap-12 max-768:gap-12 max-640:gap-12 max-425:gap-12'>
+      <section className='flex flex-col pb-4 gap-8 overflow-x-hidden down max-2560:gap-14 max-1440:gap-14 max-1280:gap-12  max-1170:gap-12 max-1024:gap-12 max-768:gap-12 max-640:gap-12 max-425:gap-12'>
         <div className=' grid heading-col justify-between max-2560:px-2 max-1440:px-2 max-1170:px-2 max-1024:px-2 max-1440:gap-16 max-640:hidden max-425:hidden max-375:hidden'>
-          <p className='text-neutral-400'>Title</p>
-          <p className='text-neutral-400'>Artist</p>
+          <p className='text-neutral-400 font-semibold text-[20px]'>Title</p>
+          <p className='text-neutral-400 font-semibold text-[20px]'>Artist</p>
           <img src={assets.clock_icon} alt="" className='max-1440:w-[20px] max-1440:h-[20px] max-1280:w-[20px] max-1170:w-[20px] max-1024:w-[20px] max-768:w-[20px] max-640:w-[20px] max-2560:w-[20px]' />
         </div>
         {list.map((item,index)=>(
