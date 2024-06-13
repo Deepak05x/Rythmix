@@ -92,7 +92,7 @@ const DisplayHome = () => {
         </h1>
         <section className="flex flex-row items-start pl-4 gap-12 overflow-x-auto whitespace-nowrap left">
           {playList.map((item,index)=>(
-            <Link to={`/artist/${item.id}`} className="flex flex-col gap-4 w-[200px] shrink-0 max-1280:w-[170px] cursor-pointer" key={index}>
+            <Link to={`/playlist/${item.id}`} className="flex flex-col gap-4 w-[200px] shrink-0 max-1280:w-[170px] cursor-pointer" key={index}>
               <img src={item.images[0].url} alt="" width={200} height={200} className='rounded-[10px] hover:scale-105 transition-all ease'/>
               <h4 className="text-white truncate-sm pl-2 hover:underline">{item.name}</h4>
               <p className="text-neutral-400 text-sm w-full truncate pl-2">
@@ -104,14 +104,14 @@ const DisplayHome = () => {
         <h1 className="text-white font-semibold text-2xl mt-4">Top Artists</h1>
         <section className="flex flex-row items-start pl-4 gap-12 overflow-x-auto whitespace-nowrap left">
           {artists.map((item,index)=>(
-            <div className="flex flex-col gap-2 w-[200px] shrink-0 items-center max-1280:w-[170px]" key={index}>
+            <Link to={`/artist/${item.id}`} className="flex flex-col gap-2 w-[200px] shrink-0 items-center max-1280:w-[170px]" key={index}>
               <img
                 src={item.images[1].url}
                 alt=""
                 className="rounded-full"
               />
               <h4 className="text-white">{item.name}</h4>
-            </div>
+            </Link>
           ))}
           
         </section>

@@ -63,7 +63,7 @@ const DisplayAlbum = () => {
         )}
         <div className='flex flex-col items-start justify-end  max-2560:gap-8 max-1440:gap-8 max-1170:gap-4 max-1280:gap-6 max-1024:gap-8 max-768:gap-4 max-640:gap-6 max-425:items-start max-425:gap-4 max-375:items-start max-375:gap-4'>
           <h4 className='text-white max-425:hidden max-375:hidden'>Album</h4>
-          <h1 className='text-white text-[20px]'>{albumContent.name}</h1>
+          <h1 className='text-white text-[25px] font-bold'>{albumContent.name}</h1>
           <div className='flex flex-row gap-4 max-640:flex-col max-640:gap-1 max-425:flex-col max-425:gap-1 max-375:flex-col max-375:gap-1'>
             {artist.map((item,index)=>(
               <p className='text-neutral-400'>&bull; {item.name}</p>

@@ -1,6 +1,6 @@
 import React from "react";
 import { TokenContext } from "../../App";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useLayoutEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { useContext } from "react";
@@ -32,7 +32,7 @@ const DisplayPlaylist = () => {
     setList(data.tracks.items)
   };
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     getPlaylist();
   }, [accessToken]);
 
@@ -64,8 +64,8 @@ const timeConverter = (time)=>{
         <div className="flex flex-col items-start justify-end  max-2560:gap-12 max-1440:gap-12 max-1170:gap-6 max-1280:gap-8 max-1024:gap-8 max-768:gap-6 max-640:gap-6 max-425:items-start max-425:gap-6 max-375:items-start max-375:gap-4">
           <h4 className="text-white max-425:hidden max-375:hidden">Album</h4>
           
-          <div className="flex flex-col gap-1 max-640:flex-col max-640:gap-1 max-425:flex-col max-425:gap-1 max-375:flex-col max-375:gap-1">
-            <h1 className="text-white text-[20px]">{playlist.name}</h1>
+          <div className="flex flex-col gap-2 max-640:flex-col max-640:gap-1 max-425:flex-col max-425:gap-1 max-375:flex-col max-375:gap-1">
+            <h1 className="text-white text-[25px] font-bold">{playlist.name}</h1>
             <p className="text-neutral-400">{playlist.description}</p>
           </div> 
           <div className="flex flex-row gap-4 items-center justify-center">
@@ -92,7 +92,7 @@ const timeConverter = (time)=>{
               <p className='text-neutral-400 max-425:hidden max-375:hidden max-640:hidden'>{timeConverter(item.track.duration_ms)}</p>
           </div>
           ))}
-        </section>
+      </section>
     </div>
   );
 };

@@ -61,3 +61,10 @@ button{
   grid-template-columns:  300px 200px 30px;
 }
 
+.bg-url{
+  background: url('./assets/img1.jpg');
+  background-repeat: no-repeat;
+  background-position: start;
+  background-size: contain;
+  width: 100%;
+}
