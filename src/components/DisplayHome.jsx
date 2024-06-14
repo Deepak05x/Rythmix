@@ -61,7 +61,7 @@ const DisplayHome = () => {
  
 
   return (
-    <div className="flex flex-col w-full h-[75vh] gap-16 overflow-y-auto down max-1280:pr-0 max-2560:gap-20 max-2560:h-[80vh]">
+    <div className="flex flex-col w-full mb-1 h-[100%] gap-16 overflow-y-auto down max-1280:pr-0 max-2560:gap-20">
       <div className="flex flex-row w-full gap-8 max-1280:gap-4 max-1024:gap-4 max-425:gap-3 max-425:text-[15px] max-375:text-[12px] max-375:gap-2">
         <button className="bg-white py-1 px-3 rounded-full hover:scale-105 transition-all ease-in">All</button>
         <button className="bg-[#ffffff1d] py-1 px-3 rounded-full text-white hover:scale-105 transition-all ease-in">

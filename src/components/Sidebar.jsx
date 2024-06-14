@@ -18,7 +18,7 @@ const Sidebar = () => {
                 <p className='text-white'>Search</p>
             </div>
         </div>
-        <div className= 'bg-[#121212] w-full mt-2 py-6 px-3 rounded h-[70vh] overflow-y-auto max-1440:h-[88vh] max-1280:h-[88vh] max-1170:h-[88vh] max-2560:h-[90vh]'>
+        <div className= 'bg-[#121212] w-full mt-2 py-6 px-3 rounded h-[1000%] overflow-y-auto'>
             <div className='w-full'>
                 <div className='flex items-start flex-row justify-between px-3 max-1280:items-center max-1280:px-1'>
                     <img src={assets.stack_icon} alt="stack" width={25} height={25} className='max-1280:w-[20px]'/>

@@ -55,8 +55,8 @@ const App = () => {
 
     return (
         <>
-            <div className='px-2 py-2'>
-                <div className='flex flex-row gap-2 max-2560:h-[89vh] max-1440:h-[87vh] max-1280:h-[88vh] max-1170:h-[88vh] exact-1024:h-[87vh] max-1024:h-[87vh] max-768:h-[88vh] max-640:h-[90vh] max-425:h-[89vh] max-375:h-[89vh] max-2000:h-[90vh]'> 
+            <div className='px-2 py-2  w-full h-[100vh] flex flex-col gap-0.5'>
+                <div className='flex flex-row gap-2 h-[90%]  '> 
                     <Sidebar /> 
                     <div className='w-[75%] bg-[#121212] rounded flex flex-col gap-12 pt-4 px-4 justify-flex-start max-1280:w-[80%]  max-1024:w-full max-1024:h-[89vh] max-768:w-full max-768:h-[90vh] max-640:w-full max-425:w-full max-425:gap-8 max-375:w-full max-375:gap-8'>
                         <Navbar />
@@ -70,7 +70,7 @@ const App = () => {
                         </TokenContext.Provider>
                     </div>
                 </div> 
-                <div className=' max-2560:h-[8vh] max-1440:h-[10vh] max-1280:h-[9vh] max-1170:h-[9vh] exact-1024:h-[8vh] max-1024:h-[8vh] max-768:h-[7vh] max-640:h-[7vh] max-425:h-[8vh] max-375:h-[8vh] max-2000:h-[8vh]'>
+                <div className='h-[9.5%] max-768:h-[9%] max-640:h-[10%]'>
                     <MusicPlayer currentSong={currentSong} />
                 </div>
             </div>
