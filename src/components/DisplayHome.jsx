@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { useContext } from "react";
-import { TokenContext } from "../../App";
+import { TokenContext } from "../App";
 import { useState } from "react";
 import { useEffect, useLayoutEffect } from "react";
 import { Link } from "react-router-dom";
@@ -108,7 +108,7 @@ const DisplayHome = () => {
               <img
                 src={item.images[1].url}
                 alt=""
-                className="rounded-full"
+                className="rounded-full hover:opacity-70 transition-all ease-in"
               />
               <h4 className="text-white hover:underline">{item.name}</h4>
             </Link>

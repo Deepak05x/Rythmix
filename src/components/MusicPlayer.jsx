@@ -2,23 +2,23 @@ import React from 'react'
 import { assets } from '../assets/assets'
 
 
-const MusicPlayer = () => {
+const MusicPlayer = ({currentSong}) => {
   return (
-    <div className='flex items-center justify-between w-full  h-full  bg-[#121212] py-4 px-2 flex-row max-1440:mt-2 max-1280:mt-2 max-1170:mt-2 exact-1024:mt-3 max-1024:mt-3 max-768:mt-1 max-768:justify-between max-640:mt-1 max-425:mt-1 max-375:mt-1 max-2560:mt-2'>
-        <div className='flex flex-row gap-x-3 w-full max-1024:items-center max-768:w-[10%] max-640:w-[10%] max-375:hidden'>
-            <img src={assets.img1} alt="" width={50} height={40} className='max-1280:w-[40px] max-1280:h-[40px] max-1024:w-[30px] max-1024:h-[30px] max-1024:rounded-full max-768:w-[35px] max-768:h-[35px] max-768:rounded-full max-640:rounded-full max-640:w-[30px] max-425:w-[30px] max-425:rounded-full'/>
-            <div className='text-white flex items-start justify-center flex-col gap-y-2 max-1280:gap-0.5 max-1024:gap-0 max-768:hidden max-640:hidden max-425:hidden'>
-                <p className='max-1280:text-sm max-1024:text-[12px]'>Sweater Weather</p>
-                <p className='text-neutral-400 text-sm max-1280:text-[12px] max-1024:text-[12px]'>Neighbourhood</p>
+    <div className='flex items-center justify-between w-full  h-full  bg-[#121212] py-4 px-2 flex-row max-2560:mt-2.5 max-1440:mt-2 max-1280:mt-2 max-1170:mt-2 exact-1024:mt-6 max-1024:mt-6 max-768:mt-6 max-768:justify-between max-640:mt-2 max-425:mt-2 max-375:mt-2 '>
+        <div className='flex flex-row gap-x-3 w-full max-1440:items-center max-1170:items-center max-1280:items-center max-1024:items-center max-768:w-[10%] max-640:w-[10%] max-375:hidden'>
+            <img src={currentSong.image} alt="" width={50} height={40} className=' rounded-full max-1440:h-[50px] max-1440:w-[50px] max-1170:w-[40px] max-1170:h-[40px] max-1280:w-[40px] max-1280:h-[40px] max-1024:w-[30px] max-1024:h-[30px] max-1024:rounded-full max-768:w-[35px] max-768:h-[35px] max-768:rounded-full max-640:rounded-full max-640:w-[30px] max-425:w-[30px] max-425:rounded-full'/>
+            <div className='text-white flex items-start justify-center flex-col gap-y-1  max-1024:gap-0 max-768:hidden max-640:hidden max-425:hidden'>
+                <p className='max-1280:text-[12px] max-1170:text-[12px] max-1024:text-[12px] max-1440:text-[12px]'>{currentSong.song}</p>
+                <p className='text-neutral-400 max-1280:text-[12px] max-1440:text-[12px] max-1024:text-[12px] max-1170:text-[12px]'>{currentSong.artist}</p>
             </div>
         </div>
         <div className='flex flex-col items-center w-full gap-2 max-1024:mr-8 max-1024:gap-1 max-1024:mt-2 max-640:w-[90%]'>
-            <div className='flex flex-row items-center gap-x-4'>
-                <img src={assets.shuffle_icon} alt="" width={17} height={17} className='max-1024:w-[14px]' />
-                <img src={assets.prev_icon} alt="" width={17} height={17} className='max-1024:w-[14px]'/>
-                <img src={assets.play_icon} alt="" width={17} height={17} className='max-1024:w-[14px]'/>
-                <img src={assets.next_icon} alt="" width={17} height={17} className='max-1024:w-[14px]'/>
-                <img src={assets.loop_icon} alt="" width={17} height={17} className='max-1024:w-[14px]'/>
+            <div className='flex flex-row items-center gap-x-4 '>
+                <img src={assets.shuffle_icon} alt="" width={17} height={17} className='max-1024:w-[14px] hover:opacity-50 transition-all ease-in' />
+                <img src={assets.prev_icon} alt="" width={17} height={17} className='max-1024:w-[14px] hover:opacity-50 transition-all ease-in'/>
+                <img src={assets.play_icon} alt="" width={17} height={17} className='max-1024:w-[14px] hover:opacity-50 transition-all ease-in'/>
+                <img src={assets.next_icon} alt="" width={17} height={17} className='max-1024:w-[14px] hover:opacity-50 transition-all ease-in'/>
+                <img src={assets.loop_icon} alt="" width={17} height={17} className='max-1024:w-[14px] hover:opacity-50 transition-all ease-in'/>
             </div>
             <div className='text-white flex flex-row items-center justify-center gap-4 text-sm font-neutral'>
                 <p className='max-1024:text-[12px]'>0:00</p>
@@ -28,7 +28,7 @@ const MusicPlayer = () => {
                 <p className='max-1024:text-[12px]'>3:20</p>
             </div>
         </div>
-        <div className='w-full flex flex-row items-center justify-end gap-3 opacity-70  max-768:hidden max-640:hidden max-425:hidden max-375:hidden'>
+        <div className='w-full flex flex-row items-center justify-end gap-3 opacity-70 max-1024:hidden max-768:hidden max-640:hidden max-425:hidden max-375:hidden'>
             <img src={assets.plays_icon} alt="" width={17} height={17} className=' max-1170:w-[15px] max-1170:h-[15px] max-1024:h-[14px] max-1024:w-[14px] '/>
             <img src={assets.mic_icon} alt="" width={17} height={17} className=' max-1170:w-[15px] max-1170:h-[15px] max-1024:h-[14px] max-1024:w-[14px]'/>
             <img src={assets.queue_icon} alt="" width={17} height={17} className=' max-1170:w-[15px] max-1170:h-[15px] max-1024:h-[14px] max-1024:w-[14px]'/>

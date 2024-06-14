@@ -1,7 +1,7 @@
 import React from 'react'
-import { assets } from '../../assets/assets'
+import { assets } from '../assets/assets'
 import axios from 'axios'
-import { TokenContext } from '../../App'
+import { TokenContext } from '../App'
 import { useState, useEffect, useContext } from 'react'
 import { useParams } from 'react-router-dom'
 
@@ -10,7 +10,6 @@ const DisplayArtist = () => {
 
     const [artist, setArtist] = useState({})
     const [tracks, setTracks] = useState([])
-    const [artistList, setArtistList] = useState([])
 
     const {id} = useParams()
 
@@ -41,10 +40,7 @@ const DisplayArtist = () => {
       
     }
 
-    const tracksList = tracks.map((item,index)=>(
-      [item.artists]
-
-    ))
+  
 
     const timeConverter = (time)=>{
       const totalSeconds = Math.floor(time/1000)
@@ -70,7 +66,7 @@ const DisplayArtist = () => {
     <div className="overflow-y-auto flex flex-col gap-12 max-425:gap-8 max-375:gap-8">
         <section className="flex flex-row w-full max-2560:gap-16 max-1440:gap-16 max-1280:gap-8 max-1170:gap-12 max-1024:gap-12 max-768:gap-8 max-640:gap-8 max-425:flex-col max-425:items-center max-425:gap-8 max-375:flex-col max-375:items-center max-375:gap-4 ">
             {artist && artist.images && artist.images[1] && (
-                    <img src={artist.images[1].url} alt="" className=' rounded-[50%] max-2560:w-[230px] max-1440:w-[230px] max-1440:h-[230px] max-1280:h-[180px] max-1280:w-[180px] max-1170:w-[160px] max-1170:h-[160px] max-1024:w-[200px] max-768:w-[180px] max-640:w-[180px] max-425:w-[200px] max-375:w-[180px]'/>
+                    <img src={artist.images[1].url} alt="" className=' cursor-pointer rounded-[50%] max-2560:w-[230px] max-1440:w-[230px] max-1440:h-[230px] max-1280:h-[180px] max-1280:w-[180px] max-1170:w-[160px] max-1170:h-[160px] max-1024:w-[200px] max-768:w-[180px] max-640:w-[180px] max-425:w-[200px] max-375:w-[180px]'/>
             )}
             <div className="flex flex-col items-start justify-end  max-2560:gap-10 max-1440:gap-12 max-1170:gap-6 max-1280:gap-8 max-1024:gap-8 max-768:gap-6 max-640:gap-6 max-425:items-start max-425:gap-6 max-375:items-start max-375:gap-4">
             <h4 className="text-white max-425:hidden max-375:hidden">Artist</h4>
@@ -83,7 +79,7 @@ const DisplayArtist = () => {
             </div> 
       </section>
       <hr className='w-full' />
-      <section className='flex flex-col pb-4 gap-8 overflow-x-hidden down max-2560:gap-12 max-1440:gap-14 max-1280:gap-12  max-1170:gap-12 max-1024:gap-12 max-768:gap-12 max-640:gap-12 max-425:gap-12'>
+      <section className='flex mb-4 flex-col pb-4 gap-8 overflow-x-hidden down max-2560:gap-12 max-1440:gap-14 max-1280:gap-12  max-1170:gap-12 max-1024:gap-12 max-768:gap-12 max-640:gap-12 max-425:gap-12'>
         <div className=' grid heading-col justify-between max-2560:px-2 max-1440:px-2 max-1170:px-2 max-1024:px-2 max-1440:gap-16 max-640:hidden max-425:hidden max-375:hidden'>
           <p className='text-neutral-400 font-semibold text-[20px]'>Title</p>
           <p className='text-neutral-400 font-semibold text-[20px]'>Popularity</p>
