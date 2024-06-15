@@ -34,7 +34,7 @@ const DisplayAlbum = ({setCurrentSong}) => {
         setAlbumContent(data)
         setArtist(data.artists)
         setSongs(data.tracks.items)
-        console.log(data.tracks.items)
+
     }
 
     useEffect(()=>{

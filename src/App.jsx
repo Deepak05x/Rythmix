@@ -65,7 +65,7 @@ const App = () => {
                                 <Route path="/" element={<DisplayHome />} />
                                 <Route path="/playlist/:id" element={<DisplayPlaylist setCurrentSong={setCurrentSong}/>} />
                                 <Route path="/albums/:id" element={<DisplayAlbum setCurrentSong={setCurrentSong}/>}/>
-                                <Route path="/artist/:id" element={<DisplayArtist />} />
+                                <Route path="/artist/:id" element={<DisplayArtist setCurrentSong={setCurrentSong} />} />
                             </Routes> 
                         </TokenContext.Provider>
                     </div>

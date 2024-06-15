@@ -93,7 +93,7 @@ const handleSelection = (song)=>{
           <img src={assets.clock_icon} alt="" className='max-1440:w-[20px] max-1440:h-[20px] max-1280:w-[20px] max-1170:w-[20px] max-1024:w-[20px] max-768:w-[20px] max-640:w-[20px] max-2560:w-[20px]' />
         </div>
         {list.map((item,index)=>(
-            <div  onClick={()=>handleSelection(item)} className='grid max-2560:px-2 max-1440:px-2 w-full cursor-pointer justify-between normal-col max-1280:px-2 max-1170:px-2 max-1024:px-2 max-768:px-1 max-640:px-1 max-640:flex max-640:flex-col  max-425:flex max-425:flex-col  max-375:flex max-375:flex-col max-375:items-start' key={index}>
+            <div onClick={()=>handleSelection(item)} className='grid max-2560:px-2 max-1440:px-2 w-full cursor-pointer justify-between normal-col max-1280:px-2 max-1170:px-2 max-1024:px-2 max-768:px-1 max-640:px-1 max-640:flex max-640:flex-col  max-425:flex max-425:flex-col  max-375:flex max-375:flex-col max-375:items-start' key={index}>
               <div className='flex flex-row gap-4'>
                 <p className='text-white text-start max-1440:text-[16px] font-light hover:underline'>{item.track.name}</p>
               </div> 

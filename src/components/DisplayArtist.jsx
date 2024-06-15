@@ -6,10 +6,11 @@ import { useState, useEffect, useContext } from 'react'
 import { useParams } from 'react-router-dom'
 
 
-const DisplayArtist = () => {
+const DisplayArtist = ({setCurrentSong}) => {
 
     const [artist, setArtist] = useState({})
     const [tracks, setTracks] = useState([])
+    const [audio, setAudio] = useState(new Audio());
 
     const {id} = useParams()
 
@@ -35,12 +36,20 @@ const DisplayArtist = () => {
       })
       const data = response.data.tracks
       setTracks(data)
-      setArtistList()
       console.log(response.data.tracks)
       
     }
 
   
+    const handleSelection = (song)=>{
+      setCurrentSong({
+        song: song.name,
+        artist: song.artists[0].name,
+        image: song.album.images[0].url
+      })
+      audio.src = song.preview_url;
+      audio.play();
+    }
 
     const timeConverter = (time)=>{
       const totalSeconds = Math.floor(time/1000)
@@ -66,7 +75,7 @@ const DisplayArtist = () => {
     <div className="overflow-y-auto flex flex-col gap-12 max-425:gap-8 max-375:gap-8">
         <section className="flex flex-row w-full max-2560:gap-16 max-1440:gap-16 max-1280:gap-8 max-1170:gap-12 max-1024:gap-12 max-768:gap-8 max-640:gap-8 max-425:flex-col max-425:items-center max-425:gap-8 max-375:flex-col max-375:items-center max-375:gap-4 ">
             {artist && artist.images && artist.images[1] && (
-                    <img src={artist.images[1].url} alt="" className=' cursor-pointer rounded-[50%] max-2560:w-[230px] max-1440:w-[230px] max-1440:h-[230px] max-1280:h-[180px] max-1280:w-[180px] max-1170:w-[160px] max-1170:h-[160px] max-1024:w-[200px] max-768:w-[180px] max-640:w-[180px] max-425:w-[200px] max-375:w-[180px]'/>
+                    <img src={artist.images[1].url} alt="" className=' cursor-pointer rounded-[50%] max-2560:w-[230px] max-1440:w-[230px] max-1440:h-[230px] max-1280:h-[180px] max-1280:w-[180px] max-1170:w-[160px] max-1170:h-[160px] max-1024:w-[200px] max-768:w-[180px] max-640:hidden max-425:hidden max-375:hidden'/>
             )}
             <div className="flex flex-col items-start justify-end  max-2560:gap-10 max-1440:gap-12 max-1170:gap-6 max-1280:gap-8 max-1024:gap-8 max-768:gap-6 max-640:gap-6 max-425:items-start max-425:gap-6 max-375:items-start max-375:gap-4">
             <h4 className="text-white max-425:hidden max-375:hidden">Artist</h4>
@@ -86,7 +95,7 @@ const DisplayArtist = () => {
           <img src={assets.clock_icon} alt="" className='max-1440:w-[20px] max-1440:h-[20px] max-1280:w-[20px] max-1170:w-[20px] max-1024:w-[20px] max-768:w-[20px] max-640:w-[20px] max-2560:w-[20px]' />
         </div>
         {tracks.map((item,index)=>(
-          <div className=' grid  max-2560:px-2 max-1440:px-2 w-full cursor-pointer justify-between normal-col max-1280:px-2 max-1170:px-2 max-1024:px-2 max-768:px-1 max-640:px-1 max-640:flex max-640:flex-col  max-425:flex max-425:flex-col  max-375:flex max-375:flex-col max-375:items-start'>
+          <div onClick={()=>handleSelection(item)} className=' grid  max-2560:px-2 max-1440:px-2 w-full cursor-pointer justify-between normal-col max-1280:px-2 max-1170:px-2 max-1024:px-2 max-768:px-1 max-640:px-1 max-640:flex max-640:flex-col  max-425:flex max-425:flex-col  max-375:flex max-375:flex-col max-375:items-start'>
               <div className='flex flex-row gap-4'>
                 <p className='text-white text-start max-1440:text-[16px] font-light hover:underline'>{item.name}</p>
               </div> 

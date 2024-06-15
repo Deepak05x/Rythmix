@@ -20,13 +20,13 @@ const MusicPlayer = ({currentSong}) => {
                 <img src={assets.next_icon} alt="" width={17} height={17} className='max-1024:w-[15px] max-768:w-[14px] max-425:w-[14px]  max-375:w-[14px]  hover:opacity-50 transition-all ease-in'/>
                 <img src={assets.loop_icon} alt="" width={17} height={17} className='max-1024:w-[15px] max-768:w-[14px] max-425:w-[14px] max-375:w-[14px] hover:opacity-50 transition-all ease-in'/>
             </div>
-            <div className='text-white flex flex-row items-center justify-center gap-4 text-sm font-neutral'>
+            {/* <div className='text-white flex flex-row items-center justify-center gap-4 text-sm font-neutral'>
                 <p className='max-1024:text-[12px]'>0:00</p>
                 <div className='w-[50vw] h-[3px] max-w-[400px] bg-gray-300 rounded-full cursor-pointer max-1170:max-w-[300px]  max-1024:max-w-[300px] max-768:w-[300px] exact-425:max-w-[180px]'>
                     <hr className='h-1 border-none w-0 bg-green-800 rounded-full'/>
                 </div>
                 <p className='max-1024:text-[12px]'>3:20</p>
-            </div>
+            </div> */}
         </div>
         <div className='w-full flex flex-row items-center justify-end gap-3 opacity-70 max-1024:hidden max-768:hidden max-640:hidden max-425:hidden max-375:hidden'>
             <img src={assets.plays_icon} alt="" width={17} height={17} className=' max-1170:w-[15px] max-1170:h-[15px] max-1024:h-[14px] max-1024:w-[14px] '/>
