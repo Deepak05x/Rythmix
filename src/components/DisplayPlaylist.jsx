@@ -21,17 +21,23 @@ const DisplayPlaylist = ({setCurrentSong, audio}) => {
   const accessToken = useContext(TokenContext);
 
   const getPlaylist = async () => {
-    const url = `https://api.spotify.com/v1/playlists/${id}`;
-    const response = await axios.get(url, {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-    });
-    const data = response.data;
-    setPlaylist(data);
-    setSong(data.tracks.items)
-    setArtist(data.followers)
-    setList(data.tracks.items)
+    try{
+      const url = `https://api.spotify.com/v1/playlists/${id}`;
+      const response = await axios.get(url, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
+      const data = response.data;
+      setPlaylist(data);
+      setSong(data.tracks.items)
+      setArtist(data.followers)
+      setList(data.tracks.items)
+    }catch(e){
+      console.log("THE SINGLE PLAYLIST FETCHING WAS FAILED")
+      console.log(e.message)
+    }
+    
   };
 
   useLayoutEffect(() => {

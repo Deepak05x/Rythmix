@@ -1,11 +1,11 @@
-import { albumsData, assets } from '../assets/assets'
+import {  assets } from '../assets/assets'
 import { TokenContext } from '../App'
 import { useContext } from 'react'
 import { useState } from 'react'
 import { useEffect } from 'react'
 import { useParams } from "react-router-dom";
 import axios from 'axios'
-import {Link} from 'react-router-dom'
+
 
 
 const DisplayAlbum = ({setCurrentSong, audio}) => {
@@ -17,12 +17,12 @@ const DisplayAlbum = ({setCurrentSong, audio}) => {
     const [albumContent, setAlbumContent] = useState({})
     const [artist, setArtist] = useState([])
     const [songs, setSongs] = useState([])
-    const [previewUrl, setPreviewUrl] = useState('')
     
 
     const { id } = useParams()
 
     const getSingleAlbum = async()=>{
+      try{
         const url = `https://api.spotify.com/v1/albums/${id}`
         const response = await axios.get(url,{
             headers: {
@@ -35,21 +35,12 @@ const DisplayAlbum = ({setCurrentSong, audio}) => {
         setAlbumContent(data)
         setArtist(data.artists)
         setSongs(data.tracks.items)
-        console.log(data.tracks.items)
-
+      }catch(e){
+        console.log("THE SINGLE ALBUM FETCHING WAS FAILED")
+        console.log(e.message)
+      }
+        
     }
-
-    const fetchSongDetails = async (trackId) => {
-      const url = `https://api.spotify.com/v1/tracks/${trackId}`;
-      const response = await axios.get(url, {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      });
-      const data = response.data;
-      setPreviewUrl(data.preview_url);
-    };
-  
     
 
     useEffect(()=>{
@@ -75,24 +66,16 @@ const DisplayAlbum = ({setCurrentSong, audio}) => {
         artist: song.artists[0].name,
         image: mainImage[0].url,
       })
-      fetchSongDetails(song.id)
+      audio.src = song.preview_url
+      audio.play()
     }
-
-    const playSong = () => {
-      if (previewUrl) {
-        audio.src = previewUrl;
-        audio.play();
-      } else {
-        console.error("Preview URL not available.");
-      }
-    };
 
 
   return (
     <div className="overflow-y-auto flex flex-col gap-12 max-425:gap-8 max-375:gap-8">
       <section className='flex flex-row w-full max-2560:gap-16 max-1440:gap-16 max-1280:gap-8 max-1170:gap-12 max-1024:gap-12 max-768:gap-8 max-640:gap-8 max-425:flex-col max-425:items-center max-425:gap-8 max-375:flex-col max-375:items-center max-375:gap-4 '>
         {mainImage && mainImage[0] && mainImage[0].url && (
-            <img src={mainImage[0].url} alt="" className=' max-2560:w-[250px] max-1440:w-[230px] max-1440:h-[230px] max-1280:h-[180px] max-1280:w-[180px] max-1170:w-[160px] max-1170:h-[160px] max-1024:w-[160px] max-1024:h-[160px] max-768:w-[180px] max-640:hidden max-425:hidden max-375:hidden '/>
+            <img src={mainImage[0].url} alt="" className=' max-2560:w-[250px] max-2560:h-[250px] max-1440:w-[230px] max-1440:h-[230px] max-1280:h-[180px] max-1280:w-[180px] max-1170:w-[160px] max-1170:h-[160px] max-1024:w-[160px] max-1024:h-[160px] max-768:w-[180px] max-640:hidden max-425:hidden max-375:hidden '/>
         )}
         <div className='flex flex-col items-start justify-end  max-2560:gap-8 max-1440:gap-8 max-1170:gap-4 max-1280:gap-6 max-1024:gap-8 max-768:gap-4 max-640:gap-6 max-425:items-start max-425:gap-4 max-375:items-start max-375:gap-4'>
           <h4 className='text-white max-425:hidden max-375:hidden'>Album</h4>

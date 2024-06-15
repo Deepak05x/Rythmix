@@ -28,7 +28,7 @@ const DisplayHome = () => {
 
   const getAlbums = async () => {
     const url =
-      "https://api.spotify.com/v1/albums?ids=3tjIKRAPBy5Qu4z8F5HmBz%2C3B61kSKTxlY36cYgzvf3cP%2C7k1b8wzjRsSTmIBuRlBrxp%2C7ARtQpvnPN2ucbmVHngLOs%2C4xkM0BwLM9H2IUcbYzpcBI%2C5EYKrEDnKhhcNxGedaRQeK%2C7asdrrGPiGUgv50OATAorX%2C0vmYAygGWZZ4pO6L3xC2kX%2C1OojCidx0eoPKch2M0Kz31%2C2R2YbAP031cY3CpJN78X7e";
+      "https://api.spotify.com/v1/albums?ids=4rFrdkSWs0dtj0rWPzOk1v%2C0vmYAygGWZZ4pO6L3xC2kX%2C7k1b8wzjRsSTmIBuRlBrxp%2C1Zbod8FPsrcpKCR64oHK0M%2C6FgtuX3PtiB5civjHYhc52%2C3cfAM8b8KqJRoIzt3zLKqw%2C2TbvDOYsVd4S4d5KnUx7fP%2C253H7iC7BYj4szx25Eym83%2C6FdMTnvFRHSEpOXf5Xrvx4%2C2uiQo0DIcriQKVm5ivXuDO";
     const response = await axios.get(url, {
       headers: {
         Authorization: `Bearer ${accessToken}`,

@@ -50,6 +50,11 @@ const App = () => {
         }
     };
 
+    const fetchAndPlaySong = async()=>{
+
+    }
+
+
     useEffect(() => {
         getAccessToken();
     }, []);

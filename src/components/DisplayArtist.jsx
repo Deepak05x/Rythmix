@@ -18,6 +18,7 @@ const DisplayArtist = ({setCurrentSong, audio}) => {
     const accessToken = useContext(TokenContext)
 
     const getArtist = async()=>{
+      try{
         const url = `https://api.spotify.com/v1/artists/${id}`
         const response = await axios(url,{
             headers:{
@@ -26,17 +27,28 @@ const DisplayArtist = ({setCurrentSong, audio}) => {
         })
         const data = response.data
         setArtist(data)
+      }catch(e){
+        console.log("THE SINGLE ARTIST FETCHING WAS FAILED")
+        console.log(e.message)
+      }
+        
     }
 
     const getArtistTracks = async()=>{
-      const url =  `https://api.spotify.com/v1/artists/${id}/top-tracks`
-      const response = await axios.get(url,{
-        headers:{
-          Authorization: `Bearer ${accessToken}`
-        }
-      })
-      const data = response.data.tracks
-      setTracks(data)
+      try{
+        const url =  `https://api.spotify.com/v1/artists/${id}/top-tracks`
+        const response = await axios.get(url,{
+          headers:{
+            Authorization: `Bearer ${accessToken}`
+          }
+        })
+        const data = response.data.tracks
+        setTracks(data)
+      }catch(e){
+        console.log("THE TRACKS FETCHING FROM THE SINGLE ARTIST WAS FAILED")
+        console.log(e.message)
+      }
+      
       
     }
 
@@ -68,7 +80,6 @@ const DisplayArtist = ({setCurrentSong, audio}) => {
     useEffect(()=>{
         getArtist()
         getArtistTracks()
-        console.log(tracks)
     },[accessToken])
  
   return (
@@ -95,7 +106,7 @@ const DisplayArtist = ({setCurrentSong, audio}) => {
           <img src={assets.clock_icon} alt="" className='max-1440:w-[20px] max-1440:h-[20px] max-1280:w-[20px] max-1170:w-[20px] max-1024:w-[20px] max-768:w-[20px] max-640:w-[20px] max-2560:w-[20px]' />
         </div>
         {tracks.map((item,index)=>(
-          <div onClick={()=>handleSelection(item)} className=' grid  max-2560:px-2 max-1440:px-2 w-full cursor-pointer justify-between normal-col max-1280:px-2 max-1170:px-2 max-1024:px-2 max-768:px-1 max-640:px-1 max-640:flex max-640:flex-col  max-425:flex max-425:flex-col  max-375:flex max-375:flex-col max-375:items-start'>
+          <div onClick={()=>handleSelection(item)} key={index} className=' grid  max-2560:px-2 max-1440:px-2 w-full cursor-pointer justify-between normal-col max-1280:px-2 max-1170:px-2 max-1024:px-2 max-768:px-1 max-640:px-1 max-640:flex max-640:flex-col  max-425:flex max-425:flex-col  max-375:flex max-375:flex-col max-375:items-start'>
               <div className='flex flex-row gap-4'>
                 <p className='text-white text-start max-1440:text-[16px] font-light hover:underline'>{item.name}</p>
               </div> 
