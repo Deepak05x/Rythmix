@@ -6,11 +6,12 @@ import { useState, useEffect, useContext } from 'react'
 import { useParams } from 'react-router-dom'
 
 
-const DisplayArtist = ({setCurrentSong}) => {
+const DisplayArtist = ({setCurrentSong, audio}) => {
 
     const [artist, setArtist] = useState({})
     const [tracks, setTracks] = useState([])
-    const [audio, setAudio] = useState(new Audio());
+    
+    
 
     const {id} = useParams()
 
@@ -36,7 +37,6 @@ const DisplayArtist = ({setCurrentSong}) => {
       })
       const data = response.data.tracks
       setTracks(data)
-      console.log(response.data.tracks)
       
     }
 

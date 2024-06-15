@@ -8,7 +8,7 @@ import axios from 'axios'
 import {Link} from 'react-router-dom'
 
 
-const DisplayAlbum = ({setCurrentSong}) => {
+const DisplayAlbum = ({setCurrentSong, audio}) => {
 
   const accessToken = useContext(TokenContext)
 
@@ -17,6 +17,7 @@ const DisplayAlbum = ({setCurrentSong}) => {
     const [albumContent, setAlbumContent] = useState({})
     const [artist, setArtist] = useState([])
     const [songs, setSongs] = useState([])
+    const [previewUrl, setPreviewUrl] = useState('')
     
 
     const { id } = useParams()
@@ -34,12 +35,27 @@ const DisplayAlbum = ({setCurrentSong}) => {
         setAlbumContent(data)
         setArtist(data.artists)
         setSongs(data.tracks.items)
+        console.log(data.tracks.items)
 
     }
+
+    const fetchSongDetails = async (trackId) => {
+      const url = `https://api.spotify.com/v1/tracks/${trackId}`;
+      const response = await axios.get(url, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
+      const data = response.data;
+      setPreviewUrl(data.preview_url);
+    };
+  
+    
 
     useEffect(()=>{
         if(accessToken) getSingleAlbum()
     },[accessToken,id])
+
 
     let count = 0
     songs.map(()=> count++)
@@ -57,9 +73,19 @@ const DisplayAlbum = ({setCurrentSong}) => {
       setCurrentSong({
         song: song.name,
         artist: song.artists[0].name,
-        image: mainImage[0].url
+        image: mainImage[0].url,
       })
+      fetchSongDetails(song.id)
     }
+
+    const playSong = () => {
+      if (previewUrl) {
+        audio.src = previewUrl;
+        audio.play();
+      } else {
+        console.error("Preview URL not available.");
+      }
+    };
 
 
   return (

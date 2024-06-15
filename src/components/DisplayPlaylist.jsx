@@ -7,7 +7,7 @@ import { useContext } from "react";
 import { assets } from "../assets/assets";
 
 
-const DisplayPlaylist = ({setCurrentSong}) => {
+const DisplayPlaylist = ({setCurrentSong, audio}) => {
   const { id } = useParams();
 
 
@@ -15,6 +15,7 @@ const DisplayPlaylist = ({setCurrentSong}) => {
   const [song, setSong] = useState([]);
   const [artist, setArtist] = useState({})
   const [list, setList] = useState([])
+
 
 
   const accessToken = useContext(TokenContext);
@@ -31,7 +32,6 @@ const DisplayPlaylist = ({setCurrentSong}) => {
     setSong(data.tracks.items)
     setArtist(data.followers)
     setList(data.tracks.items)
-  
   };
 
   useLayoutEffect(() => {
@@ -62,6 +62,8 @@ const handleSelection = (song)=>{
     artist: song.track.artists[0].name,
     image: song.track.album.images[0].url
   })
+  audio.src = song.track.preview_url
+  audio.play()
 }
 
   return (

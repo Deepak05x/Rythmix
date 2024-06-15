@@ -20,8 +20,11 @@ const App = () => {
     const [currentSong, setCurrentSong] = useState({
         song: 'Sweater Weather',
         artist: 'Neighboor',
-        image: `${assets.img1}`
+        image: `${assets.img1}`,
+        id: ''
 })
+    const [audio] = useState(new Audio());
+    
 
 
     const getAccessToken = async () => {
@@ -63,15 +66,15 @@ const App = () => {
                         <TokenContext.Provider value={accessToken}>
                             <Routes>
                                 <Route path="/" element={<DisplayHome />} />
-                                <Route path="/playlist/:id" element={<DisplayPlaylist setCurrentSong={setCurrentSong}/>} />
-                                <Route path="/albums/:id" element={<DisplayAlbum setCurrentSong={setCurrentSong}/>}/>
-                                <Route path="/artist/:id" element={<DisplayArtist setCurrentSong={setCurrentSong} />} />
+                                <Route path="/playlist/:id" element={<DisplayPlaylist setCurrentSong={setCurrentSong} audio={audio}/>} />
+                                <Route path="/albums/:id" element={<DisplayAlbum setCurrentSong={setCurrentSong} currentSong={currentSong} audio={audio}/>} />
+                                <Route path="/artist/:id" element={<DisplayArtist setCurrentSong={setCurrentSong} audio={audio} />} />
                             </Routes> 
                         </TokenContext.Provider>
                     </div>
                 </div> 
                 <div className='h-[9.5%] max-768:h-[9%] max-640:h-[10%]'>
-                    <MusicPlayer currentSong={currentSong} />
+                    <MusicPlayer currentSong={currentSong}  />
                 </div>
             </div>
         </>
