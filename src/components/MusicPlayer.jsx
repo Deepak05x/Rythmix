@@ -1,10 +1,22 @@
 import React from 'react'
+import { useState } from 'react'
 import { assets } from '../assets/assets'
+import { MdPlayArrow, MdPause } from "react-icons/md";
 
 
-const MusicPlayer = ({currentSong}) => {
+const MusicPlayer = ({currentSong, audio, toggle, setToggle}) => {
 
 
+    const handleChange = ()=>{
+        setToggle(!toggle)
+        if(toggle === true){
+            audio.pause()
+        }else{
+            audio.play()
+        }
+    }
+
+   
 
   return (
     <div className='flex items-center justify-between w-full h-full  bg-[#121212] py-4 px-2 flex-row mt-1 max-1024:mt-2 max-768:mt-4 max-768:justify-between max-640:mt-0.5'>
@@ -19,7 +31,10 @@ const MusicPlayer = ({currentSong}) => {
             <div className='flex flex-row items-center gap-x-4 '>
                 <img src={assets.shuffle_icon} alt="" width={17} height={17} className='max-1024:w-[15px] max-768:w-[14px] max-375:w-[14px] max-425:w-[14px] hover:opacity-50 transition-all ease-in' />
                 <img src={assets.prev_icon} alt="" width={17} height={17} className='max-1024:w-[15px] max-768:w-[14px] max-425:w-[14px] max-375:w-[14px] hover:opacity-50 transition-all ease-in'/>
-                <img src={assets.play_icon} alt="" width={17} height={17} className='max-1024:w-[15px] max-768:w-[14px]  max-425:w-[14px] max-375:w-[14px]  hover:opacity-50 transition-all ease-in'/>
+                {toggle ? 
+                    <MdPause color='white' onClick={()=>handleChange()} /> :
+                    <MdPlayArrow color='white' onClick={()=>handleChange()}/>
+                }
                 <img src={assets.next_icon} alt="" width={17} height={17} className='max-1024:w-[15px] max-768:w-[14px] max-425:w-[14px]  max-375:w-[14px]  hover:opacity-50 transition-all ease-in'/>
                 <img src={assets.loop_icon} alt="" width={17} height={17} className='max-1024:w-[15px] max-768:w-[14px] max-425:w-[14px] max-375:w-[14px] hover:opacity-50 transition-all ease-in'/>
             </div>

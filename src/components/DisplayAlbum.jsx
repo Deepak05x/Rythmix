@@ -1,22 +1,26 @@
 import {  assets } from '../assets/assets'
-import { TokenContext } from '../App'
 import { useContext } from 'react'
 import { useState } from 'react'
 import { useEffect } from 'react'
 import { useParams } from "react-router-dom";
 import axios from 'axios'
+import {AccessContext} from '../Contexts/AcessContext'
+import { CiLink } from 'react-icons/ci';
+import { MdPause } from "react-icons/md";
 
 
 
-const DisplayAlbum = ({setCurrentSong, audio}) => {
+const DisplayAlbum = ({setCurrentSong, audio, setToggle, toggle}) => {
 
-  const accessToken = useContext(TokenContext)
-
-    const [album, setAlbum] = useState([])
+  const {accessToken} = useContext(AccessContext)
+   
+  
+  const [album, setAlbum] = useState([])
     const [mainImage, setMainImage] = useState([])
     const [albumContent, setAlbumContent] = useState({})
     const [artist, setArtist] = useState([])
     const [songs, setSongs] = useState([])
+    
     
 
     const { id } = useParams()
@@ -67,8 +71,13 @@ const DisplayAlbum = ({setCurrentSong, audio}) => {
         image: mainImage[0].url,
       })
       audio.src = song.preview_url
-      audio.play()
+      if(toggle === true){
+        setToggle(true)
+        audio.play()
+      }
+      console.log(toggle)
     }
+
 
 
   return (
@@ -96,8 +105,16 @@ const DisplayAlbum = ({setCurrentSong, audio}) => {
           <img src={assets.clock_icon} alt="" className='max-1440:w-[20px] max-1440:h-[20px] max-1280:w-[20px] max-1170:w-[20px] max-1024:w-[20px] max-768:w-[20px] max-640:w-[20px] max-2560:w-[20px]' />
         </div>
         {album.map((item,index)=>(
-          <div onClick={()=>handleSelection(item)} className=' grid  max-2560:px-2 max-1440:px-2 w-full cursor-pointer justify-between normal-col max-1280:px-2 max-1170:px-2 max-1024:px-2 max-768:px-1 max-640:px-1 max-640:flex max-640:flex-col  max-425:flex max-425:flex-col  max-375:flex max-375:flex-col max-375:items-start' key={index}>
-              <p className='text-white text-start max-1440:text-[16px]  font-light hover:underline'>{item.name}</p>
+          <div  className=' grid  max-2560:px-2 max-1440:px-2 w-full cursor-pointer justify-between normal-col max-1280:px-2 max-1170:px-2 max-1024:px-2 max-768:px-1 max-640:px-1 max-640:flex max-640:flex-col  max-425:flex max-425:flex-col  max-375:flex max-375:flex-col max-375:items-start' key={index}>
+              <div className='flex flex-row gap-4 '>
+              <p onClick={()=> handleSelection(item)} className='text-white text-start max-1440:text-[16px]  font-light hover:underline'>{item.name}</p>
+              <a href={item.external_urls.spotify} target="_blank">
+                        <p className="text-[15px] text-neutral-400 hover:underline">
+                           <CiLink className="w-[20px] h-[20px] hover:scale-125" />
+                        </p>
+                     </a>
+              </div>
+              
               <p className='text-neutral-400 max-1440:text-[15px] max-2000:text-[15px] hover:underline'>{item.artists[0].name}</p>
               <p className='text-neutral-400 max-425:hidden max-375:hidden max-640:hidden'>{timeConverter(item.duration_ms)}</p>
           </div>

@@ -1,14 +1,14 @@
 import React from "react";
 import axios from "axios";
 import { useContext } from "react";
-import { TokenContext } from "../App";
 import { useState } from "react";
-import { useEffect, useLayoutEffect } from "react";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
+import {AccessContext} from "../Contexts/AcessContext";
 
 
 const DisplayHome = () => {
-  const accessToken = useContext(TokenContext);
+  const { accessToken } = useContext(AccessContext)
   const [albums, setAlbums] = useState([]);
   const [playList, setPlayList] = useState([])
   const [artists, setArtists] = useState([])
@@ -51,7 +51,7 @@ const DisplayHome = () => {
 
  
  
-  useLayoutEffect(()=>{
+  useEffect(()=>{
     getAlbums()
     getArtist()
     getPlaylist()
