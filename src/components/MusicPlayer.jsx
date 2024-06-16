@@ -8,13 +8,14 @@ const MusicPlayer = ({currentSong, audio, toggle, setToggle}) => {
 
 
     const handleChange = ()=>{
-        setToggle(!toggle)
-        if(toggle === true){
+        if(toggle === false){
             audio.pause()
         }else{
             audio.play()
         }
+        setToggle(!toggle)
     }
+
 
    
 
@@ -32,8 +33,8 @@ const MusicPlayer = ({currentSong, audio, toggle, setToggle}) => {
                 <img src={assets.shuffle_icon} alt="" width={17} height={17} className='max-1024:w-[15px] max-768:w-[14px] max-375:w-[14px] max-425:w-[14px] hover:opacity-50 transition-all ease-in' />
                 <img src={assets.prev_icon} alt="" width={17} height={17} className='max-1024:w-[15px] max-768:w-[14px] max-425:w-[14px] max-375:w-[14px] hover:opacity-50 transition-all ease-in'/>
                 {toggle ? 
-                    <MdPause color='white' onClick={()=>handleChange()} /> :
-                    <MdPlayArrow color='white' onClick={()=>handleChange()}/>
+                    <MdPlayArrow color='white' onClick={()=>handleChange()} size={25} /> : 
+                    <MdPause color='white' onClick={()=>handleChange()} size={25} /> 
                 }
                 <img src={assets.next_icon} alt="" width={17} height={17} className='max-1024:w-[15px] max-768:w-[14px] max-425:w-[14px]  max-375:w-[14px]  hover:opacity-50 transition-all ease-in'/>
                 <img src={assets.loop_icon} alt="" width={17} height={17} className='max-1024:w-[15px] max-768:w-[14px] max-425:w-[14px] max-375:w-[14px] hover:opacity-50 transition-all ease-in'/>

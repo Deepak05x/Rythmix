@@ -71,11 +71,8 @@ const DisplayAlbum = ({setCurrentSong, audio, setToggle, toggle}) => {
         image: mainImage[0].url,
       })
       audio.src = song.preview_url
-      if(toggle === true){
-        setToggle(true)
-        audio.play()
-      }
-      console.log(toggle)
+      audio.play()
+      setToggle(false)
     }
 
 
