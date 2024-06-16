@@ -10,7 +10,7 @@ import { MdPause } from "react-icons/md";
 
 
 
-const DisplayAlbum = ({setCurrentSong, audio, setToggle, toggle}) => {
+const DisplayAlbum = ({setCurrentSong, audio, setToggle}) => {
 
   const {accessToken} = useContext(AccessContext)
    
@@ -73,6 +73,7 @@ const DisplayAlbum = ({setCurrentSong, audio, setToggle, toggle}) => {
       audio.src = song.preview_url
       audio.play()
       setToggle(false)
+      if(song.track.preview_url === null) alert(" \n \n No Preview URL For This Song \n \n Click The Link Icon To Visit The Song ")
     }
 
 

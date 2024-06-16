@@ -7,7 +7,7 @@ import { assets } from "../assets/assets";
 import {AccessContext} from "../Contexts/AcessContext";
 import { CiLink } from "react-icons/ci";
 
-const DisplayPlaylist = ({ setCurrentSong, audio }) => {
+const DisplayPlaylist = ({ setCurrentSong, audio, setToggle }) => {
    const { id } = useParams();
 
    const [playlist, setPlaylist] = useState({});
@@ -65,6 +65,7 @@ const DisplayPlaylist = ({ setCurrentSong, audio }) => {
       });
       audio.src = song.track.preview_url;
       audio.play();
+      setToggle((prevToggle)=>!prevToggle)
       if(song.track.preview_url === null) alert(" \n \n No Preview URL For This Song \n \n Click The Link Icon To Visit The Song ")
    };
 

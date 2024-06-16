@@ -1,5 +1,4 @@
 import React from 'react'
-import { useState } from 'react'
 import { assets } from '../assets/assets'
 import { MdPlayArrow, MdPause } from "react-icons/md";
 
@@ -13,7 +12,7 @@ const MusicPlayer = ({currentSong, audio, toggle, setToggle}) => {
         }else{
             audio.play()
         }
-        setToggle(!toggle)
+        setToggle((prevToggle)=>!prevToggle)
     }
 
 
@@ -30,14 +29,14 @@ const MusicPlayer = ({currentSong, audio, toggle, setToggle}) => {
         </div>
         <div className='flex flex-col items-center w-full gap-2 max-1024:mr-8 max-1024:gap-2 max-1024:mt-2 max-640:w-[90%] max-768:mt-1'>
             <div className='flex flex-row items-center gap-x-4 '>
-                <img src={assets.shuffle_icon} alt="" width={17} height={17} className='max-1024:w-[15px] max-768:w-[14px] max-375:w-[14px] max-425:w-[14px] hover:opacity-50 transition-all ease-in' />
-                <img src={assets.prev_icon} alt="" width={17} height={17} className='max-1024:w-[15px] max-768:w-[14px] max-425:w-[14px] max-375:w-[14px] hover:opacity-50 transition-all ease-in'/>
+                <img src={assets.shuffle_icon} alt="" width={20} height={20} className=' hover:opacity-50 transition-all ease-in' />
+                <img src={assets.prev_icon} alt=""  width={20} height={20} className=' hover:opacity-50 transition-all ease-in'/>
                 {toggle ? 
-                    <MdPlayArrow color='white' onClick={()=>handleChange()} size={25} /> : 
-                    <MdPause color='white' onClick={()=>handleChange()} size={25} /> 
+                    <MdPlayArrow color='white' onClick={()=>handleChange()} size={30} /> : 
+                    <MdPause color='white' onClick={()=>handleChange()} size={30} /> 
                 }
-                <img src={assets.next_icon} alt="" width={17} height={17} className='max-1024:w-[15px] max-768:w-[14px] max-425:w-[14px]  max-375:w-[14px]  hover:opacity-50 transition-all ease-in'/>
-                <img src={assets.loop_icon} alt="" width={17} height={17} className='max-1024:w-[15px] max-768:w-[14px] max-425:w-[14px] max-375:w-[14px] hover:opacity-50 transition-all ease-in'/>
+                <img src={assets.next_icon} alt="" width={20} height={20} className=' hover:opacity-50 transition-all ease-in'/>
+                <img src={assets.loop_icon} alt="" width={20} height={20} className=' hover:opacity-50 transition-all ease-in'/>
             </div>
         </div>
         <div className='w-full px-4 flex flex-row items-center justify-end gap-6 opacity-70 max-1024:hidden max-768:hidden max-640:hidden max-425:hidden max-375:hidden'>

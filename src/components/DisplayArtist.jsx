@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom";
 import {AccessContext} from "../Contexts/AcessContext";
 import { CiLink } from "react-icons/ci";
 
-const DisplayArtist = ({ setCurrentSong, audio }) => {
+const DisplayArtist = ({ setCurrentSong, audio, setToggle }) => {
    const [artist, setArtist] = useState({});
    const [tracks, setTracks] = useState([]);
 
@@ -52,8 +52,10 @@ const DisplayArtist = ({ setCurrentSong, audio }) => {
          artist: song.artists[0].name,
          image: song.album.images[0].url,
       });
-      audio.src = song.preview_url;
-      audio.play();
+      audio.src = song.preview_url
+      audio.play()
+      setToggle(false)
+      if(song.track.preview_url === null) alert(" \n \n No Preview URL For This Song \n \n Click The Link Icon To Visit The Song ")
    };
 
    const timeConverter = (time) => {
