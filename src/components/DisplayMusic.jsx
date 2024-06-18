@@ -15,6 +15,7 @@ const DisplayMusic = () => {
     const [english, setEnglish] = useState([]);
     const [hindi, setHindi] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(false);
 
     const getSingleTrackTamil = async () => {
         const url = `https://api.spotify.com/v1/recommendations?limit=10&market=IN&seed_artists=4zCH9qm4R2DADamUHMCa6O`;
@@ -58,6 +59,9 @@ const DisplayMusic = () => {
             setHindi(data.tracks);
         } catch (e) {
             console.log('THE HINDI DATA FETCHING WAS FAILED');
+            if (e.response.status === 429) {
+                setError(true);
+            }
         }
     };
 
@@ -97,15 +101,21 @@ const DisplayMusic = () => {
                             </p>
                         </div>
                         <section className="flex flex-row items-start pl-4 gap-12 overflow-x-auto whitespace-nowrap left ">
-                            {tamil.map((item, index) => (
-                                <div className="flex flex-col gap-4 w-[200px] shrink-0 max-1280:w-[170px]" key={index}>
-                                    <img src={item.album.images[0].url} alt="" width={200} height={200} className="rounded-[10px] hover:scale-105 transition-all ease cursor-pointer" />
-                                    <div className="flex flex-col gap-1">
-                                        <h4 className="text-white truncate-sm pl-2 hover:underline cursor-pointer">{item.name}</h4>
-                                        <p className="text-neutral-400 text-sm w-full truncate pl-2 cursor-pointer">{item.artists[0].name}</p>
-                                    </div>
-                                </div>
-                            ))}
+                            {error ? (
+                                <h1 className="text-[30px] text-neutral-400 max-640:text-[20px] max-425:text-[17px] max-375:text-[15px] font-light">The Request Limit Has Reached</h1>
+                            ) : (
+                                <>
+                                    {tamil.map((item, index) => (
+                                        <div className="flex flex-col gap-4 w-[200px] shrink-0 max-1280:w-[170px]" key={index}>
+                                            <img src={item.album.images[0].url} alt="" width={200} height={200} className="rounded-[10px] hover:scale-105 transition-all ease cursor-pointer" />
+                                            <div className="flex flex-col gap-1">
+                                                <h4 className="text-white truncate-sm pl-2 hover:underline cursor-pointer">{item.name}</h4>
+                                                <p className="text-neutral-400 text-sm w-full truncate pl-2 cursor-pointer">{item.artists[0].name}</p>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </>
+                            )}
                         </section>
                         <div className="text-white font-semibold text-2xl mt-4 flex flex-row items-center justify-between">
                             <h1>English</h1>
@@ -114,15 +124,21 @@ const DisplayMusic = () => {
                             </p>
                         </div>
                         <section className="flex flex-row items-start pl-4 gap-12 overflow-x-auto whitespace-nowrap left ">
-                            {english.map((item, index) => (
-                                <div className="flex flex-col gap-4 w-[200px] shrink-0 max-1280:w-[170px]">
-                                    <img src={item.album.images[0].url} alt="" width={200} height={200} className="rounded-[10px] hover:scale-105 transition-all ease" />
-                                    <div className="flex flex-col gap-1">
-                                        <h4 className="text-white truncate-sm pl-2 hover:underline">{item.name}</h4>
-                                        <p className="text-neutral-400 text-sm w-full truncate pl-2">{item.artists[0].name}</p>
-                                    </div>
-                                </div>
-                            ))}
+                            {error ? (
+                                <h1 className="text-[30px] text-neutral-400 max-640:text-[20px] max-425:text-[17px] max-375:text-[15px] font-light">The Request Limit Has Reached</h1>
+                            ) : (
+                                <>
+                                    {english.map((item, index) => (
+                                        <div className="flex flex-col gap-4 w-[200px] shrink-0 max-1280:w-[170px]">
+                                            <img src={item.album.images[0].url} alt="" width={200} height={200} className="rounded-[10px] hover:scale-105 transition-all ease" />
+                                            <div className="flex flex-col gap-1">
+                                                <h4 className="text-white truncate-sm pl-2 hover:underline">{item.name}</h4>
+                                                <p className="text-neutral-400 text-sm w-full truncate pl-2">{item.artists[0].name}</p>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </>
+                            )}
                         </section>
                         <div className="text-white font-semibold text-2xl mt-4 flex flex-row items-center justify-between">
                             <h1>Hindi</h1>
@@ -131,15 +147,21 @@ const DisplayMusic = () => {
                             </p>
                         </div>
                         <section className="flex flex-row items-start pl-4 gap-12 overflow-x-auto whitespace-nowrap left ">
-                            {hindi.map((item, index) => (
-                                <div className="flex flex-col gap-4 w-[200px] shrink-0 max-1280:w-[170px]">
-                                    <img src={item.album.images[0].url} alt="" width={200} height={200} className="rounded-[10px] hover:scale-105 transition-all ease" />
-                                    <div className="flex flex-col gap-1">
-                                        <h4 className="text-white truncate-sm pl-2 hover:underline">{item.name}</h4>
-                                        <p className="text-neutral-400 text-sm w-full truncate pl-2">{item.artists[0].name}</p>
-                                    </div>
-                                </div>
-                            ))}
+                            {error ? (
+                                <h1 className="text-[30px] text-neutral-400 max-640:text-[20px] max-425:text-[17px] max-375:text-[15px] font-light">The Request Limit Has Reached</h1>
+                            ) : (
+                                <>
+                                    {hindi.map((item, index) => (
+                                        <div className="flex flex-col gap-4 w-[200px] shrink-0 max-1280:w-[170px]">
+                                            <img src={item.album.images[0].url} alt="" width={200} height={200} className="rounded-[10px] hover:scale-105 transition-all ease" />
+                                            <div className="flex flex-col gap-1">
+                                                <h4 className="text-white truncate-sm pl-2 hover:underline">{item.name}</h4>
+                                                <p className="text-neutral-400 text-sm w-full truncate pl-2">{item.artists[0].name}</p>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </>
+                            )}
                         </section>
                     </div>
                 </>
