@@ -39,8 +39,8 @@ const DisplayPlaylist = ({ setCurrentSong, audio, setToggle }) => {
     };
 
     useEffect(() => {
+        getPlaylist();
         setTimeout(() => {
-            getPlaylist();
             setLoading(false);
         }, 1000);
     }, [accessToken]);
@@ -71,17 +71,14 @@ const DisplayPlaylist = ({ setCurrentSong, audio, setToggle }) => {
         audio.src = song.track.preview_url;
         audio.play();
         setToggle(false);
-        if (song.track.preview_url === null)
-            alert(
-                ' \n \n No Preview URL For This Song \n \n Click The Link Icon To Visit The Song '
-            );
+        if (song.track.preview_url === null) alert(' \n \n No Preview URL For This Song \n \n Click The Link Icon To Visit The Song ');
     };
 
     return (
-        <div className="overflow-y-auto flex flex-col gap-12 max-425:gap-8 max-375:gap-8">
+        <div className="overflow-y-auto flex flex-col gap-12 max-425:gap-8 max-375:gap-8 w-full h-full">
             {loading ? (
-                <div className="flex items-center justify-center mt-[10rem] overflow-hidden">
-                    <ClipLoader loading={loading} size={150} color={'white'} />
+                <div className="flex items-center justify-center w-full h-full overflow-hidden">
+                    <ClipLoader loading={true} size={60} color={'white'} />
                 </div>
             ) : (
                 <>
@@ -94,41 +91,23 @@ const DisplayPlaylist = ({ setCurrentSong, audio, setToggle }) => {
                             />
                         )}
                         <div className="flex flex-col items-start justify-end  max-2560:gap-12 max-1440:gap-12 max-1170:gap-6 max-1280:gap-8 max-1024:gap-8 max-768:gap-6 max-640:gap-6 max-425:items-start max-425:gap-6 max-375:items-start max-375:gap-4">
-                            <h4 className="text-white max-425:hidden max-375:hidden">
-                                Album
-                            </h4>
+                            <h4 className="text-white max-425:hidden max-375:hidden">Album</h4>
 
                             <div className="flex flex-col gap-2 max-640:flex-col max-640:gap-1 max-425:flex-col max-425:gap-1 max-375:flex-col max-375:gap-1">
-                                <h1 className="text-white text-[25px] font-bold">
-                                    {playlist.name}
-                                </h1>
-                                <p className="text-neutral-400">
-                                    {playlist.description}
-                                </p>
+                                <h1 className="text-white text-[25px] font-bold">{playlist.name}</h1>
+                                <p className="text-neutral-400">{playlist.description}</p>
                             </div>
                             <div className="flex flex-row gap-4 items-center justify-center">
-                                <p className="text-white max-1280:text-sm ">
-                                    {arrayLength} Songs
-                                </p>
-                                <p className="text-neutral-400">
-                                    {' '}
-                                    &bull; {followerConverter(
-                                        artist.total
-                                    )}{' '}
-                                    Followers
-                                </p>
+                                <p className="text-white max-1280:text-sm ">{arrayLength} Songs</p>
+                                <p className="text-neutral-400"> &bull; {followerConverter(artist.total)} Followers</p>
                             </div>
                         </div>
                     </section>
                     <hr className="w-full" />
                     <section className="flex flex-col mb-4 gap-8 overflow-x-hidden down max-2560:gap-14 max-1440:gap-14 max-1280:gap-12  max-1170:gap-12 max-1024:gap-12 max-768:gap-12 max-640:gap-12 max-425:gap-12">
                         <div className=" grid heading-col justify-between max-2560:px-2 max-1440:px-2 max-1170:px-2 max-1024:px-2 max-1440:gap-16 max-640:hidden max-425:hidden max-375:hidden">
-                            <p className="text-neutral-400 font-semibold text-[20px]">
-                                Title
-                            </p>
-                            <p className="text-neutral-400 font-semibold text-[20px]">
-                                Artist
-                            </p>
+                            <p className="text-neutral-400 font-semibold text-[20px]">Title</p>
+                            <p className="text-neutral-400 font-semibold text-[20px]">Artist</p>
                             <img
                                 src={assets.clock_icon}
                                 alt=""
@@ -141,27 +120,17 @@ const DisplayPlaylist = ({ setCurrentSong, audio, setToggle }) => {
                                 key={index}
                             >
                                 <div className="flex flex-row gap-4">
-                                    <p
-                                        onClick={() => handleSelection(item)}
-                                        className="text-white text-start max-1440:text-[16px] font-light hover:underline"
-                                    >
+                                    <p onClick={() => handleSelection(item)} className="text-white text-start max-1440:text-[16px] font-light hover:underline">
                                         {item.track.name}
                                     </p>
-                                    <a
-                                        href={item.track.external_urls.spotify}
-                                        target="_blank"
-                                    >
+                                    <a href={item.track.external_urls.spotify} target="_blank">
                                         <p className="text-[15px] text-neutral-400 hover:underline">
                                             <CiLink className="w-[20px] h-[20px] hover:scale-125" />
                                         </p>
                                     </a>
                                 </div>
-                                <p className="text-neutral-400 max-1440:text-[15px] max-2000:text-[15px] hover:underline">
-                                    {item.track.artists[0].name}
-                                </p>
-                                <p className="text-neutral-400 max-425:hidden max-375:hidden max-640:hidden">
-                                    {timeConverter(item.track.duration_ms)}
-                                </p>
+                                <p className="text-neutral-400 max-1440:text-[15px] max-2000:text-[15px] hover:underline">{item.track.artists[0].name}</p>
+                                <p className="text-neutral-400 max-425:hidden max-375:hidden max-640:hidden">{timeConverter(item.track.duration_ms)}</p>
                             </div>
                         ))}
                     </section>
