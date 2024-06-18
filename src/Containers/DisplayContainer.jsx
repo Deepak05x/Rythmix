@@ -9,6 +9,7 @@ import DisplayArtist from '../Components/DisplayArtist'
 import DisplayAlbum from '../Components/DisplayAlbum'
 import DisplayHome from '../Components/DisplayHome'
 import DisplayPlaylist from '../Components/DisplayPlaylist'
+import DisplayMusic from '../Components/DisplayMusic';
 
 
 const DisplayContainer = () => {
@@ -39,6 +40,7 @@ const DisplayContainer = () => {
                                 <Route path="/playlist/:id" element={<DisplayPlaylist setCurrentSong={setCurrentSong} audio={audio} setToggle={setToggle}/>} /> 
                                 <Route path="/albums/:id" element={<DisplayAlbum setCurrentSong={setCurrentSong} currentSong={currentSong} audio={audio} setToggle={setToggle} />} />
                                 <Route path="/artist/:id" element={<DisplayArtist setCurrentSong={setCurrentSong} audio={audio} setToggle={setToggle}/>} />
+                                <Route path='/music' element={<DisplayMusic />} />
                             </Routes> 
                         
                     </div>
