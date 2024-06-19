@@ -125,7 +125,7 @@ const DisplayPlaylist = ({ setCurrentSong, audio, setToggle }) => {
                                     </p>
                                     <a href={item.track.external_urls.spotify} target="_blank">
                                         <p className="text-[15px] text-neutral-400 hover:underline">
-                                            <CiLink className="w-[20px] h-[20px] hover:scale-125" />
+                                            <CiLink className="w-[25px] h-[25px] hover:scale-125" />
                                         </p>
                                     </a>
                                 </div>

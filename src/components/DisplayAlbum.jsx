@@ -2,7 +2,7 @@ import { assets } from '../assets/assets';
 import { useContext } from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { AccessContext } from '../Contexts/AcessContext';
 import { CiLink } from 'react-icons/ci';
@@ -84,7 +84,7 @@ const DisplayAlbum = ({ setCurrentSong, audio, setToggle }) => {
                             <img
                                 src={mainImage[0].url}
                                 alt=""
-                                className=" max-2560:w-[250px] max-2560:h-[250px] max-1440:w-[230px] max-1440:h-[230px] max-1280:h-[180px] max-1280:w-[180px] max-1170:w-[160px] max-1170:h-[160px] max-1024:w-[160px] max-1024:h-[160px] max-768:w-[180px] max-640:hidden max-425:hidden max-375:hidden "
+                                className=" rounded-[10px] hover:opacity-70 max-2560:w-[250px] max-2560:h-[250px] max-1440:w-[230px] max-1440:h-[230px] max-1280:h-[180px] max-1280:w-[180px] max-1170:w-[160px] max-1170:h-[160px] max-1024:w-[160px] max-1024:h-[160px] max-768:w-[180px] max-640:hidden max-425:hidden max-375:hidden "
                             />
                         )}
                         <div className="flex flex-col items-start justify-end  max-2560:gap-8 max-1440:gap-8 max-1170:gap-4 max-1280:gap-6 max-1024:gap-8 max-768:gap-4 max-640:gap-6 max-425:items-start max-425:gap-4 max-375:items-start max-375:gap-4">
@@ -92,9 +92,11 @@ const DisplayAlbum = ({ setCurrentSong, audio, setToggle }) => {
                             <h1 className="text-white text-[25px] font-bold">{albumContent.name}</h1>
                             <div className="flex flex-row gap-4 max-640:flex-col max-640:gap-1 max-425:flex-col max-425:gap-1 max-375:flex-col max-375:gap-1">
                                 {artist.map((item, index) => (
-                                    <p className="text-neutral-400" key={index}>
-                                        &bull; {item.name}
-                                    </p>
+                                    <Link to={`/artist/${item.id}`}>
+                                        <p className="text-neutral-400 hover:scale-110" key={index}>
+                                            &bull; {item.name}
+                                        </p>
+                                    </Link>
                                 ))}
                             </div>
                             <p className="text-white max-1280:text-sm max-425:hidden max-375:hidden">{arrayLength} Songs</p>
@@ -122,12 +124,13 @@ const DisplayAlbum = ({ setCurrentSong, audio, setToggle }) => {
                                     </p>
                                     <a href={item.external_urls.spotify} target="_blank">
                                         <p className="text-[15px] text-neutral-400 hover:underline">
-                                            <CiLink className="w-[20px] h-[20px] hover:scale-125" />
+                                            <CiLink className="w-[25px] h-[25px] hover:scale-125" />
                                         </p>
                                     </a>
                                 </div>
-
-                                <p className="text-neutral-400 max-1440:text-[15px] max-2000:text-[15px] hover:underline">{item.artists[0].name}</p>
+                                <Link to={`/artist/${item.artists[0].id}`}>
+                                    <p className="text-neutral-400 max-1440:text-[15px] max-2000:text-[15px] hover:underline">{item.artists[0].name}</p>
+                                </Link>
                                 <p className="text-neutral-400 max-425:hidden max-375:hidden max-640:hidden">{timeConverter(item.duration_ms)}</p>
                             </div>
                         ))}

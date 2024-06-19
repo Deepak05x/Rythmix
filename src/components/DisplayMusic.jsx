@@ -2,23 +2,22 @@ import React from 'react';
 import { useContext } from 'react';
 import { AccessContext } from '../Contexts/AcessContext';
 import { Link } from 'react-router-dom';
-import { assets } from '../assets/assets';
+import { CiLink } from 'react-icons/ci';
 import axios from 'axios';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { ClipLoader } from 'react-spinners';
 
-const DisplayMusic = () => {
+const DisplayMusic = ({ setCurrentSong, audio, setToggle }) => {
     const { accessToken } = useContext(AccessContext);
 
     const [tamil, setTamil] = useState([]);
     const [english, setEnglish] = useState([]);
     const [hindi, setHindi] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(false);
 
     const getSingleTrackTamil = async () => {
-        const url = `https://api.spotify.com/v1/recommendations?limit=10&market=IN&seed_artists=4zCH9qm4R2DADamUHMCa6O`;
+        const url = `https://api.spotify.com/v1/tracks?ids=2KmnZRQMoXVbW3iH4rgCqA%2C3jrOziEVwpJAETyEDZ5HWa%2C3X61lP4xN7OPiM9dwitXV5%2C7vgs4iy222SQb7jFOFRmoG%2C4Ndcwn2iAt1MdU6lpw24ZQ%2C50wYLZqR1fTT7gAt0HLYsD%2C7wlPpc2pWUBBslyq8oacVL%2C5jXrULyYKHjkAMk4TXZFoG%2C7fDspJMr8PD39mquXZffTy%2C6eE9euoz9B0jF4XHqL9Gx8`;
         try {
             const response = await axios.get(url, {
                 headers: {
@@ -26,43 +25,49 @@ const DisplayMusic = () => {
                 },
             });
             setTamil(response.data.tracks);
+            console.log(response.data.tracks);
         } catch (err) {
             console.error('THE TAMIL DATA FETCHING WAS FAILED');
         }
     };
 
     const getSingleTrackEnglish = async () => {
-        const url = `https://api.spotify.com/v1/recommendations?limit=10&market=US&seed_artists=3LLNDXrxL4uxXtnUJS5XWM&seed_tracks=3MnAsEBBsEj86d03RgO4EM`;
+        const url = `https://api.spotify.com/v1/tracks?ids=7ITa0xitCADZzJlPRnoHX9%2C6VObnIkLVruX4UVyxWhlqm%2C6pWgRkpqVfxnj3WuIcJ7WP%2C6jdwbcH788txYS6Doy1F1j%2C58HvfVOeJY7lUuCqF0m3ly%2C4gvrJnKCKIPiacNsWVQwEU%2C6SmY2weGqtsre31cJwTNoD%2C0qOnSQQF0yzuPWsXrQ9paz%2C4ewazQLXFTDC8XvCbhvtXs%2C1Fid2jjqsHViMX6xNH70hE`;
         try {
             const response = await axios.get(url, {
                 headers: {
                     Authorization: `Bearer ${accessToken}`,
                 },
             });
-            const data = response.data;
-            setEnglish(data.tracks);
-            console.log(response.data.tracks);
-        } catch (e) {
-            console.log('THE ENGLISH DATA FETCHING WAS FAILED');
+            setEnglish(response.data.tracks);
+        } catch (err) {
+            console.error('THE TAMIL DATA FETCHING WAS FAILED');
         }
     };
 
     const getSingleTrackHindi = async () => {
-        const url = `https://api.spotify.com/v1/recommendations?limit=10&market=US&seed_artists=4YRxDV8wJFPHPTeXepOstw&seed_tracks=2LcXJP95e4HKydTZ2mYfrx`;
+        const url = `https://api.spotify.com/v1/tracks?ids=2LcXJP95e4HKydTZ2mYfrx%2C6Ozx2ngGtXrqznTKhKBlrT%2C4rNlSH6WP8ML0Yke8sPmNx%2C72zHuDxFQTjbL51qJQSA7j%2C4nc6XiUze2Yh7wFueGOPv7%2C7JGgKHHDgJCJkQCQxyHHdl%2C1feANd8EfcDP5UqSvbheM3%2C16W3Eqvgh4Sl84RoHZYnNV%2C3H43T5swYywvcdCBFiDgW6%2C5zCnGtCl5Ac5zlFHXaZmhy`;
         try {
             const response = await axios.get(url, {
                 headers: {
                     Authorization: `Bearer ${accessToken}`,
                 },
             });
-            const data = response.data;
-            setHindi(data.tracks);
-        } catch (e) {
-            console.log('THE HINDI DATA FETCHING WAS FAILED');
-            if (e.response.status === 429) {
-                setError(true);
-            }
+            setHindi(response.data.tracks);
+        } catch (err) {
+            console.error('THE TAMIL DATA FETCHING WAS FAILED');
         }
+    };
+
+    const handleSelection = (song) => {
+        setCurrentSong({
+            song: song.name,
+            artist: song.artists[0].name,
+            image: song.album.images[0].url,
+        });
+        audio.src = song.preview_url;
+        audio.play();
+        setToggle(false);
     };
 
     useEffect(() => {
@@ -96,72 +101,72 @@ const DisplayMusic = () => {
                     <div className="flex flex-col gap-10">
                         <div className="text-white font-semibold text-2xl mt-4 flex flex-row items-center justify-between">
                             <h1>Tamil</h1>
-                            <p className="text-sm text-neutral-400 pr-4 cursor-pointer hover:underline" onClick={() => getSingleTrackTamil()}>
-                                Refresh
-                            </p>
                         </div>
                         <section className="flex flex-row items-start pl-4 gap-12 overflow-x-auto whitespace-nowrap left ">
-                            {error ? (
-                                <h1 className="text-[30px] text-neutral-400 max-640:text-[20px] max-425:text-[17px] max-375:text-[15px] font-light">The Request Limit Has Reached</h1>
-                            ) : (
-                                <>
-                                    {tamil.map((item, index) => (
-                                        <div className="flex flex-col gap-4 w-[200px] shrink-0 max-1280:w-[170px]" key={index}>
-                                            <img src={item.album.images[0].url} alt="" width={200} height={200} className="rounded-[10px] hover:scale-105 transition-all ease cursor-pointer" />
-                                            <div className="flex flex-col gap-1">
-                                                <h4 className="text-white truncate-sm pl-2 hover:underline cursor-pointer">{item.name}</h4>
-                                                <p className="text-neutral-400 text-sm w-full truncate pl-2 cursor-pointer">{item.artists[0].name}</p>
-                                            </div>
+                            {tamil.map((item, index) => (
+                                <div className="flex flex-col gap-4 w-[200px] shrink-0 max-1280:w-[170px]" key={index}>
+                                    <img src={item.album.images[0].url} alt="" width={200} height={200} className="rounded-[10px] hover:scale-105 transition-all ease cursor-pointer" />
+                                    <div className="flex flex-col gap-1">
+                                        <h4 className="text-white truncate-sm pl-2 hover:underline cursor-pointer" onClick={() => handleSelection(item)}>
+                                            {item.name}
+                                        </h4>
+                                        <div className="flex flex-col">
+                                            <Link to={`/artist/${item?.artists[0]?.id}`}>
+                                                <p className="text-neutral-400 text-sm w-full truncate pl-2 cursor-pointer hover:underline">{item.artists[0].name}</p>
+                                            </Link>
+                                            <a href={item.external_urls.spotify} target="_blank">
+                                                <CiLink className=" text-neutral-400 w-[30px] h-[30px] hover:scale-125 pl-2" />
+                                            </a>
                                         </div>
-                                    ))}
-                                </>
-                            )}
+                                    </div>
+                                </div>
+                            ))}
                         </section>
                         <div className="text-white font-semibold text-2xl mt-4 flex flex-row items-center justify-between">
                             <h1>English</h1>
-                            <p className="text-sm text-neutral-400 pr-4 cursor-pointer hover:underline" onClick={() => getSingleTrackEnglish()}>
-                                Refresh
-                            </p>
                         </div>
                         <section className="flex flex-row items-start pl-4 gap-12 overflow-x-auto whitespace-nowrap left ">
-                            {error ? (
-                                <h1 className="text-[30px] text-neutral-400 max-640:text-[20px] max-425:text-[17px] max-375:text-[15px] font-light">The Request Limit Has Reached</h1>
-                            ) : (
-                                <>
-                                    {english.map((item, index) => (
-                                        <div className="flex flex-col gap-4 w-[200px] shrink-0 max-1280:w-[170px]">
-                                            <img src={item.album.images[0].url} alt="" width={200} height={200} className="rounded-[10px] hover:scale-105 transition-all ease" />
-                                            <div className="flex flex-col gap-1">
-                                                <h4 className="text-white truncate-sm pl-2 hover:underline">{item.name}</h4>
-                                                <p className="text-neutral-400 text-sm w-full truncate pl-2">{item.artists[0].name}</p>
-                                            </div>
+                            {english.map((item, index) => (
+                                <div className="flex flex-col gap-4 w-[200px] shrink-0 max-1280:w-[170px]" key={index}>
+                                    <img src={item.album.images[0].url} alt="" width={200} height={200} className="rounded-[10px] hover:scale-105 transition-all ease" />
+                                    <div className="flex flex-col gap-1">
+                                        <h4 className="text-white truncate-sm pl-2 hover:underline cursor-pointer" onClick={() => handleSelection(item)}>
+                                            {item.name}
+                                        </h4>
+                                        <div className="flex flex-col">
+                                            <Link to={`/artist/${item?.artists[0]?.id}`}>
+                                                <p className="text-neutral-400 text-sm w-full truncate pl-2 cursor-pointer hover:underline">{item.artists[0].name}</p>
+                                            </Link>
+                                            <a href={item.external_urls.spotify} target="_blank">
+                                                <CiLink className=" text-neutral-400 w-[30px] h-[30px] hover:scale-125 pl-2" />
+                                            </a>
                                         </div>
-                                    ))}
-                                </>
-                            )}
+                                    </div>
+                                </div>
+                            ))}
                         </section>
                         <div className="text-white font-semibold text-2xl mt-4 flex flex-row items-center justify-between">
                             <h1>Hindi</h1>
-                            <p className="text-sm text-neutral-400 pr-4 cursor-pointer hover:underline" onClick={() => getSingleTrackHindi()}>
-                                Refresh
-                            </p>
                         </div>
-                        <section className="flex flex-row items-start pl-4 gap-12 overflow-x-auto whitespace-nowrap left ">
-                            {error ? (
-                                <h1 className="text-[30px] text-neutral-400 max-640:text-[20px] max-425:text-[17px] max-375:text-[15px] font-light">The Request Limit Has Reached</h1>
-                            ) : (
-                                <>
-                                    {hindi.map((item, index) => (
-                                        <div className="flex flex-col gap-4 w-[200px] shrink-0 max-1280:w-[170px]">
-                                            <img src={item.album.images[0].url} alt="" width={200} height={200} className="rounded-[10px] hover:scale-105 transition-all ease" />
-                                            <div className="flex flex-col gap-1">
-                                                <h4 className="text-white truncate-sm pl-2 hover:underline">{item.name}</h4>
-                                                <p className="text-neutral-400 text-sm w-full truncate pl-2">{item.artists[0].name}</p>
-                                            </div>
+                        <section className="flex flex-row items-start pl-4 gap-12 overflow-x-auto whitespace-nowrap left mb-4">
+                            {hindi.map((item, index) => (
+                                <div className="flex flex-col gap-4 w-[200px] shrink-0 max-1280:w-[170px]" key={index}>
+                                    <img src={item.album.images[0].url} alt="" width={200} height={200} className="rounded-[10px] hover:scale-105 transition-all ease" />
+                                    <div className="flex flex-col gap-1">
+                                        <h4 className="text-white truncate-sm pl-2 hover:underline cursor-pointer" onClick={() => handleSelection(item)}>
+                                            {item.name}
+                                        </h4>
+                                        <div className="flex flex-col">
+                                            <Link to={`/artist/${item?.artists[0]?.id}`}>
+                                                <p className="text-neutral-400 text-sm w-full truncate pl-2 cursor-pointer hover:underline">{item.artists[0].name}</p>
+                                            </Link>
+                                            <a href={item.external_urls.spotify} target="_blank">
+                                                <CiLink className=" text-neutral-400 w-[30px] h-[30px] hover:scale-125 pl-2" />
+                                            </a>
                                         </div>
-                                    ))}
-                                </>
-                            )}
+                                    </div>
+                                </div>
+                            ))}
                         </section>
                     </div>
                 </>

@@ -29,13 +29,13 @@ const DisplayContainer = () => {
                     <Sidebar />
                     <div className="w-[75%] bg-[#121212] rounded flex flex-col gap-12 pt-4 px-4 justify-flex-start max-1280:w-[80%] max-1024:w-full max-1024:h-[89vh] max-768:w-full max-768:h-[90vh] max-640:w-full max-425:w-full max-425:gap-8 max-375:w-full max-375:gap-8">
                         <Navbar />
-                        <Suspense fallback={<div>Loading...</div>}>
+                        <Suspense fallback={<div>...</div>}>
                             <Routes>
                                 <Route path="/" element={<DisplayHome />} />
                                 <Route path="/playlist/:id" element={<DisplayPlaylist setCurrentSong={setCurrentSong} audio={audio} setToggle={setToggle} />} />
                                 <Route path="/albums/:id" element={<DisplayAlbum setCurrentSong={setCurrentSong} currentSong={currentSong} audio={audio} setToggle={setToggle} />} />
                                 <Route path="/artist/:id" element={<DisplayArtist setCurrentSong={setCurrentSong} audio={audio} setToggle={setToggle} />} />
-                                <Route path="/music" element={<DisplayMusic />} />
+                                <Route path="/music" element={<DisplayMusic setCurrentSong={setCurrentSong} audio={audio} setToggle={setToggle} />} />
                             </Routes>
                         </Suspense>
                     </div>

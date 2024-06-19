@@ -114,9 +114,9 @@ const DisplayHome = () => {
                             ))}
                         </section>
                         <h1 className="text-white font-semibold text-2xl mt-4">Top Artists</h1>
-                        <section className="flex flex-row items-start pl-4 gap-12 overflow-x-auto whitespace-nowrap left">
+                        <section className="flex flex-row items-start pl-4 gap-12 overflow-x-auto whitespace-nowrap left mb-4">
                             {artists.map((item, index) => (
-                                <Link to={`/artist/${item.id}`} className="flex flex-col gap-2 shrink-0 items-center" key={index}>
+                                <Link to={`/artist/${item.id}`} className="flex flex-col gap-4 shrink-0 items-center" key={index}>
                                     <img src={item.images[1].url} alt="" className="rounded-full hover:opacity-70 transition-all ease-in w-[200px] h-[200px]" />
                                     <h4 className="text-white hover:underline">{item.name}</h4>
                                 </Link>
