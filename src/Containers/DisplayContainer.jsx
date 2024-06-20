@@ -11,6 +11,7 @@ const DisplayHome = React.lazy(() => import('../Components/DisplayHome'));
 const DisplayPlaylist = React.lazy(() => import('../Components/DisplayPlaylist'));
 const DisplayMusic = React.lazy(() => import('../Components/DisplayMusic'));
 const DisplayPodcast = React.lazy(() => import('../Components/DisplayPodcast'));
+const DisplayEpisodes = React.lazy(() => import('../Components/DisplayEpisodes'));
 
 const DisplayContainer = () => {
     const [currentSong, setCurrentSong] = useState({
@@ -38,6 +39,7 @@ const DisplayContainer = () => {
                                 <Route path="/artist/:id" element={<DisplayArtist setCurrentSong={setCurrentSong} audio={audio} setToggle={setToggle} />} />
                                 <Route path="/music" element={<DisplayMusic setCurrentSong={setCurrentSong} audio={audio} setToggle={setToggle} />} />
                                 <Route path="/podcast" element={<DisplayPodcast />} />
+                                <Route path="/podcast/:id" element={<DisplayEpisodes />} />
                             </Routes>
                         </Suspense>
                     </div>

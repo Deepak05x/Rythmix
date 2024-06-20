@@ -103,7 +103,7 @@ const DisplayAlbum = ({ setCurrentSong, audio, setToggle }) => {
                         </div>
                     </section>
                     <hr className="w-full" />
-                    <section className="flex flex-col mb-4 gap-8 overflow-x-hidden down max-2560:gap-14 max-1440:gap-14 max-1280:gap-12  max-1170:gap-12 max-1024:gap-12 max-768:gap-12 max-640:gap-12 max-425:gap-12">
+                    <section className="flex flex-col mb-4 gap-12 overflow-x-hidden down max-2560:gap-14 max-1440:gap-14">
                         <div className=" grid heading-col justify-between max-2560:px-2 max-1440:px-2 max-1170:px-2 max-1024:px-2 max-1440:gap-16 max-640:hidden max-425:hidden max-375:hidden">
                             <p className="text-neutral-400 font-semibold text-[20px]">Title</p>
                             <p className="text-neutral-400 font-semibold text-[20px]">Artist</p>

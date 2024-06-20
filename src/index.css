@@ -4,68 +4,72 @@
 @tailwind components;
 @tailwind utilities;
 
-
-*{
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
 }
 
-body{
-  background-color: black;
-  height: 100vh;
-  opacity: 0.9;
-  overflow-x: hidden;
-  overflow-y: hidden;
-  width: 100%;
+body {
+    background-color: black;
+    height: 100vh;
+    opacity: 0.9;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    width: 100%;
 }
 
-.truncate{
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: normal;
+.truncate {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
 }
 
-.truncate-sm{
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 1;
-  overflow: hidden;
-  text-transform: ellipsis;
-  white-space: normal;
+.truncate-sm {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+    text-transform: ellipsis;
+    white-space: normal;
 }
 
-.left::-webkit-scrollbar{
-  height: 1px;
-  width: 1px;
+.left::-webkit-scrollbar {
+    height: 1px;
+    width: 1px;
 }
 
-button{
-  cursor: pointer;
+button {
+    cursor: pointer;
 }
 
-.down::-webkit-scrollbar{
-  height: 1px;
-  width: 1px;
+.down::-webkit-scrollbar {
+    height: 1px;
+    width: 1px;
 }
 
-.heading-col{
-  grid-template-columns: 300px 200px 30px;
+.heading-col {
+    grid-template-columns: 300px 200px 30px;
 }
 
-.normal-col{
-  grid-template-columns:  300px 200px 30px;
+.normal-col {
+    grid-template-columns: 300px 200px 30px;
 }
 
-.bg-url{
-  background: url('./assets/img1.jpg');
-  background-repeat: no-repeat;
-  background-position: start;
-  background-size: contain;
-  width: 100%;
+.bg-url {
+    background: url('./assets/img1.jpg');
+    background-repeat: no-repeat;
+    background-position: start;
+    background-size: contain;
+    width: 100%;
 }
 
+.custom-color {
+    color: blue;
+    background-color: blue;
+    height: 2px;
+}

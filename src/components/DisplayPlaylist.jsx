@@ -87,7 +87,7 @@ const DisplayPlaylist = ({ setCurrentSong, audio, setToggle }) => {
                             <img
                                 src={playlist.images[0].url}
                                 alt=""
-                                className=" max-2560:w-[250px] max-1440:w-[230px] max-1440:h-[230px] max-1280:h-[180px] max-1280:w-[180px] max-1170:w-[160px] max-1170:h-[160px] max-1024:w-[160px] max-1024:h-[160px] max-768:w-[180px] max-640:hidden max-425:hidden max-375:hidden "
+                                className=" rounded-[10px] hover:opacity-70 max-2560:w-[250px] max-1440:w-[230px] max-1440:h-[230px] max-1280:h-[180px] max-1280:w-[180px] max-1170:w-[160px] max-1170:h-[160px] max-1024:w-[160px] max-1024:h-[160px] max-768:w-[180px] max-640:hidden max-425:hidden max-375:hidden "
                             />
                         )}
                         <div className="flex flex-col items-start justify-end  max-2560:gap-12 max-1440:gap-12 max-1170:gap-6 max-1280:gap-8 max-1024:gap-8 max-768:gap-6 max-640:gap-6 max-425:items-start max-425:gap-6 max-375:items-start max-375:gap-4">
@@ -104,7 +104,7 @@ const DisplayPlaylist = ({ setCurrentSong, audio, setToggle }) => {
                         </div>
                     </section>
                     <hr className="w-full" />
-                    <section className="flex flex-col mb-4 gap-8 overflow-x-hidden down max-2560:gap-14 max-1440:gap-14 max-1280:gap-12  max-1170:gap-12 max-1024:gap-12 max-768:gap-12 max-640:gap-12 max-425:gap-12">
+                    <section className="flex flex-col mb-4 gap-12 overflow-x-hidden down max-2560:gap-14 max-1440:gap-14">
                         <div className=" grid heading-col justify-between max-2560:px-2 max-1440:px-2 max-1170:px-2 max-1024:px-2 max-1440:gap-16 max-640:hidden max-425:hidden max-375:hidden">
                             <p className="text-neutral-400 font-semibold text-[20px]">Title</p>
                             <p className="text-neutral-400 font-semibold text-[20px]">Artist</p>
