@@ -80,7 +80,7 @@ const DisplayMusic = ({ setCurrentSong, audio, setToggle }) => {
     }, [accessToken]);
 
     return (
-        <div className="flex flex-col w-full mb-1 h-[100%] gap-16 overflow-y-auto down max-1280:pr-0 max-2560:gap-20">
+        <div className="flex flex-col w-full mb-1 h-[100%] gap-16 overflow-y-auto down max-1280:pr-0">
             {loading ? (
                 <div className="flex items-center justify-center w-full h-full">
                     <ClipLoader color="white" loading={true} size={60} />
@@ -92,16 +92,17 @@ const DisplayMusic = ({ setCurrentSong, audio, setToggle }) => {
                             <button className="bg-[#ffffff1d] py-1 px-3 rounded-full text-white hover:scale-105 transition-all ease-in">All</button>
                         </Link>
                         <button className="bg-white py-1 px-3 rounded-full text-black hover:scale-105 transition-all ease-in">Music</button>
-                        <button className="bg-[#ffffff1d] py-1 px-3 rounded-full text-white hover:scale-105 transition-all ease-in">Podcasts</button>
+                        <Link to={'/podcast'}>
+                            <button className="bg-[#ffffff1d] py-1 px-3 rounded-full text-white hover:scale-105 transition-all ease-in">Podcasts</button>
+                        </Link>
+
                         <button className="bg-[#ffffff1d] py-1 px-3 rounded-full text-white hidden max-1024:flex max-768:flex max-640:flex max-425:flex max-375:flex hover:scale-105 transition-all ease-in">
                             Library
                         </button>
                     </div>
 
-                    <div className="flex flex-col gap-10">
-                        <div className="text-white font-semibold text-2xl mt-4 flex flex-row items-center justify-between">
-                            <h1>Tamil</h1>
-                        </div>
+                    <div className="flex flex-col gap-10 mb-4">
+                        <h1 className="text-white font-semibold text-2xl">Tamil</h1>
                         <section className="flex flex-row items-start pl-4 gap-12 overflow-x-auto whitespace-nowrap left ">
                             {tamil.map((item, index) => (
                                 <div className="flex flex-col gap-4 w-[200px] shrink-0 max-1280:w-[170px]" key={index}>
@@ -122,9 +123,7 @@ const DisplayMusic = ({ setCurrentSong, audio, setToggle }) => {
                                 </div>
                             ))}
                         </section>
-                        <div className="text-white font-semibold text-2xl mt-4 flex flex-row items-center justify-between">
-                            <h1>English</h1>
-                        </div>
+                        <h1 className="text-white font-semibold text-2xl mt-4">English</h1>
                         <section className="flex flex-row items-start pl-4 gap-12 overflow-x-auto whitespace-nowrap left ">
                             {english.map((item, index) => (
                                 <div className="flex flex-col gap-4 w-[200px] shrink-0 max-1280:w-[170px]" key={index}>
@@ -145,10 +144,8 @@ const DisplayMusic = ({ setCurrentSong, audio, setToggle }) => {
                                 </div>
                             ))}
                         </section>
-                        <div className="text-white font-semibold text-2xl mt-4 flex flex-row items-center justify-between">
-                            <h1>Hindi</h1>
-                        </div>
-                        <section className="flex flex-row items-start pl-4 gap-12 overflow-x-auto whitespace-nowrap left mb-4">
+                        <h1 className="text-white font-semibold text-2xl mt-4">Hindi</h1>
+                        <section className="flex flex-row items-start pl-4 gap-12 overflow-x-auto whitespace-nowrap left">
                             {hindi.map((item, index) => (
                                 <div className="flex flex-col gap-4 w-[200px] shrink-0 max-1280:w-[170px]" key={index}>
                                     <img src={item.album.images[0].url} alt="" width={200} height={200} className="rounded-[10px] hover:scale-105 transition-all ease" />
