@@ -6,7 +6,6 @@ import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AccessContext } from '../Contexts/AcessContext';
 import { ClipLoader } from 'react-spinners';
-import { CiLink } from 'react-icons/ci';
 
 const DisplayPodcast = () => {
     const { accessToken } = useContext(AccessContext);
@@ -40,7 +39,6 @@ const DisplayPodcast = () => {
             });
             const data = response.data.shows;
             setFunny(data);
-            console.log(response.data.shows);
         } catch (e) {
             console.log('THE FUNNY PODCAST FETCHING WAS FAILED');
         }
@@ -79,8 +77,8 @@ const DisplayPodcast = () => {
 
                         <section className="flex flex-row items-start pl-4 gap-12 overflow-x-auto whitespace-nowrap left">
                             {podcast.map((item, index) => (
-                                <Link to={`/podcast/${item.id}`}>
-                                    <div className="flex flex-col gap-4 w-[200px] shrink-0 max-1280:w-[170px]" key={index}>
+                                <Link to={`/podcast/${item.id}`} key={index}>
+                                    <div className="flex flex-col gap-4 w-[200px] shrink-0 max-1280:w-[170px]">
                                         <img src={item.images[0].url} width={200} height={200} alt="" className="rounded-[10px] hover:scale-105 transition-all ease-in" />
                                         <div className="flex flex-col gap-1">
                                             <h2 className="text-white truncate-sm pl-2 hover:underline cursor-pointer">{item.name}</h2>
@@ -95,7 +93,7 @@ const DisplayPodcast = () => {
                         <h1 className="text-white font-semibold text-2xl mt-4">Funny Podcasts</h1>
                         <section className="flex flex-row items-start pl-4 gap-12 overflow-x-auto whitespace-nowrap left">
                             {funny.map((item, index) => (
-                                <Link to={`/podcast/${item.id}`}>
+                                <Link to={`/podcast/${item.id}`} key={index}>
                                     <div className="flex flex-col gap-4 w-[200px] shrink-0 max-1280:w-[170px]" key={index}>
                                         <img src={item.images[0].url} width={200} height={200} alt="" className="rounded-[10px] hover:scale-105 transition-all ease-in" />
                                         <div className="flex flex-col gap-1">

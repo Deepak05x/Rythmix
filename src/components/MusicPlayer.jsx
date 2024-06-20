@@ -13,17 +13,17 @@ const MusicPlayer = ({ currentSong, audio, toggle, setToggle }) => {
     };
 
     return (
-        <div className="flex items-center justify-between w-full h-full  bg-[#121212] py-4 px-4 flex-row mt-1 max-1024:mt-2 max-768:mt-4 max-768:justify-between max-640:mt-0.5">
+        <div className="flex items-center justify-between w-full h-full  bg-[#121212] py-4 px-4 flex-row mt-1  max-768:justify-between">
             <div className="flex flex-row gap-x-3 w-full max-1440:items-center max-1170:items-center max-1280:items-center max-1024:items-center max-768:w-[10%] max-640:w-[10%] max-375:hidden">
                 <img
                     src={currentSong.image}
                     alt=""
                     width={50}
                     height={40}
-                    className=" rounded-full max-1440:h-[50px] max-1440:w-[50px] max-1170:w-[50px] max-1170:h-[50px] max-1280:w-[50px] max-1280:h-[50px] max-1024:w-[50px] max-1024:h-[50px] max-1024:rounded-full max-768:w-[45px] max-768:h-[45px] max-768:rounded-full max-640:rounded-full max-640:w-[50px] max-425:w-[50px] max-425:rounded-full"
+                    className=" rounded-full  max-1440:h-[50px] max-1440:w-[50px] max-1170:w-[50px] max-1170:h-[50px] max-1280:w-[50px] max-1280:h-[50px] max-1024:w-[50px] max-1024:h-[50px] max-1024:rounded-full max-768:w-[45px] max-768:h-[45px] max-768:rounded-full max-640:rounded-full max-640:w-[50px] max-425:w-[50px] max-425:rounded-full"
                 />
                 <div className="text-white flex items-start justify-center flex-col gap-y-1 max-768:hidden max-640:hidden max-425:hidden exact-1024:gap-1 max-1024:gap-1">
-                    <p className="max-1280:text-[15px] max-1170:text-[15px] max-1024:text-[15px] max-1440:text-[15px]">{currentSong.song}</p>
+                    <p className="max-1280:text-[15px] max-1170:text-[15px] max-1024:text-[15px] max-1440:text-[15px] truncate-sm ">{currentSong.song}</p>
                     <p className="text-neutral-400 max-1280:text-[15px] max-1440:text-[15px] max-1024:text-[15px] max-1170:text-[15px]">{currentSong.artist}</p>
                 </div>
             </div>

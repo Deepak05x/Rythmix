@@ -94,7 +94,7 @@ const DisplayArtist = ({ setCurrentSong, audio, setToggle }) => {
                             <img
                                 src={artist.images[1].url}
                                 alt=""
-                                className=" cursor-pointer hover:opacity-70 rounded-[50%] max-2560:w-[230px] max-1440:w-[230px] max-1440:h-[230px] max-1280:h-[180px] max-1280:w-[180px] max-1170:w-[160px] max-1170:h-[160px] max-1024:w-[200px] max-768:w-[180px] max-640:hidden max-425:hidden max-375:hidden"
+                                className="transition-all ease-in hover:opacity-70 rounded-[50%] max-2560:w-[230px] max-1440:w-[230px] max-1440:h-[230px] max-1280:h-[180px] max-1280:w-[180px] max-1170:w-[160px] max-1170:h-[160px] max-1024:w-[200px] max-768:w-[180px] max-640:hidden max-425:hidden max-375:hidden"
                             />
                         )}
                         <div className="flex flex-col items-start justify-end  max-2560:gap-10 max-1440:gap-12 max-1170:gap-6 max-1280:gap-8 max-1024:gap-8 max-768:gap-6 max-640:gap-6 max-425:items-start max-425:gap-6 max-375:items-start max-375:gap-4">

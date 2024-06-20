@@ -3,11 +3,10 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useContext, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { assets } from '../assets/assets';
 import { AccessContext } from '../Contexts/AcessContext';
 import { ClipLoader } from 'react-spinners';
 
-const DisplayEpisodes = () => {
+const DisplayEpisodes = ({ setToggle, audio, setCurrentSong }) => {
     const { id } = useParams();
 
     const { accessToken } = useContext(AccessContext);
@@ -15,6 +14,8 @@ const DisplayEpisodes = () => {
     const [details, setDetails] = useState([]);
     const [main, setMain] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [total, setTotal] = useState(null);
+    const [limit, setLimit] = useState(20);
 
     const getPodcast = async () => {
         try {
@@ -33,7 +34,7 @@ const DisplayEpisodes = () => {
 
     const getDetails = async () => {
         try {
-            const url = `https://api.spotify.com/v1/shows/${id}/episodes`;
+            const url = `https://api.spotify.com/v1/shows/${id}/episodes?limit=${limit}`;
             const response = await axios.get(url, {
                 headers: {
                     Authorization: `Bearer ${accessToken}`,
@@ -41,19 +42,55 @@ const DisplayEpisodes = () => {
             });
             const data = response.data;
             setDetails(data.items);
-            console.log(response.data.items);
+            console.log(response.data);
+            setTotal(data.total);
         } catch (e) {
             console.log('THE DETAILS FETCHING WAS FAILED');
         }
     };
 
+    const handleSelection = (song) => {
+        setCurrentSong({
+            song: song.name,
+            artist: song.type,
+            image: song.images[0].url,
+        });
+        audio.src = song.audio_preview_url;
+        audio.play();
+        setToggle(false);
+    };
+
+    const getMore = () => {
+        const newLimit = limit + 10;
+        if (newLimit >= total) {
+            setLimit(total);
+        } else {
+            setLimit(newLimit);
+        }
+    };
+
+    const getLess = () => {
+        const newLimit = limit - 10;
+        if (newLimit <= total) {
+            setLimit(20);
+        } else {
+            setLimit(newLimit);
+        }
+    };
+
     useEffect(() => {
-        getDetails();
         getPodcast();
         setTimeout(() => {
             setLoading(false);
         }, 1000);
     }, [accessToken]);
+
+    useEffect(() => {
+        getDetails();
+        setTimeout(() => {
+            setLoading(false);
+        }, 1000);
+    }, [accessToken, limit]);
 
     return (
         <div className="overflow-y-auto flex flex-col gap-12 max-425:gap-8 max-375:gap-8 h-full w-full">
@@ -68,7 +105,7 @@ const DisplayEpisodes = () => {
                             <img
                                 src={main.images[0].url}
                                 alt=""
-                                className=" rounded-[10px] hover:opacity-70 max-2560:w-[230px] max-2560:h-[230px] max-1440:w-[210px] max-1440:h-[210px] max-1280:h-[150px] max-1280:w-[150px] max-1170:w-[130px] max-1170:h-[130px] max-1024:w-[130px] max-1024:h-[130px] max-768:w-[150px] max-640:hidden max-425:hidden max-375:hidden "
+                                className=" transition-all ease-in rounded-[10px] hover:opacity-70 max-2560:w-[230px] max-2560:h-[230px] max-1440:w-[210px] max-1440:h-[210px] max-1280:h-[150px] max-1280:w-[150px] max-1170:w-[130px] max-1170:h-[130px] max-1024:w-[130px] max-1024:h-[130px] max-768:w-[150px] max-640:hidden max-425:hidden max-375:hidden "
                             />
                         )}
 
@@ -82,20 +119,33 @@ const DisplayEpisodes = () => {
                     <section className="flex flex-col mb-4 gap-12 overflow-x-hidden down max-2560:gap-14 max-1440:gap-14">
                         {details.map((item, index) => (
                             <>
-                                <div className="flex flex-row pl-4 gap-12 w-full">
-                                    <img src={assets.img1} alt="" className="w-[80px] h-[80px] " />
+                                <div className="flex flex-row pl-2 gap-12 w-full" key={index}>
+                                    <img
+                                        src={item.images[0].url}
+                                        alt=""
+                                        className=" cursor-pointer w-[80px] h-[80px] max-640:hidden max-425:hidden  max-375:hidden"
+                                        onClick={() => handleSelection(item)}
+                                    />
                                     <div className="flex flex-col gap-4 w-full">
-                                        <h1 className="text-white text-lg">Episode Number 1 : Name of the Episode</h1>
-                                        <p className="text-neutral-400 truncate w-[50%] text-sm">
-                                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cumque cum aperiam nostrum quasi rerum, ex magnam accusamus tempore omnis totam explicabo ipsa
-                                            amet error quia dolorum nihil similique sit iure.
-                                        </p>
-                                        <p className="text-white text-sm">2024-06-13</p>
+                                        <h1 className="text-white text-lg w-full cursor-pointer hover:underline" onClick={() => handleSelection(item)}>
+                                            {item.name}
+                                        </h1>
+                                        <p className="text-neutral-400 truncate w-[90%] text-sm">{item.description}</p>
+                                        <p className="text-white text-sm">{item.release_date}</p>
                                     </div>
                                 </div>
-                                <hr className="w-[70%] custom-color" />
+                                <div className="w-[90%] bg-[#A3A3A3] h-[0.5px] ">-</div>
                             </>
                         ))}
+                        {limit === total ? (
+                            <h1 className="text-neutral-400 hover:underline cursor-pointer" onClick={() => getLess()}>
+                                Load Less
+                            </h1>
+                        ) : (
+                            <h1 className="text-neutral-400 hover:underline cursor-pointer" onClick={() => getMore()}>
+                                Load More
+                            </h1>
+                        )}
                     </section>
                 </>
             )}
