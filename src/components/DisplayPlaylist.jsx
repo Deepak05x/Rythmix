@@ -7,6 +7,7 @@ import { assets } from '../assets/assets';
 import { AccessContext } from '../Contexts/AcessContext';
 import { CiLink } from 'react-icons/ci';
 import { ClipLoader } from 'react-spinners';
+import { Link } from 'react-router-dom';
 
 const DisplayPlaylist = ({ setCurrentSong, audio, setToggle }) => {
     const { id } = useParams();
@@ -105,33 +106,31 @@ const DisplayPlaylist = ({ setCurrentSong, audio, setToggle }) => {
                     </section>
                     <hr className="w-full" />
                     <section className="flex flex-col mb-4 gap-12 overflow-x-hidden down max-2560:gap-14 max-1440:gap-14">
-                        <div className=" grid heading-col justify-between max-2560:px-2 max-1440:px-2 max-1170:px-2 max-1024:px-2 max-1440:gap-16 max-640:hidden max-425:hidden max-375:hidden">
-                            <p className="text-neutral-400 font-semibold text-[20px]">Title</p>
-                            <p className="text-neutral-400 font-semibold text-[20px]">Artist</p>
-                            <img
-                                src={assets.clock_icon}
-                                alt=""
-                                className="max-1440:w-[20px] max-1440:h-[20px] max-1280:w-[20px] max-1170:w-[20px] max-1024:w-[20px] max-768:w-[20px] max-640:w-[20px] max-2560:w-[20px]"
-                            />
-                        </div>
                         {list.map((item, index) => (
-                            <div
-                                className="grid max-2560:px-2 max-1440:px-2 w-full cursor-pointer justify-between normal-col max-1280:px-2 max-1170:px-2 max-1024:px-2 max-768:px-1 max-640:px-1 max-640:flex max-640:flex-col  max-425:flex max-425:flex-col  max-375:flex max-375:flex-col max-375:items-start"
-                                key={index}
-                            >
-                                <div className="flex flex-row gap-4">
-                                    <p onClick={() => handleSelection(item)} className="text-white text-start max-1440:text-[16px] font-light hover:underline">
-                                        {item.track.name}
-                                    </p>
-                                    <a href={item.track.external_urls.spotify} target="_blank">
-                                        <p className="text-[15px] text-neutral-400 hover:underline">
-                                            <CiLink className="w-[25px] h-[25px] hover:scale-125" />
-                                        </p>
-                                    </a>
+                            <>
+                                <div className="flex flex-row gap-8 w-[80%] max-375:flex-col max-375:gap-4 h-full px-4" key={index}>
+                                    <img src={item.track.album.images[0].url} alt="" className="w-[80px] h-[80px] rounded-full max-640:hidden max-425:hidden max-375:hidden" />
+                                    <div className=" flex flex-row items-center justify-between w-full gap-2" key={index}>
+                                        <div className=" flex flex-col gap-2" key={index}>
+                                            <p onClick={() => handleSelection(item)} className="text-white text-lg w-full cursor-pointer hover:underline">
+                                                {item.track.name}
+                                            </p>
+                                            <Link to={`/artist/${item.track.artists[0].id}`}>
+                                                <p className="text-neutral-400 max-1440:text-[15px] max-2000:text-[15px] hover:underline">{item.track.artists[0].name}</p>
+                                            </Link>
+                                        </div>
+                                    </div>
+                                    <div className="flex flex-col gap-2 justify-center">
+                                        <p className="text-white text-md">{timeConverter(item.track.duration_ms)}</p>
+                                        <a href={item.track.external_urls.spotify} target="_blank">
+                                            <p className="text-[15px] text-neutral-400 hover:underline">
+                                                <CiLink className="w-[25px] h-[25px] hover:scale-125" />
+                                            </p>
+                                        </a>
+                                    </div>
                                 </div>
-                                <p className="text-neutral-400 max-1440:text-[15px] max-2000:text-[15px] hover:underline">{item.track.artists[0].name}</p>
-                                <p className="text-neutral-400 max-425:hidden max-375:hidden max-640:hidden">{timeConverter(item.track.duration_ms)}</p>
-                            </div>
+                                <div className="w-[90%] bg-[#a3a3a377] h-[0.5px] ">-</div>
+                            </>
                         ))}
                     </section>
                 </>

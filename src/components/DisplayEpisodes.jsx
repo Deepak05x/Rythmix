@@ -134,7 +134,7 @@ const DisplayEpisodes = ({ setToggle, audio, setCurrentSong }) => {
                                         <p className="text-white text-sm">{item.release_date}</p>
                                     </div>
                                 </div>
-                                <div className="w-[90%] bg-[#A3A3A3] h-[0.5px] ">-</div>
+                                <div className="w-[90%] bg-[#a3a3a377] h-[0.5px] ">-</div>
                             </>
                         ))}
                         {limit === total ? (
