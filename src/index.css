@@ -67,9 +67,3 @@ button {
     background-size: contain;
     width: 100%;
 }
-
-.custom-color {
-    color: yellow;
-    background-color: yellow;
-    height: 2px;
-}

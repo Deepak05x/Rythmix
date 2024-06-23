@@ -6,12 +6,11 @@ import { useParams } from 'react-router-dom';
 import { AccessContext } from '../Contexts/AcessContext';
 import { ClipLoader } from 'react-spinners';
 
-const DisplayEpisodes = ({ setToggle, audio, setCurrentSong }) => {
+const DisplayEpisodes = ({ setToggle, audio, setCurrentSong, details, setDetails, index, setIndex }) => {
     const { id } = useParams();
 
     const { accessToken } = useContext(AccessContext);
 
-    const [details, setDetails] = useState([]);
     const [main, setMain] = useState([]);
     const [loading, setLoading] = useState(true);
     const [total, setTotal] = useState(null);
@@ -49,7 +48,7 @@ const DisplayEpisodes = ({ setToggle, audio, setCurrentSong }) => {
         }
     };
 
-    const handleSelection = (song) => {
+    const handleSelection = (song, index) => {
         setCurrentSong({
             song: song.name,
             artist: song.type,
@@ -57,6 +56,7 @@ const DisplayEpisodes = ({ setToggle, audio, setCurrentSong }) => {
         });
         audio.src = song.audio_preview_url;
         audio.play();
+        setIndex(index);
         setToggle(false);
     };
 
@@ -92,6 +92,8 @@ const DisplayEpisodes = ({ setToggle, audio, setCurrentSong }) => {
         }, 1000);
     }, [accessToken, limit]);
 
+    console.log(details);
+
     return (
         <div className="overflow-y-auto flex flex-col gap-12 max-425:gap-8 max-375:gap-8 h-full w-full">
             {loading ? (
@@ -124,10 +126,10 @@ const DisplayEpisodes = ({ setToggle, audio, setCurrentSong }) => {
                                         src={item.images[0].url}
                                         alt=""
                                         className=" cursor-pointer w-[80px] h-[80px] max-640:hidden max-425:hidden  max-375:hidden"
-                                        onClick={() => handleSelection(item)}
+                                        onClick={() => handleSelection(item, index)}
                                     />
                                     <div className="flex flex-col gap-4 w-full">
-                                        <h1 className="text-white text-lg w-full cursor-pointer hover:underline" onClick={() => handleSelection(item)}>
+                                        <h1 className="text-white text-lg w-full cursor-pointer hover:underline" onClick={() => handleSelection(item, index)}>
                                             {item.name}
                                         </h1>
                                         <p className="text-neutral-400 truncate w-[90%] text-sm">{item.description}</p>

@@ -1,5 +1,4 @@
 import React from 'react';
-import { assets } from '../assets/assets';
 import axios from 'axios';
 import { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';

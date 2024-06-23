@@ -6,15 +6,13 @@ const Sidebar = () => {
     return (
         <div className="items-start flex-col flex w-[25%] max-1280:w-[20%] max-1024:hidden max-768:hidden max-640:hidden max-425:hidden max-375:hidden">
             <div className="items-start justify-center flex-col bg-[#121212] w-full  py-6 px-8 gap-y-5 rounded flex">
-                <div className="flex items-start justify-start gap-x-8">
-                    <img src={assets.home_icon} alt="home" height={25} width={25} />
-                    <Link to={'/'}>
-                        <p className="text-white">Home</p>
-                    </Link>
-                </div>
-                <div className="flex items-start justify-start gap-x-8">
-                    <img src={assets.search_icon} alt="search" height={25} width={25} />
-                    <p className="text-white">Search</p>
+                <Link to={'/'} className="flex items-center justify-start gap-x-8">
+                    <img src={assets.home_icon} alt="home" height={25} width={25} className="cursor-pointer" />
+                    <p className="text-white">Home</p>
+                </Link>
+                <div className="flex items-center justify-start gap-x-8">
+                    <img src={assets.search_icon} alt="search" height={25} width={25} className="cursor-pointer" />
+                    <p className="text-white cursor-pointer">Search</p>
                 </div>
             </div>
             <div className="bg-[#121212] w-full mt-2 py-6 px-3 rounded h-[1000%] overflow-y-auto">

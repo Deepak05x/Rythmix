@@ -23,6 +23,36 @@ const DisplayContainer = () => {
 
     const [audio] = useState(new Audio());
     const [toggle, setToggle] = useState(true);
+    const [details, setDetails] = useState([]);
+    const [index, setIndex] = useState(0);
+
+    const handleForward = () => {
+        const nextIndex = (index + 1) % details.length;
+        const nextSong = details[nextIndex];
+        setIndex(nextIndex);
+        setCurrentSong({
+            song: nextSong.name,
+            artist: nextSong.type,
+            image: nextSong.images[0].url,
+        });
+        audio.src = nextSong.audio_preview_url;
+        audio.play();
+        setToggle(false);
+    };
+
+    const handleBackward = () => {
+        const prevIndex = (index - 1 + details.length) % details.length;
+        const nextSong = details[prevIndex];
+        setIndex(prevIndex);
+        setCurrentSong({
+            song: nextSong.name,
+            artist: nextSong.type,
+            image: nextSong.images[0].url,
+        });
+        audio.src = nextSong.audio_preview_url;
+        audio.play();
+        setToggle(false);
+    };
 
     return (
         <>
@@ -39,13 +69,35 @@ const DisplayContainer = () => {
                                 <Route path="/artist/:id" element={<DisplayArtist setCurrentSong={setCurrentSong} audio={audio} setToggle={setToggle} />} />
                                 <Route path="/music" element={<DisplayMusic setCurrentSong={setCurrentSong} audio={audio} setToggle={setToggle} />} />
                                 <Route path="/podcast" element={<DisplayPodcast />} />
-                                <Route path="/podcast/:id" element={<DisplayEpisodes setCurrentSong={setCurrentSong} audio={audio} setToggle={setToggle} />} />
+                                <Route
+                                    path="/podcast/:id"
+                                    element={
+                                        <DisplayEpisodes
+                                            setCurrentSong={setCurrentSong}
+                                            audio={audio}
+                                            setToggle={setToggle}
+                                            details={details}
+                                            setDetails={setDetails}
+                                            index={index}
+                                            setIndex={setIndex}
+                                        />
+                                    }
+                                />
                             </Routes>
                         </Suspense>
                     </div>
                 </div>
                 <div className="h-[9.5%] ">
-                    <MusicPlayer currentSong={currentSong} audio={audio} setToggle={setToggle} toggle={toggle} />
+                    <MusicPlayer
+                        currentSong={currentSong}
+                        audio={audio}
+                        setToggle={setToggle}
+                        toggle={toggle}
+                        details={details}
+                        setDetails={setDetails}
+                        handleForward={handleForward}
+                        handleBackward={handleBackward}
+                    />
                 </div>
             </div>
         </>

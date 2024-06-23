@@ -2,7 +2,7 @@ import React from 'react';
 import { assets } from '../assets/assets';
 import { MdPlayArrow, MdPause } from 'react-icons/md';
 
-const MusicPlayer = ({ currentSong, audio, toggle, setToggle }) => {
+const MusicPlayer = ({ currentSong, audio, toggle, setToggle, handleForward, handleBackward }) => {
     const handleChange = () => {
         if (toggle === false) {
             audio.pause();
@@ -29,13 +29,13 @@ const MusicPlayer = ({ currentSong, audio, toggle, setToggle }) => {
             </div>
             <div className="flex flex-col items-center w-full gap-2 max-1024:mr-8 max-1024:gap-2 max-1024:mt-2 max-640:w-[90%] max-768:mt-1">
                 <div className="flex flex-row items-center gap-8 max-425:gap-4  ">
-                    <img src={assets.prev_icon} alt="" width={20} height={20} className=" hover:opacity-50 transition-all ease-in cursor-pointer" />
+                    <img src={assets.prev_icon} alt="" width={20} height={20} className=" hover:opacity-50 transition-all ease-in cursor-pointer" onClick={() => handleBackward()} />
                     {toggle ? (
                         <MdPlayArrow color="white" onClick={() => handleChange()} size={30} className="flex-shrink-0 cursor-pointer hover:opacity-50 transition-all ease-in" />
                     ) : (
                         <MdPause color="white" onClick={() => handleChange()} size={30} className="flex-shrink-0 cursor-pointer hover:opacity-50 transition-all ease-in" />
                     )}
-                    <img src={assets.next_icon} alt="" width={20} height={20} className=" hover:opacity-50 transition-all ease-in cursor-pointer" />
+                    <img src={assets.next_icon} alt="" width={20} height={20} className=" hover:opacity-50 transition-all ease-in cursor-pointer" onClick={() => handleForward()} />
                 </div>
             </div>
             <div className="w-full  flex flex-row items-center justify-end gap-6 opacity-70 max-1024:hidden max-768:hidden max-640:hidden max-425:hidden max-375:hidden">
