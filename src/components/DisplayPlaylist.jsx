@@ -3,20 +3,17 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { useContext } from 'react';
-import { assets } from '../assets/assets';
 import { AccessContext } from '../Contexts/AcessContext';
 import { CiLink } from 'react-icons/ci';
 import { ClipLoader } from 'react-spinners';
 import { Link } from 'react-router-dom';
 
-const DisplayPlaylist = ({ setCurrentSong, audio, setToggle }) => {
+const DisplayPlaylist = ({ setCurrentSong, audio, setToggle, list, setList, setCurrentType }) => {
     const { id } = useParams();
 
     const [playlist, setPlaylist] = useState({});
-    const [song, setSong] = useState([]);
-    const [artist, setArtist] = useState({});
-    const [list, setList] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [artistFollowers, setArtistFollowers] = useState({});
 
     const { accessToken } = useContext(AccessContext);
 
@@ -30,8 +27,7 @@ const DisplayPlaylist = ({ setCurrentSong, audio, setToggle }) => {
             });
             const data = response.data;
             setPlaylist(data);
-            setSong(data.tracks.items);
-            setArtist(data.followers);
+            setArtistFollowers(data.followers);
             setList(data.tracks.items);
         } catch (e) {
             console.log('THE SINGLE PLAYLIST FETCHING WAS FAILED');
@@ -47,7 +43,7 @@ const DisplayPlaylist = ({ setCurrentSong, audio, setToggle }) => {
     }, [accessToken]);
 
     let count = 0;
-    song.map(() => count++);
+    list.map(() => count++);
     const arrayLength = count;
 
     const followerConverter = (count) => {
@@ -71,6 +67,7 @@ const DisplayPlaylist = ({ setCurrentSong, audio, setToggle }) => {
         });
         audio.src = song.track.preview_url;
         audio.play();
+        setCurrentType('playlist');
         setToggle(false);
         if (song.track.preview_url === null) alert(' \n \n No Preview URL For This Song \n \n Click The Link Icon To Visit The Song ');
     };
@@ -100,7 +97,7 @@ const DisplayPlaylist = ({ setCurrentSong, audio, setToggle }) => {
                             </div>
                             <div className="flex flex-row gap-4 items-center justify-center">
                                 <p className="text-white max-1280:text-sm ">{arrayLength} Songs</p>
-                                <p className="text-neutral-400"> &bull; {followerConverter(artist.total)} Followers</p>
+                                <p className="text-neutral-400"> &bull; {followerConverter(artistFollowers.total)} Followers</p>
                             </div>
                         </div>
                     </section>

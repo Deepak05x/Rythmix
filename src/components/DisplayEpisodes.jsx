@@ -6,7 +6,7 @@ import { useParams } from 'react-router-dom';
 import { AccessContext } from '../Contexts/AcessContext';
 import { ClipLoader } from 'react-spinners';
 
-const DisplayEpisodes = ({ setToggle, audio, setCurrentSong, details, setDetails, index, setIndex }) => {
+const DisplayEpisodes = ({ setToggle, audio, setCurrentSong, details, setDetails, setCurrentType, setIndex }) => {
     const { id } = useParams();
 
     const { accessToken } = useContext(AccessContext);
@@ -41,7 +41,6 @@ const DisplayEpisodes = ({ setToggle, audio, setCurrentSong, details, setDetails
             });
             const data = response.data;
             setDetails(data.items);
-            console.log(response.data);
             setTotal(data.total);
         } catch (e) {
             console.log('THE DETAILS FETCHING WAS FAILED');
@@ -56,6 +55,7 @@ const DisplayEpisodes = ({ setToggle, audio, setCurrentSong, details, setDetails
         });
         audio.src = song.audio_preview_url;
         audio.play();
+        setCurrentType('episodes');
         setIndex(index);
         setToggle(false);
     };

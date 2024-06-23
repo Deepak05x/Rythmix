@@ -24,34 +24,115 @@ const DisplayContainer = () => {
     const [audio] = useState(new Audio());
     const [toggle, setToggle] = useState(true);
     const [details, setDetails] = useState([]);
+    const [album, setAlbum] = useState([]);
+    const [mainImageAlbum, setMainImageAlbum] = useState([]);
+    const [list, setList] = useState([]);
+    const [tracks, setTracks] = useState([]);
     const [index, setIndex] = useState(0);
+    const [currentType, setCurrentType] = useState('');
 
     const handleForward = () => {
-        const nextIndex = (index + 1) % details.length;
-        const nextSong = details[nextIndex];
-        setIndex(nextIndex);
-        setCurrentSong({
-            song: nextSong.name,
-            artist: nextSong.type,
-            image: nextSong.images[0].url,
-        });
-        audio.src = nextSong.audio_preview_url;
-        audio.play();
-        setToggle(false);
+        if (currentType === 'album') {
+            const nextIndex = (index + 1) % album.length;
+            const nextSong = album[nextIndex];
+            setIndex(nextIndex);
+            setCurrentSong({
+                song: nextSong.name,
+                artist: nextSong.artists[0].name,
+                image: mainImageAlbum[0].url,
+            });
+            audio.src = nextSong.preview_url;
+            audio.play();
+            setToggle(false);
+        } else if (currentType === 'episodes') {
+            const nextIndex = (index + 1) % details.length;
+            const nextSong = details[nextIndex];
+            setIndex(nextIndex);
+            setCurrentSong({
+                song: nextSong.name,
+                artist: nextSong.type,
+                image: nextSong.images[0].url,
+            });
+            audio.src = nextSong.audio_preview_url;
+            audio.play();
+            setToggle(false);
+        } else if (currentType === 'playlist') {
+            const nextIndex = (index + 1) % list.length;
+            const nextSong = list[nextIndex];
+            setIndex(nextIndex);
+            setCurrentSong({
+                song: nextSong.track.name,
+                artist: nextSong.track.artists[0].name,
+                image: nextSong.track.album.images[0].url,
+            });
+            audio.src = nextSong.track.preview_url;
+            audio.play();
+            setToggle(false);
+        } else if (currentType === 'artist') {
+            const nextIndex = (index + 1) % tracks.length;
+            const nextSong = tracks[nextIndex];
+            setIndex(nextIndex);
+            setCurrentSong({
+                song: nextSong.name,
+                artist: nextSong.artists[0].name,
+                image: nextSong.album.images[0].url,
+            });
+            audio.src = nextSong.preview_url;
+            audio.play();
+            setToggle(false);
+        }
     };
 
     const handleBackward = () => {
-        const prevIndex = (index - 1 + details.length) % details.length;
-        const nextSong = details[prevIndex];
-        setIndex(prevIndex);
-        setCurrentSong({
-            song: nextSong.name,
-            artist: nextSong.type,
-            image: nextSong.images[0].url,
-        });
-        audio.src = nextSong.audio_preview_url;
-        audio.play();
-        setToggle(false);
+        if (currentType === 'album') {
+            const prevIndex = (index - 1 + album.length) % album.length;
+            const nextSong = album[prevIndex];
+            setIndex(prevIndex);
+            setCurrentSong({
+                song: nextSong.name,
+                artist: nextSong.artists[0].name,
+                image: mainImageAlbum[0].url,
+            });
+            audio.src = nextSong.preview_url;
+            audio.play();
+            setToggle(false);
+        } else if (currentType === 'episodes') {
+            const prevIndex = (index - 1 + details.length) % details.length;
+            const nextSong = details[prevIndex];
+            setIndex(prevIndex);
+            setCurrentSong({
+                song: nextSong.name,
+                artist: nextSong.type,
+                image: nextSong.images[0].url,
+            });
+            audio.src = nextSong.audio_preview_url;
+            audio.play();
+            setToggle(false);
+        } else if (currentType === 'playlist') {
+            const prevIndex = (index - 1 + list.length) % list.length;
+            const nextSong = list[prevIndex];
+            setIndex(prevIndex);
+            setCurrentSong({
+                song: nextSong.track.name,
+                artist: nextSong.track.artists[0].name,
+                image: nextSong.track.album.images[0].url,
+            });
+            audio.src = nextSong.track.preview_url;
+            audio.play();
+            setToggle(false);
+        } else if (currentType === 'artist') {
+            const prevIndex = (index - 1 + tracks.length) % tracks.length;
+            const nextSong = tracks[prevIndex];
+            setIndex(prevIndex);
+            setCurrentSong({
+                song: nextSong.name,
+                artist: nextSong.artists[0].name,
+                image: nextSong.album.images[0].url,
+            });
+            audio.src = nextSong.preview_url;
+            audio.play();
+            setToggle(false);
+        }
     };
 
     return (
@@ -64,9 +145,32 @@ const DisplayContainer = () => {
                         <Suspense fallback={<div>...</div>}>
                             <Routes>
                                 <Route path="/" element={<DisplayHome />} />
-                                <Route path="/playlist/:id" element={<DisplayPlaylist setCurrentSong={setCurrentSong} audio={audio} setToggle={setToggle} />} />
-                                <Route path="/albums/:id" element={<DisplayAlbum setCurrentSong={setCurrentSong} currentSong={currentSong} audio={audio} setToggle={setToggle} />} />
-                                <Route path="/artist/:id" element={<DisplayArtist setCurrentSong={setCurrentSong} audio={audio} setToggle={setToggle} />} />
+                                <Route
+                                    path="/playlist/:id"
+                                    element={<DisplayPlaylist setCurrentSong={setCurrentSong} audio={audio} setToggle={setToggle} list={list} setList={setList} setCurrentType={setCurrentType} />}
+                                />
+                                <Route
+                                    path="/albums/:id"
+                                    element={
+                                        <DisplayAlbum
+                                            setCurrentSong={setCurrentSong}
+                                            currentSong={currentSong}
+                                            audio={audio}
+                                            setToggle={setToggle}
+                                            setCurrentType={setCurrentType}
+                                            album={album}
+                                            setAlbum={setAlbum}
+                                            setMainImageAlbum={setMainImageAlbum}
+                                            mainImageAlbum={mainImageAlbum}
+                                        />
+                                    }
+                                />
+                                <Route
+                                    path="/artist/:id"
+                                    element={
+                                        <DisplayArtist setCurrentSong={setCurrentSong} audio={audio} setToggle={setToggle} tracks={tracks} setTracks={setTracks} setCurrentType={setCurrentType} />
+                                    }
+                                />
                                 <Route path="/music" element={<DisplayMusic setCurrentSong={setCurrentSong} audio={audio} setToggle={setToggle} />} />
                                 <Route path="/podcast" element={<DisplayPodcast />} />
                                 <Route
@@ -80,6 +184,7 @@ const DisplayContainer = () => {
                                             setDetails={setDetails}
                                             index={index}
                                             setIndex={setIndex}
+                                            setCurrentType={setCurrentType}
                                         />
                                     }
                                 />

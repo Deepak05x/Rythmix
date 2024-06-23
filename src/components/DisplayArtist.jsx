@@ -7,9 +7,9 @@ import { CiLink } from 'react-icons/ci';
 import { ClipLoader } from 'react-spinners';
 import { Link } from 'react-router-dom';
 
-const DisplayArtist = ({ setCurrentSong, audio, setToggle }) => {
+const DisplayArtist = ({ setCurrentSong, audio, setToggle, tracks, setTracks, setCurrentType }) => {
     const [artist, setArtist] = useState({});
-    const [tracks, setTracks] = useState([]);
+
     const [loading, setLoading] = useState(true);
 
     const { id } = useParams();
@@ -42,7 +42,6 @@ const DisplayArtist = ({ setCurrentSong, audio, setToggle }) => {
             });
             const data = response.data.tracks;
             setTracks(data);
-            console.log(response.data.tracks);
         } catch (e) {
             console.log('THE TRACKS FETCHING FROM THE SINGLE ARTIST WAS FAILED');
             console.log(e.message);
@@ -58,6 +57,7 @@ const DisplayArtist = ({ setCurrentSong, audio, setToggle }) => {
         audio.src = song.preview_url;
         audio.play();
         setToggle(false);
+        setCurrentType('artist');
         if (song.preview_url === null) alert(' \n \n No Preview URL For This Song \n \n Click The Link Icon To Visit The Song ');
     };
 
