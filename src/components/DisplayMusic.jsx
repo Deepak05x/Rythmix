@@ -7,6 +7,8 @@ import axios from 'axios';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { ClipLoader } from 'react-spinners';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 const DisplayMusic = ({ setCurrentSong, audio, setToggle }) => {
     const { accessToken } = useContext(AccessContext);
@@ -106,7 +108,14 @@ const DisplayMusic = ({ setCurrentSong, audio, setToggle }) => {
                         <section className="flex flex-row items-start pl-4 gap-12 overflow-x-auto whitespace-nowrap left ">
                             {tamil.map((item, index) => (
                                 <div className="flex flex-col gap-4 w-[200px] shrink-0 max-1280:w-[170px]" key={index}>
-                                    <img src={item.album.images[0].url} alt="" width={200} height={200} className="rounded-[10px] hover:scale-105 transition-all ease cursor-pointer" />
+                                    <LazyLoadImage
+                                        src={item.album.images[0].url}
+                                        alt=""
+                                        width={200}
+                                        height={200}
+                                        className="rounded-[10px] hover:scale-105 transition-all ease cursor-pointer"
+                                        effect="blur"
+                                    />
                                     <div className="flex flex-col gap-1">
                                         <h4 className="text-white truncate-sm pl-2 hover:underline cursor-pointer" onClick={() => handleSelection(item)}>
                                             {item.name}
@@ -127,7 +136,7 @@ const DisplayMusic = ({ setCurrentSong, audio, setToggle }) => {
                         <section className="flex flex-row items-start pl-4 gap-12 overflow-x-auto whitespace-nowrap left ">
                             {english.map((item, index) => (
                                 <div className="flex flex-col gap-4 w-[200px] shrink-0 max-1280:w-[170px]" key={index}>
-                                    <img src={item.album.images[0].url} alt="" width={200} height={200} className="rounded-[10px] hover:scale-105 transition-all ease" />
+                                    <LazyLoadImage effect="blur" src={item.album.images[0].url} alt="" width={200} height={200} className="rounded-[10px] hover:scale-105 transition-all ease" />
                                     <div className="flex flex-col gap-1">
                                         <h4 className="text-white truncate-sm pl-2 hover:underline cursor-pointer" onClick={() => handleSelection(item)}>
                                             {item.name}
@@ -148,7 +157,7 @@ const DisplayMusic = ({ setCurrentSong, audio, setToggle }) => {
                         <section className="flex flex-row items-start pl-4 gap-12 overflow-x-auto whitespace-nowrap left">
                             {hindi.map((item, index) => (
                                 <div className="flex flex-col gap-4 w-[200px] shrink-0 max-1280:w-[170px]" key={index}>
-                                    <img src={item.album.images[0].url} alt="" width={200} height={200} className="rounded-[10px] hover:scale-105 transition-all ease" />
+                                    <LazyLoadImage effect="blur" src={item.album.images[0].url} alt="" width={200} height={200} className="rounded-[10px] hover:scale-105 transition-all ease" />
                                     <div className="flex flex-col gap-1">
                                         <h4 className="text-white truncate-sm pl-2 hover:underline cursor-pointer" onClick={() => handleSelection(item)}>
                                             {item.name}

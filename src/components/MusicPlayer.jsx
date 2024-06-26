@@ -1,8 +1,11 @@
 import React from 'react';
 import { assets } from '../assets/assets';
 import { MdPlayArrow, MdPause } from 'react-icons/md';
+import { useState } from 'react';
 
 const MusicPlayer = ({ currentSong, audio, toggle, setToggle, handleForward, handleBackward }) => {
+    const [isMuted, setIsMuted] = useState(false);
+
     const handleChange = () => {
         if (toggle === false) {
             audio.pause();
@@ -10,6 +13,11 @@ const MusicPlayer = ({ currentSong, audio, toggle, setToggle, handleForward, han
             audio.play();
         }
         setToggle((prevToggle) => !prevToggle);
+    };
+
+    const handleMute = () => {
+        audio.muted = !audio.muted;
+        setIsMuted(audio.muted);
     };
 
     return (
@@ -39,9 +47,20 @@ const MusicPlayer = ({ currentSong, audio, toggle, setToggle, handleForward, han
                 </div>
             </div>
             <div className="w-full  flex flex-row items-center justify-end gap-6 opacity-70 max-1024:hidden max-768:hidden max-640:hidden max-425:hidden max-375:hidden">
-                <img src={assets.volume_icon} alt="" width={23} height={23} />
-                <img src={assets.mini_player_icon} alt="" width={17} height={17} />
-                <img src={assets.zoom_icon} alt="" width={17} height={17} />
+                {isMuted ? (
+                    <>
+                        <hr className="text-white absolute right-[6.5rem] w-[30px] rotate-45" />
+                        <img src={assets.volume_icon} alt="" width={23} height={23} onClick={() => handleMute()} className="relative cursor-pointer" />
+                        <img src={assets.mini_player_icon} alt="" width={17} height={17} />
+                        <img src={assets.zoom_icon} alt="" width={17} height={17} />
+                    </>
+                ) : (
+                    <>
+                        <img src={assets.volume_icon} alt="" width={23} height={23} onClick={() => handleMute()} className="relative cursor-pointer" />
+                        <img src={assets.mini_player_icon} alt="" width={17} height={17} />
+                        <img src={assets.zoom_icon} alt="" width={17} height={17} />
+                    </>
+                )}
             </div>
         </div>
     );

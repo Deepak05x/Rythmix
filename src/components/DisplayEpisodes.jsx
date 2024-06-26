@@ -5,6 +5,8 @@ import { useContext, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { AccessContext } from '../Contexts/AcessContext';
 import { ClipLoader } from 'react-spinners';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 const DisplayEpisodes = ({ setToggle, audio, setCurrentSong, details, setDetails, setCurrentType, setIndex }) => {
     const { id } = useParams();
@@ -104,7 +106,8 @@ const DisplayEpisodes = ({ setToggle, audio, setCurrentSong, details, setDetails
                 <>
                     <section className="flex flex-row w-full max-2560:gap-16 max-1440:gap-16 max-1280:gap-8 max-1170:gap-12 max-1024:gap-12 max-768:gap-8 max-640:gap-8 max-425:flex-col max-425:items-start max-425:gap-8 max-375:flex-col max-375:items-start max-375:gap-4">
                         {main && main.images[0] && main.images[0].url && (
-                            <img
+                            <LazyLoadImage
+                                effect="blur"
                                 src={main.images[0].url}
                                 alt=""
                                 className=" transition-all ease-in rounded-[10px] hover:opacity-70 max-2560:w-[230px] max-2560:h-[230px] max-1440:w-[210px] max-1440:h-[210px] max-1280:h-[150px] max-1280:w-[150px] max-1170:w-[130px] max-1170:h-[130px] max-1024:w-[130px] max-1024:h-[130px] max-768:w-[150px] max-640:hidden max-425:hidden max-375:hidden "
@@ -122,7 +125,8 @@ const DisplayEpisodes = ({ setToggle, audio, setCurrentSong, details, setDetails
                         {details.map((item, index) => (
                             <>
                                 <div className="flex flex-row pl-2 gap-12 w-full" key={index}>
-                                    <img
+                                    <LazyLoadImage
+                                        effect="blur"
                                         src={item.images[0].url}
                                         alt=""
                                         className=" cursor-pointer w-[80px] h-[80px] max-640:hidden max-425:hidden  max-375:hidden"

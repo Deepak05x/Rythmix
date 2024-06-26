@@ -6,6 +6,8 @@ import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AccessContext } from '../Contexts/AcessContext';
 import { ClipLoader } from 'react-spinners';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 const DisplayPodcast = () => {
     const { accessToken } = useContext(AccessContext);
@@ -79,7 +81,7 @@ const DisplayPodcast = () => {
                             {podcast.map((item, index) => (
                                 <Link to={`/podcast/${item.id}`} key={index}>
                                     <div className="flex flex-col gap-4 w-[200px] shrink-0 max-1280:w-[170px]">
-                                        <img src={item.images[0].url} width={200} height={200} alt="" className="rounded-[10px] hover:scale-105 transition-all ease-in" />
+                                        <LazyLoadImage effect="blur" src={item.images[0].url} width={200} height={200} alt="" className="rounded-[10px] hover:scale-105 transition-all ease-in" />
                                         <div className="flex flex-col gap-1">
                                             <h2 className="text-white truncate-sm pl-2 hover:underline cursor-pointer">{item.name}</h2>
 
@@ -95,7 +97,7 @@ const DisplayPodcast = () => {
                             {funny.map((item, index) => (
                                 <Link to={`/podcast/${item.id}`} key={index}>
                                     <div className="flex flex-col gap-4 w-[200px] shrink-0 max-1280:w-[170px]" key={index}>
-                                        <img src={item.images[0].url} width={200} height={200} alt="" className="rounded-[10px] hover:scale-105 transition-all ease-in" />
+                                        <LazyLoadImage effect="blur" src={item.images[0].url} width={200} height={200} alt="" className="rounded-[10px] hover:scale-105 transition-all ease-in" />
                                         <div className="flex flex-col gap-1">
                                             <h2 className="text-white truncate-sm pl-2 hover:underline cursor-pointer">{item.name}</h2>
 
