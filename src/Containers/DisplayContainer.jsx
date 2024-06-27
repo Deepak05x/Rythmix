@@ -35,7 +35,6 @@ const DisplayContainer = () => {
     const [tamil, setTamil] = useState([]);
     const [english, setEnglish] = useState([]);
     const [hindi, setHindi] = useState([]);
-    const [search, setSearch] = useState(false);
 
     const handleForward = () => {
         if (currentType === 'album') {
@@ -220,9 +219,9 @@ const DisplayContainer = () => {
         <>
             <div className="px-2 py-2 w-full h-[100vh] flex flex-col gap-0.5">
                 <div className="flex flex-row gap-2 h-[90%]">
-                    <Sidebar setSearch={setSearch} search={search} />
+                    <Sidebar />
 
-                    <div className="w-[75%] bg-[#121212] rounded flex flex-col gap-12 pt-4 px-4  max-1280:w-[80%] max-1024:w-full max-768:w-full max-640:w-full max-425:w-full max-425:gap-8 max-375:w-full max-375:gap-8">
+                    <div className="w-[75%] bg-[#121212] rounded flex flex-col gap-12 pt-4 px-4  max-1024:w-full max-768:w-full max-640:w-full max-425:w-full max-425:gap-8 max-375:w-full max-375:gap-8">
                         <Suspense fallback={<div>...</div>}>
                             <Routes>
                                 <Route path="/" element={<DisplayHome />} />
