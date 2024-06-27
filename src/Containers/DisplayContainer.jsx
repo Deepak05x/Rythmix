@@ -32,6 +32,8 @@ const DisplayContainer = () => {
     const [index, setIndex] = useState(0);
     const [currentType, setCurrentType] = useState('');
     const [tamil, setTamil] = useState([]);
+    const [english, setEnglish] = useState([]);
+    const [hindi, setHindi] = useState([]);
 
     const handleForward = () => {
         if (currentType === 'album') {
@@ -85,7 +87,33 @@ const DisplayContainer = () => {
         } else if (currentType === 'tamil') {
             const nextIndex = (index + 1) % tamil.length;
             const nextSong = tamil[nextIndex];
-            console.log(nextSong);
+
+            setIndex(nextIndex);
+            setCurrentSong({
+                song: nextSong.name,
+                artist: nextSong.artists[0].name,
+                image: nextSong.album.images[0].url,
+            });
+            audio.src = nextSong.preview_url;
+            audio.play();
+            setToggle(false);
+        } else if (currentType === 'english') {
+            const nextIndex = (index + 1) % english.length;
+            const nextSong = english[nextIndex];
+
+            setIndex(nextIndex);
+            setCurrentSong({
+                song: nextSong.name,
+                artist: nextSong.artists[0].name,
+                image: nextSong.album.images[0].url,
+            });
+            audio.src = nextSong.preview_url;
+            audio.play();
+            setToggle(false);
+        } else if (currentType === 'hindi') {
+            const nextIndex = (index + 1) % hindi.length;
+            const nextSong = hindi[nextIndex];
+
             setIndex(nextIndex);
             setCurrentSong({
                 song: nextSong.name,
@@ -138,6 +166,42 @@ const DisplayContainer = () => {
         } else if (currentType === 'artist') {
             const prevIndex = (index - 1 + tracks.length) % tracks.length;
             const nextSong = tracks[prevIndex];
+            setIndex(prevIndex);
+            setCurrentSong({
+                song: nextSong.name,
+                artist: nextSong.artists[0].name,
+                image: nextSong.album.images[0].url,
+            });
+            audio.src = nextSong.preview_url;
+            audio.play();
+            setToggle(false);
+        } else if (currentType === 'tamil') {
+            const prevIndex = (index - 1 + tamil.length) % tamil.length;
+            const nextSong = tamil[prevIndex];
+            setIndex(prevIndex);
+            setCurrentSong({
+                song: nextSong.name,
+                artist: nextSong.artists[0].name,
+                image: nextSong.album.images[0].url,
+            });
+            audio.src = nextSong.preview_url;
+            audio.play();
+            setToggle(false);
+        } else if (currentType === 'english') {
+            const prevIndex = (index - 1 + english.length) % english.length;
+            const nextSong = english[prevIndex];
+            setIndex(prevIndex);
+            setCurrentSong({
+                song: nextSong.name,
+                artist: nextSong.artists[0].name,
+                image: nextSong.album.images[0].url,
+            });
+            audio.src = nextSong.preview_url;
+            audio.play();
+            setToggle(false);
+        } else if (currentType === 'hindi') {
+            const prevIndex = (index - 1 + hindi.length) % hindi.length;
+            const nextSong = hindi[prevIndex];
             setIndex(prevIndex);
             setCurrentSong({
                 song: nextSong.name,
@@ -217,6 +281,10 @@ const DisplayContainer = () => {
                                             index={index}
                                             tamil={tamil}
                                             setTamil={setTamil}
+                                            english={english}
+                                            setEnglish={setEnglish}
+                                            hindi={hindi}
+                                            setHindi={setHindi}
                                         />
                                     }
                                 />

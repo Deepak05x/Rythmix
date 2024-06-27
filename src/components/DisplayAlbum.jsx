@@ -93,10 +93,8 @@ const DisplayAlbum = ({ setCurrentSong, audio, setToggle, setCurrentType, album,
                             <h1 className="text-white text-[25px] font-bold">{albumContent.name}</h1>
                             <div className="flex flex-row gap-4 max-640:flex-col max-640:gap-1 max-425:flex-col max-425:gap-1 max-375:flex-col max-375:gap-1">
                                 {artist.map((item, index) => (
-                                    <Link to={`/artist/${item.id}`}>
-                                        <p className="text-neutral-400 hover:scale-110" key={index}>
-                                            &bull; {item.name}
-                                        </p>
+                                    <Link to={`/artist/${item.id}`} key={index}>
+                                        <p className="text-neutral-400 hover:scale-110">&bull; {item.name}</p>
                                     </Link>
                                 ))}
                             </div>

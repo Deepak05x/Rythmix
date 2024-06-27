@@ -10,11 +10,9 @@ import { ClipLoader } from 'react-spinners';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 
-const DisplayMusic = ({ setCurrentSong, audio, setToggle, setCurrentType, setIndex, tamil, setTamil }) => {
+const DisplayMusic = ({ setCurrentSong, audio, setToggle, setCurrentType, setIndex, tamil, setTamil, english, setEnglish, hindi, setHindi }) => {
     const { accessToken } = useContext(AccessContext);
 
-    const [english, setEnglish] = useState([]);
-    const [hindi, setHindi] = useState([]);
     const [loading, setLoading] = useState(true);
 
     const getSingleTrackTamil = async () => {
@@ -26,7 +24,6 @@ const DisplayMusic = ({ setCurrentSong, audio, setToggle, setCurrentType, setInd
                 },
             });
             setTamil(response.data.tracks);
-            console.log(response.data.tracks);
         } catch (err) {
             console.error('THE TAMIL DATA FETCHING WAS FAILED');
         }
@@ -70,6 +67,32 @@ const DisplayMusic = ({ setCurrentSong, audio, setToggle, setCurrentType, setInd
         audio.play();
         setIndex(index);
         setCurrentType('tamil');
+        setToggle(false);
+    };
+
+    const handleSelectionEnglish = (song, index) => {
+        setCurrentSong({
+            song: song.name,
+            artist: song.artists[0].name,
+            image: song.album.images[0].url,
+        });
+        audio.src = song.preview_url;
+        audio.play();
+        setIndex(index);
+        setCurrentType('english');
+        setToggle(false);
+    };
+
+    const handleSelectionHindi = (song, index) => {
+        setCurrentSong({
+            song: song.name,
+            artist: song.artists[0].name,
+            image: song.album.images[0].url,
+        });
+        audio.src = song.preview_url;
+        audio.play();
+        setIndex(index);
+        setCurrentType('hindi');
         setToggle(false);
     };
 
@@ -138,7 +161,7 @@ const DisplayMusic = ({ setCurrentSong, audio, setToggle, setCurrentType, setInd
                                     </div>
 
                                     <div className="flex flex-col gap-1">
-                                        <h4 className="text-white truncate-sm pl-2 hover:underline cursor-pointer" onClick={() => handleSelection(item)}>
+                                        <h4 className="text-white truncate-sm pl-2 hover:underline cursor-pointer" onClick={() => handleSelectionEnglish(item, index)}>
                                             {item.name}
                                         </h4>
                                         <div className="flex flex-col">
@@ -162,7 +185,7 @@ const DisplayMusic = ({ setCurrentSong, audio, setToggle, setCurrentType, setInd
                                     </div>
 
                                     <div className="flex flex-col gap-1">
-                                        <h4 className="text-white truncate-sm pl-2 hover:underline cursor-pointer" onClick={() => handleSelection(item)}>
+                                        <h4 className="text-white truncate-sm pl-2 hover:underline cursor-pointer" onClick={() => handleSelectionHindi(item, index)}>
                                             {item.name}
                                         </h4>
                                         <div className="flex flex-col">
