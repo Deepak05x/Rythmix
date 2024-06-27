@@ -13,6 +13,7 @@ const DisplayMusic = React.lazy(() => import('../Components/DisplayMusic'));
 const DisplayPodcast = React.lazy(() => import('../Components/DisplayPodcast'));
 const DisplayEpisodes = React.lazy(() => import('../Components/DisplayEpisodes'));
 const ExplorePage = React.lazy(() => import('../Components/ExplorePage'));
+const DisplaySearch = React.lazy(() => import('../Components/DisplaySearch'));
 
 const DisplayContainer = () => {
     const [currentSong, setCurrentSong] = useState({
@@ -34,6 +35,7 @@ const DisplayContainer = () => {
     const [tamil, setTamil] = useState([]);
     const [english, setEnglish] = useState([]);
     const [hindi, setHindi] = useState([]);
+    const [search, setSearch] = useState(false);
 
     const handleForward = () => {
         if (currentType === 'album') {
@@ -218,9 +220,9 @@ const DisplayContainer = () => {
         <>
             <div className="px-2 py-2 w-full h-[100vh] flex flex-col gap-0.5">
                 <div className="flex flex-row gap-2 h-[90%]">
-                    <Sidebar />
+                    <Sidebar setSearch={setSearch} search={search} />
+
                     <div className="w-[75%] bg-[#121212] rounded flex flex-col gap-12 pt-4 px-4  max-1280:w-[80%] max-1024:w-full max-768:w-full max-640:w-full max-425:w-full max-425:gap-8 max-375:w-full max-375:gap-8">
-                        <Navbar />
                         <Suspense fallback={<div>...</div>}>
                             <Routes>
                                 <Route path="/" element={<DisplayHome />} />
@@ -305,6 +307,7 @@ const DisplayContainer = () => {
                                     }
                                 />
                                 <Route path="/explore" element={<ExplorePage />} />
+                                <Route path="/search" element={<DisplaySearch />} />
                             </Routes>
                         </Suspense>
                     </div>

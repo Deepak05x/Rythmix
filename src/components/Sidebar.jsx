@@ -2,18 +2,20 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { assets } from '../assets/assets';
 
-const Sidebar = () => {
+const Sidebar = ({ setSearch, search }) => {
     return (
         <div className="items-start flex-col flex w-[25%] max-1280:w-[20%] max-1024:hidden max-768:hidden max-640:hidden max-425:hidden max-375:hidden">
             <div className="items-start justify-center flex-col bg-[#121212] w-full  py-6 px-8 gap-y-5 rounded flex">
-                <Link to={'/'} className="flex items-center justify-start gap-x-8">
+                <Link to={'/'} className="flex items-center justify-start gap-x-8 cursor-auto">
                     <img src={assets.home_icon} alt="home" height={25} width={25} className="cursor-pointer" />
-                    <p className="text-white">Home</p>
+                    <p className="text-white cursor-pointer">Home</p>
                 </Link>
-                <div className="flex items-center justify-start gap-x-8">
+                <Link to={'/search'} className="flex items-center justify-start gap-x-8">
                     <img src={assets.search_icon} alt="search" height={25} width={25} className="cursor-pointer" />
-                    <p className="text-white cursor-pointer">Search</p>
-                </div>
+                    <p className="text-white cursor-pointer" onClick={() => setSearch(!search)}>
+                        Search
+                    </p>
+                </Link>
             </div>
             <div className="bg-[#121212] w-full mt-2 py-6 px-3 rounded h-[1000%] overflow-y-auto">
                 <div className="w-full">

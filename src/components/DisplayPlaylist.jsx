@@ -9,6 +9,7 @@ import { ClipLoader } from 'react-spinners';
 import { Link } from 'react-router-dom';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
+import Navbar from './Navbar';
 
 const DisplayPlaylist = ({ setCurrentSong, audio, setToggle, list, setList, setCurrentType, setIndex }) => {
     const { id } = useParams();
@@ -83,6 +84,7 @@ const DisplayPlaylist = ({ setCurrentSong, audio, setToggle, list, setList, setC
                 </div>
             ) : (
                 <>
+                    <Navbar />
                     <section className="flex flex-row w-full pl-8 max-2560:gap-16 max-1440:gap-16 max-1280:gap-8 max-1170:gap-12 max-1024:gap-12 max-768:gap-8 max-640:gap-4 max-640:flex-col max-425:flex-col max-425:items-start max-425:gap-8 max-375:flex-col max-375:items-start max-375:gap-4 ">
                         {playlist && playlist.images && playlist.images[0] && (
                             <div className="transition-all ease-in hover:opacity-70">
