@@ -104,7 +104,7 @@ const DisplayEpisodes = ({ setToggle, audio, setCurrentSong, details, setDetails
                 </div>
             ) : (
                 <>
-                    <section className="flex flex-row w-full max-2560:gap-16 max-1440:gap-16 max-1280:gap-8 max-1170:gap-12 max-1024:gap-12 max-768:gap-8 max-640:gap-8 max-425:flex-col max-425:items-start max-425:gap-8 max-375:flex-col max-375:items-start max-375:gap-4">
+                    <section className="flex flex-row w-full pl-8 max-2560:gap-16 max-1440:gap-16 max-1280:gap-8 max-1170:gap-12 max-1024:gap-12 max-768:gap-8 max-640:gap-4 max-640:flex-col max-425:flex-col max-425:items-start max-425:gap-8 max-375:flex-col max-375:items-start max-375:gap-4 ">
                         {main && main.images[0] && main.images[0].url && (
                             <div className="transition-all ease-in hover:opacity-70">
                                 <LazyLoadImage
@@ -116,7 +116,7 @@ const DisplayEpisodes = ({ setToggle, audio, setCurrentSong, details, setDetails
                             </div>
                         )}
 
-                        <div className="flex flex-col items-start justify-end  max-2560:gap-8 max-1440:gap-8 max-1170:gap-4 max-1280:gap-6 max-1024:gap-8 max-768:gap-4 max-640:gap-6 max-425:items-start max-425:gap-4 max-375:items-start max-375:gap-4">
+                        <div className="flex flex-col items-start justify-end  max-2560:gap-8 max-1440:gap-8 max-1170:gap-4 max-1280:gap-6 max-1024:gap-4 max-768:gap-6  max-640:gap-6 max-425:items-start max-425:gap-4 max-375:items-start max-375:gap-4">
                             <h4 className="text-white max-425:hidden max-375:hidden">Podcast</h4>
                             <h1 className="text-white text-[25px] font-bold">{main.name}</h1>
                             <p className="flex flex-row gap-4 max-640:flex-col text-neutral-400  max-640:gap-1 max-425:flex-col max-425:gap-1 max-375:flex-col max-375:gap-1">{main.publisher}</p>
@@ -125,8 +125,8 @@ const DisplayEpisodes = ({ setToggle, audio, setCurrentSong, details, setDetails
                     <hr className="w-full" />
                     <section className="flex flex-col mb-4 gap-12 overflow-x-hidden down max-2560:gap-14 max-1440:gap-14">
                         {details.map((item, index) => (
-                            <>
-                                <div className="flex flex-row pl-2 gap-12 w-full" key={index}>
+                            <div className="flex flex-col gap-12" key={index}>
+                                <div className="flex flex-row gap-8 w-full h-full pl-8 max-425:flex-col max-640:flex-col max-375:flex-col ">
                                     <LazyLoadImage
                                         effect="blur"
                                         src={item.images[0].url}
@@ -143,7 +143,7 @@ const DisplayEpisodes = ({ setToggle, audio, setCurrentSong, details, setDetails
                                     </div>
                                 </div>
                                 <div className="w-[90%] bg-[#a3a3a377] h-[0.5px] ">-</div>
-                            </>
+                            </div>
                         ))}
                         {limit === total ? (
                             <h1 className="text-neutral-400 hover:underline cursor-pointer" onClick={() => getLess()}>
