@@ -81,7 +81,10 @@ const DisplayPodcast = () => {
                             {podcast.map((item, index) => (
                                 <Link to={`/podcast/${item.id}`} key={index}>
                                     <div className="flex flex-col gap-4 w-[200px] shrink-0 max-1280:w-[170px]">
-                                        <LazyLoadImage effect="blur" src={item.images[0].url} width={200} height={200} alt="" className="rounded-[10px] hover:scale-105 transition-all ease-in" />
+                                        <div className=" hover:scale-105 transition-all ease-in">
+                                            <LazyLoadImage effect="blur" src={item.images[0].url} width={200} height={200} alt="" className="rounded-[10px]" />
+                                        </div>
+
                                         <div className="flex flex-col gap-1">
                                             <h2 className="text-white truncate-sm pl-2 hover:underline cursor-pointer">{item.name}</h2>
 
@@ -97,7 +100,9 @@ const DisplayPodcast = () => {
                             {funny.map((item, index) => (
                                 <Link to={`/podcast/${item.id}`} key={index}>
                                     <div className="flex flex-col gap-4 w-[200px] shrink-0 max-1280:w-[170px]" key={index}>
-                                        <LazyLoadImage effect="blur" src={item.images[0].url} width={200} height={200} alt="" className="rounded-[10px] hover:scale-105 transition-all ease-in" />
+                                        <div className=" hover:scale-105 transition-all ease-in">
+                                            <LazyLoadImage effect="blur" src={item.images[0].url} width={200} height={200} alt="" className="rounded-[10px]" />
+                                        </div>
                                         <div className="flex flex-col gap-1">
                                             <h2 className="text-white truncate-sm pl-2 hover:underline cursor-pointer">{item.name}</h2>
 

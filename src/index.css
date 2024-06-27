@@ -67,3 +67,7 @@ button {
     background-size: contain;
     width: 100%;
 }
+
+.hide {
+    display: none;
+}

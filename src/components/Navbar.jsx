@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { assets } from '../assets/assets';
 
 const Navbar = () => {
@@ -31,9 +32,12 @@ const Navbar = () => {
                 />
             </div>
             <div className="w-full flex flex-row items-center justify-end gap-8 max-768:gap-5 max-425:justify-start max-375:justify-start flex-shrink-1">
-                <button className="bg-white text-black py-1.5 px-4 rounded-full font-medium max-768:font-medium max-768:text-sm max-640:text-sm max-640:px-4 max-425:px-4 max-425:text-sm max-375:px-2 max-375:text-[10px] hover:scale-105 transition-all ease-in">
+                <Link
+                    to={'/explore'}
+                    className="bg-white text-black py-1.5 px-4 rounded-full font-medium max-768:font-medium max-768:text-sm max-640:text-sm max-640:px-4 max-425:px-4 max-425:text-sm max-375:px-4 max-375:text-text-sm hover:scale-105 transition-all ease-in"
+                >
                     Explore Rythmix
-                </button>
+                </Link>
                 <p className="bg-purple-500 py-2 px-4 rounded-full font-medium text-base">D</p>
             </div>
         </div>

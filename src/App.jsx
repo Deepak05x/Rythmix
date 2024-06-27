@@ -1,3 +1,4 @@
+import { React } from 'react';
 import { AccessProvider } from './Contexts/AcessContext';
 import DisplayContainer from './Containers/DisplayContainer';
 

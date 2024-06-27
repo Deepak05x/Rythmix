@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 
-const DisplayArtist = ({ setCurrentSong, audio, setToggle, tracks, setTracks, setCurrentType }) => {
+const DisplayArtist = ({ setCurrentSong, audio, setToggle, tracks, setTracks, setCurrentType, setIndex }) => {
     const [artist, setArtist] = useState({});
 
     const [loading, setLoading] = useState(true);
@@ -50,7 +50,7 @@ const DisplayArtist = ({ setCurrentSong, audio, setToggle, tracks, setTracks, se
         }
     };
 
-    const handleSelection = (song) => {
+    const handleSelection = (song, index) => {
         setCurrentSong({
             song: song.name,
             artist: song.artists[0].name,
@@ -59,6 +59,7 @@ const DisplayArtist = ({ setCurrentSong, audio, setToggle, tracks, setTracks, se
         audio.src = song.preview_url;
         audio.play();
         setToggle(false);
+        setIndex(index);
         setCurrentType('artist');
         if (song.preview_url === null) alert(' \n \n No Preview URL For This Song \n \n Click The Link Icon To Visit The Song ');
     };
@@ -92,16 +93,18 @@ const DisplayArtist = ({ setCurrentSong, audio, setToggle, tracks, setTracks, se
                 </div>
             ) : (
                 <>
-                    <section className="flex flex-row w-full max-2560:gap-16 max-1440:gap-16 max-1280:gap-8 max-1170:gap-12 max-1024:gap-12 max-768:gap-8 max-640:gap-8 max-425:flex-col max-425:items-start max-425:gap-8 max-375:flex-col max-375:items-start max-375:gap-4 ">
+                    <section className="flex flex-row w-full pl-8 max-2560:gap-16 max-1440:gap-16 max-1280:gap-8 max-1170:gap-12 max-1024:gap-12 max-768:gap-8 max-640:gap-4 max-640:flex-col max-425:flex-col max-425:items-start max-425:gap-8 max-375:flex-col max-375:items-start max-375:gap-4 ">
                         {artist && artist.images && artist.images[1] && (
-                            <LazyLoadImage
-                                effect="blur"
-                                src={artist.images[1].url}
-                                alt=""
-                                className="transition-all ease-in rounded-[10px] hover:opacity-70 max-2560:w-[250px] max-2560:h-[250px] max-1440:w-[230px] max-1440:h-[230px] max-1280:h-[180px] max-1280:w-[180px] max-1170:w-[160px] max-1170:h-[160px] max-1024:w-[160px] max-1024:h-[160px] max-768:w-[180px] max-640:hidden max-425:hidden max-375:hidden"
-                            />
+                            <div className="transition-all ease-in hover:opacity-70">
+                                <LazyLoadImage
+                                    effect="blur"
+                                    src={artist.images[1].url}
+                                    alt=""
+                                    className="transition-all ease-in rounded-[10px] hover:opacity-70 max-2560:w-[250px] max-2560:h-[250px] max-1440:w-[230px] max-1440:h-[230px] max-1280:h-[180px] max-1280:w-[180px] max-1170:w-[160px] max-1170:h-[160px] max-1024:w-[160px] max-1024:h-[160px] max-768:w-[180px] max-640:hidden max-425:hidden max-375:hidden"
+                                />
+                            </div>
                         )}
-                        <div className="flex flex-col items-start justify-end  max-2560:gap-10 max-1440:gap-12 max-1170:gap-6 max-1280:gap-8 max-1024:gap-8 max-768:gap-6 max-640:gap-6 max-425:items-start max-425:gap-6 max-375:items-start max-375:gap-4">
+                        <div className="flex flex-col items-start justify-end  max-2560:gap-8 max-1440:gap-8 max-1170:gap-4 max-1280:gap-6 max-1024:gap-4 max-768:gap-6  max-640:gap-6 max-425:items-start max-425:gap-4 max-375:items-start max-375:gap-4">
                             <h4 className="text-white max-425:hidden max-375:hidden">Artist</h4>
                             <div className="flex flex-col gap-1 max-640:flex-col max-640:gap-1 max-425:flex-col max-425:gap-1 max-375:flex-col max-375:gap-1">
                                 <h1 className="text-white text-[40px] font-bold">{artist.name}</h1>
@@ -112,14 +115,17 @@ const DisplayArtist = ({ setCurrentSong, audio, setToggle, tracks, setTracks, se
                         </div>
                     </section>
                     <hr className="w-full" />
-                    <section className="flex mb-4 flex-col pb-4 gap-8 overflow-x-hidden down max-2560:gap-12 max-1440:gap-14 max-1280:gap-12  max-1170:gap-12 max-1024:gap-12 max-768:gap-12 max-640:gap-12 max-425:gap-12">
+                    <section className="flex flex-col mb-4 gap-12 overflow-x-hidden down max-2560:gap-14 max-1440:gap-14">
                         {tracks.map((item, index) => (
-                            <>
-                                <div key={index} className=" flex flex-row gap-8 w-[80%] h-full px-4">
-                                    <LazyLoadImage effect="blur" src={item.album.images[0].url} alt="" className="w-[80px] h-[70px] rounded-full max-640:hidden max-425:hidden max-375:hidden" />
-                                    <div className="flex flex-row items-center justify-between w-full gap-2">
+                            <div className="flex flex-col gap-12" key={index}>
+                                <div className="flex flex-row gap-8 w-[90%] h-full pl-8 max-425:flex-col max-640:flex-col max-375:flex-col ">
+                                    <div className=" max-640:hidden max-425:hidden max-375:hidden">
+                                        <LazyLoadImage effect="blur" width={80} height={80} src={item.album.images[0].url} alt="" className=" rounded-full" />
+                                    </div>
+
+                                    <div className=" flex flex-row items-center justify-between w-full gap-2 max-425:flex-col max-425:items-start max-425:gap-8 max-375:items-start max-375:gap-8 max-375:flex-col">
                                         <div className="flex flex-col gap-2">
-                                            <p className="text-white text-lg w-full cursor-pointer hover:underline" onClick={() => handleSelection(item)}>
+                                            <p className="text-white text-lg w-full cursor-pointer hover:underline" onClick={() => handleSelection(item, index)}>
                                                 {item.name}
                                             </p>
                                             <Link to={`/artist/${item.artists[0].id}`}>
@@ -129,7 +135,7 @@ const DisplayArtist = ({ setCurrentSong, audio, setToggle, tracks, setTracks, se
                                     </div>
 
                                     <div className="flex flex-col gap-2 justify-center">
-                                        <p className="text-white text-md max-425:hidden max-375:hidden max-640:hidden">{timeConverter(item.duration_ms)}</p>
+                                        <p className="text-white text-md ">{timeConverter(item.duration_ms)}</p>
                                         <a href={item.external_urls.spotify} target="_blank">
                                             <p className="text-[15px] text-neutral-400 hover:underline">
                                                 <CiLink className="w-[25px] h-[25px] hover:scale-125" />
@@ -138,7 +144,7 @@ const DisplayArtist = ({ setCurrentSong, audio, setToggle, tracks, setTracks, se
                                     </div>
                                 </div>
                                 <div className="w-[90%] bg-[#a3a3a377] h-[0.5px] ">-</div>
-                            </>
+                            </div>
                         ))}
                     </section>
                 </>

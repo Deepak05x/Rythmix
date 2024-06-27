@@ -99,7 +99,10 @@ const DisplayHome = () => {
                         <section className="flex flex-row items-start pl-4 gap-12 overflow-x-auto whitespace-nowrap left ">
                             {albums.map((item, index) => (
                                 <Link to={`/albums/${item.id}`} className="flex flex-col gap-4 w-[200px] shrink-0 max-1280:w-[170px]" key={index}>
-                                    <LazyLoadImage src={item.images[0].url} alt={item.name} width={200} height={200} className="rounded-[10px] hover:scale-105 transition-all ease" effect="blur" />
+                                    <div className="hover:scale-105 transition-all ease-in">
+                                        <LazyLoadImage src={item.images[0].url} alt={item.name} width={200} height={200} className="rounded-[10px]" effect="blur" />
+                                    </div>
+
                                     <div className="flex flex-col pl-2 gap-1">
                                         <h4 className="text-white truncate-sm  hover:underline">{item.name}</h4>
                                         <p className="text-neutral-400 text-sm w-full truncate ">{item.label}</p>
@@ -111,7 +114,10 @@ const DisplayHome = () => {
                         <section className="flex flex-row items-start pl-4 gap-12 overflow-x-auto whitespace-nowrap left">
                             {playList.map((item, index) => (
                                 <Link to={`/playlist/${item.id}`} className="flex flex-col gap-4 w-[200px] shrink-0 max-1280:w-[170px] cursor-pointer" key={index}>
-                                    <LazyLoadImage src={item.images[0].url} alt={item.name} width={200} height={200} className="rounded-[10px] hover:scale-105 transition-all ease" effect="blur" />
+                                    <div className="hover:scale-105 transition-all ease-in">
+                                        <LazyLoadImage src={item.images[0].url} alt={item.name} width={200} height={200} className="rounded-[10px] " effect="blur" />
+                                    </div>
+
                                     <div className="flex flex-col gap-1 pl-2">
                                         <h4 className="text-white truncate-sm hover:underline">{item.name}</h4>
                                         <p className="text-neutral-400 text-sm w-full truncate ">{item.description}</p>
@@ -122,8 +128,11 @@ const DisplayHome = () => {
                         <h1 className="text-white font-semibold text-2xl mt-4">Top Artists</h1>
                         <section className="flex flex-row items-start pl-4 gap-12 overflow-x-auto whitespace-nowrap left ">
                             {artists.map((item, index) => (
-                                <Link to={`/artist/${item.id}`} className="flex flex-col gap-4 shrink-0 items-center" key={index}>
-                                    <LazyLoadImage src={item.images[1].url} alt="" className="rounded-full hover:opacity-70 transition-all ease-in w-[200px] h-[200px]" effect="blur" />
+                                <Link to={`/artist/${item.id}`} className="flex flex-col gap-4 shrink-0 items-center " key={index}>
+                                    <div className="hover:opacity-70 transition-all  ease-in">
+                                        <LazyLoadImage src={item.images[1].url} alt="" className="rounded-full  w-[200px] h-[200px]" effect="blur" />
+                                    </div>
+
                                     <h4 className="text-white hover:underline">{item.name}</h4>
                                 </Link>
                             ))}

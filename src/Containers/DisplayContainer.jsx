@@ -12,6 +12,7 @@ const DisplayPlaylist = React.lazy(() => import('../Components/DisplayPlaylist')
 const DisplayMusic = React.lazy(() => import('../Components/DisplayMusic'));
 const DisplayPodcast = React.lazy(() => import('../Components/DisplayPodcast'));
 const DisplayEpisodes = React.lazy(() => import('../Components/DisplayEpisodes'));
+const ExplorePage = React.lazy(() => import('../Components/ExplorePage'));
 
 const DisplayContainer = () => {
     const [currentSong, setCurrentSong] = useState({
@@ -30,6 +31,7 @@ const DisplayContainer = () => {
     const [tracks, setTracks] = useState([]);
     const [index, setIndex] = useState(0);
     const [currentType, setCurrentType] = useState('');
+    const [tamil, setTamil] = useState([]);
 
     const handleForward = () => {
         if (currentType === 'album') {
@@ -71,6 +73,19 @@ const DisplayContainer = () => {
         } else if (currentType === 'artist') {
             const nextIndex = (index + 1) % tracks.length;
             const nextSong = tracks[nextIndex];
+            setIndex(nextIndex);
+            setCurrentSong({
+                song: nextSong.name,
+                artist: nextSong.artists[0].name,
+                image: nextSong.album.images[0].url,
+            });
+            audio.src = nextSong.preview_url;
+            audio.play();
+            setToggle(false);
+        } else if (currentType === 'tamil') {
+            const nextIndex = (index + 1) % tamil.length;
+            const nextSong = tamil[nextIndex];
+            console.log(nextSong);
             setIndex(nextIndex);
             setCurrentSong({
                 song: nextSong.name,
@@ -147,7 +162,17 @@ const DisplayContainer = () => {
                                 <Route path="/" element={<DisplayHome />} />
                                 <Route
                                     path="/playlist/:id"
-                                    element={<DisplayPlaylist setCurrentSong={setCurrentSong} audio={audio} setToggle={setToggle} list={list} setList={setList} setCurrentType={setCurrentType} />}
+                                    element={
+                                        <DisplayPlaylist
+                                            setCurrentSong={setCurrentSong}
+                                            audio={audio}
+                                            setToggle={setToggle}
+                                            list={list}
+                                            setList={setList}
+                                            setCurrentType={setCurrentType}
+                                            setIndex={setIndex}
+                                        />
+                                    }
                                 />
                                 <Route
                                     path="/albums/:id"
@@ -162,16 +187,39 @@ const DisplayContainer = () => {
                                             setAlbum={setAlbum}
                                             setMainImageAlbum={setMainImageAlbum}
                                             mainImageAlbum={mainImageAlbum}
+                                            setIndex={setIndex}
                                         />
                                     }
                                 />
                                 <Route
                                     path="/artist/:id"
                                     element={
-                                        <DisplayArtist setCurrentSong={setCurrentSong} audio={audio} setToggle={setToggle} tracks={tracks} setTracks={setTracks} setCurrentType={setCurrentType} />
+                                        <DisplayArtist
+                                            setCurrentSong={setCurrentSong}
+                                            audio={audio}
+                                            setToggle={setToggle}
+                                            tracks={tracks}
+                                            setTracks={setTracks}
+                                            setCurrentType={setCurrentType}
+                                            setIndex={setIndex}
+                                        />
                                     }
                                 />
-                                <Route path="/music" element={<DisplayMusic setCurrentSong={setCurrentSong} audio={audio} setToggle={setToggle} />} />
+                                <Route
+                                    path="/music"
+                                    element={
+                                        <DisplayMusic
+                                            setCurrentSong={setCurrentSong}
+                                            audio={audio}
+                                            setToggle={setToggle}
+                                            setCurrentType={setCurrentType}
+                                            setIndex={setIndex}
+                                            index={index}
+                                            tamil={tamil}
+                                            setTamil={setTamil}
+                                        />
+                                    }
+                                />
                                 <Route path="/podcast" element={<DisplayPodcast />} />
                                 <Route
                                     path="/podcast/:id"
@@ -188,6 +236,7 @@ const DisplayContainer = () => {
                                         />
                                     }
                                 />
+                                <Route path="/explore" element={<ExplorePage />} />
                             </Routes>
                         </Suspense>
                     </div>
