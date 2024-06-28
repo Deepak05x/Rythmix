@@ -1,4 +1,3 @@
-import { data } from 'autoprefixer';
 import axios from 'axios';
 import React, { useState } from 'react';
 import { useEffect } from 'react';
@@ -28,7 +27,7 @@ const DisplaySearch = () => {
 
     const getSearchItems = async () => {
         try {
-            const url = 'https://api.spotify.com/v1/search?q=Golden&type=album';
+            const url = `https://api.spotify.com/v1/search?q=${input}&type=album`;
             const response = await axios.get(url, {
                 headers: {
                     Authorization: `Bearer ${accessToken}`,
@@ -42,18 +41,14 @@ const DisplaySearch = () => {
         }
     };
 
-    useEffect(() => {
-        getSearchItems();
-    }, [accessToken]);
+    // const timeConverter = (time) => {
+    //     const totalSeconds = Math.floor(time / 1000);
+    //     const minutes = Math.floor(totalSeconds / 60);
+    //     const seconds = totalSeconds % 60;
+    //     const paddedSeconds = seconds.toString().padStart(2, '0');
 
-    const timeConverter = (time) => {
-        const totalSeconds = Math.floor(time / 1000);
-        const minutes = Math.floor(totalSeconds / 60);
-        const seconds = totalSeconds % 60;
-        const paddedSeconds = seconds.toString().padStart(2, '0');
-
-        return `${minutes}:${paddedSeconds}`;
-    };
+    //     return `${minutes}:${paddedSeconds}`;
+    // };
 
     return (
         <div className="flex flex-col gap-16 overflow-y-auto h-full ">
@@ -87,9 +82,13 @@ const DisplaySearch = () => {
                         </Link>
                     </div>
                 </div>
-                <form action="" className="flex flex-row  h-full gap-8 items-center justify-center w-[75%] max-1024:w-full max-768:w-full max-640:w-full max-425:w-full max-375:w-full">
+                <form
+                    action=""
+                    onSubmit={(e) => e.preventDefault()}
+                    className="flex flex-row  h-full gap-8 items-center justify-center w-[75%] max-1024:w-full max-768:w-full max-640:w-full max-425:w-full max-375:w-full"
+                >
                     <input type="text" className="border-2 bg-[#121212] border-[#ffffff1d] rounded-[10px] outline-none text-white px-4 py-2 w-[70%]" value={input} onChange={handleChange} />
-                    <img src={assets.search_icon} alt="" className="w-[30px] h-[30px]" />
+                    <img src={assets.search_icon} alt="" className="w-[30px] h-[30px]" onClick={() => getSearchItems()} />
                 </form>
             </div>
             <div className="flex flex-row w-full gap-8  max-1024:gap-6 max-640:gap-6 max-425:gap-3 max-425:text-[15px] max-375:text-[12px] max-375:gap-2">
@@ -115,7 +114,7 @@ const DisplaySearch = () => {
                             </div>
                             <div className=" flex flex-row items-center justify-between w-full gap-2 max-425:flex-col max-425:items-start max-425:gap-8 max-375:items-start max-375:gap-8 max-375:flex-col">
                                 <div className="flex flex-col gap-2">
-                                    <Link to={`/ablums/${item.id}`} className="text-white text-lg w-full cursor-pointer hover:underline">
+                                    <Link to={`/albums/${item.id}`} className="text-white text-lg w-full cursor-pointer hover:underline">
                                         {item.name}
                                     </Link>
                                     <Link to={`/artist/${item.artists[0].id}`} className="text-neutral-400 max-1440:text-[15px] max-2000:text-[15px] hover:underline">
