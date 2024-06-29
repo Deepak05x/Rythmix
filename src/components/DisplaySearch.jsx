@@ -93,7 +93,7 @@ const DisplaySearch = () => {
             </div>
             <div className="flex flex-row w-full gap-8  max-1024:gap-6 max-640:gap-6 max-425:gap-3 max-425:text-[15px] max-375:text-[12px] max-375:gap-2">
                 <div>
-                    <button className="bg-[#ffffff1d] py-1 px-3 rounded-full text-white hover:scale-105 transition-all ease-in">All</button>
+                    <button className="bg-white py-1 px-3 rounded-full text-black hover:scale-105 transition-all ease-in">Album</button>
                 </div>
                 <div>
                     <button className="bg-[#ffffff1d] py-1 px-3 rounded-full text-white hover:scale-105 transition-all ease-in">Tracks</button>
