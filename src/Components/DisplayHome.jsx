@@ -9,6 +9,7 @@ import { ClipLoader } from 'react-spinners';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import Navbar from './Navbar';
+import { assets } from '../assets/assets';
 
 const DisplayHome = () => {
     const { accessToken } = useContext(AccessContext);
@@ -64,6 +65,17 @@ const DisplayHome = () => {
         }
     };
 
+    const simulateRightArrowPress = () => {
+        const event = new KeyboardEvent('keydown', {
+            key: 'ArrowRight',
+            code: 'ArrowRight',
+            keyCode: 39, // keyCode for the right arrow key
+            which: 39,
+            bubbles: true,
+        });
+        document.dispatchEvent(event);
+    };
+
     useEffect(() => {
         getAlbums();
         getArtist();
@@ -74,7 +86,7 @@ const DisplayHome = () => {
     }, [accessToken]);
 
     return (
-        <div className="flex flex-col w-full mb-1 h-[100%] gap-16 overflow-y-auto down max-1280:pr-0">
+        <div className="flex flex-col w-full mb-1 h-[100%] gap-16 overflow-y-auto down  px-4 pt-4 ">
             {loading ? (
                 <div className="flex items-center justify-center h-full w-full overflow-hidden">
                     <ClipLoader loading={loading} size={60} color={'white'} />
@@ -82,7 +94,7 @@ const DisplayHome = () => {
             ) : (
                 <>
                     <Navbar />
-                    <div className="flex flex-row w-full gap-8 max-1024:gap-6 max-425:gap-3 max-425:text-[15px] max-375:text-[12px] max-375:gap-2">
+                    <div className="flex flex-row w-full gap-8 max-1024:gap-6 max-425:gap-3 max-425:text-[15px] max-375:text-[12px] max-375:gap-2 px-5">
                         <Link to={'/'}>
                             <button className="bg-white py-1 px-3 rounded-full hover:scale-105 transition-all ease-in">All</button>
                         </Link>
@@ -96,9 +108,9 @@ const DisplayHome = () => {
                             Library
                         </button>
                     </div>
-                    <div className="flex flex-col gap-10 mb-4">
+                    <div className="flex flex-col gap-10 mb-4 px-5">
                         <h1 className="text-white font-semibold text-2xl">Featured Albums</h1>
-                        <section className="flex flex-row items-start pl-4 gap-12 overflow-x-auto whitespace-nowrap left ">
+                        <section className="flex flex-row items-start   gap-12 overflow-x-auto  whitespace-nowrap left pb-10 ">
                             {albums.map((item, index) => (
                                 <Link to={`/albums/${item.id}`} className="flex flex-col gap-4 w-[200px] shrink-0 max-1280:w-[170px]" key={index}>
                                     <div className="hover:scale-105 transition-all ease-in">
@@ -113,7 +125,7 @@ const DisplayHome = () => {
                             ))}
                         </section>
                         <h1 className="text-white font-semibold text-2xl mt-4">Top Playlists</h1>
-                        <section className="flex flex-row items-start pl-4 gap-12 overflow-x-auto whitespace-nowrap left">
+                        <section className="flex flex-row items-start pl-4 gap-12 overflow-x-auto whitespace-nowrap left pb-10">
                             {playList.map((item, index) => (
                                 <Link to={`/playlist/${item.id}`} className="flex flex-col gap-4 w-[200px] shrink-0 max-1280:w-[170px] cursor-pointer" key={index}>
                                     <div className="hover:scale-105 transition-all ease-in">
@@ -128,7 +140,7 @@ const DisplayHome = () => {
                             ))}
                         </section>
                         <h1 className="text-white font-semibold text-2xl mt-4">Top Artists</h1>
-                        <section className="flex flex-row items-start pl-4 gap-12 overflow-x-auto whitespace-nowrap left ">
+                        <section className="flex flex-row items-start pl-4 gap-12 overflow-x-auto whitespace-nowrap left pb-10 ">
                             {artists.map((item, index) => (
                                 <Link to={`/artist/${item.id}`} className="flex flex-col gap-4 shrink-0 items-center " key={index}>
                                     <div className="hover:opacity-70 transition-all  ease-in">

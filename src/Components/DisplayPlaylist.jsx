@@ -77,7 +77,7 @@ const DisplayPlaylist = ({ setCurrentSong, audio, setToggle, list, setList, setC
     };
 
     return (
-        <div className="overflow-y-auto flex flex-col gap-12 max-425:gap-8 max-375:gap-8 w-full h-full">
+        <div className="overflow-y-auto flex flex-col px-4 pt-4 gap-12 max-425:gap-8 max-375:gap-8 w-full h-full">
             {loading ? (
                 <div className="flex items-center justify-center w-full h-full overflow-hidden">
                     <ClipLoader loading={true} size={60} color={'white'} />

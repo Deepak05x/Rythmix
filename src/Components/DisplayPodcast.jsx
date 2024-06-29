@@ -56,7 +56,7 @@ const DisplayPodcast = () => {
     }, [accessToken]);
 
     return (
-        <div className="flex flex-col w-full mb-1 h-[100%] gap-16 overflow-y-auto down max-1280:pr-0">
+        <div className="flex flex-col w-full mb-1 h-[100%] gap-16 overflow-y-auto down px-4 pt-4">
             {loading ? (
                 <div className="flex items-center justify-center w-full h-full overflow-hidden">
                     <ClipLoader loading={true} size={60} color={'white'} />
@@ -64,7 +64,7 @@ const DisplayPodcast = () => {
             ) : (
                 <>
                     <Navbar />
-                    <div className="flex flex-row w-full gap-8 max-1024:gap-6 max-425:gap-3 max-425:text-[15px] max-375:text-[12px] max-375:gap-2">
+                    <div className="flex flex-row w-full gap-8 max-1024:gap-6 max-425:gap-3 max-425:text-[15px] max-375:text-[12px] max-375:gap-2 px-5">
                         <Link to={'/'}>
                             <button className="bg-[#ffffff1d] text-white py-1 px-3 rounded-full hover:scale-105 transition-all ease-in">All</button>
                         </Link>
@@ -76,10 +76,10 @@ const DisplayPodcast = () => {
                             Library
                         </button>
                     </div>
-                    <div className="flex flex-col gap-10 mb-4">
+                    <div className="flex flex-col gap-10 mb-4 px-5">
                         <h1 className="text-white font-semibold text-2xl">Featured Podcasts</h1>
 
-                        <section className="flex flex-row items-start pl-4 gap-12 overflow-x-auto whitespace-nowrap left">
+                        <section className="flex flex-row items-start pl-4 gap-12 overflow-x-auto whitespace-nowrap left pb-10">
                             {podcast.map((item, index) => (
                                 <Link to={`/podcast/${item.id}`} key={index}>
                                     <div className="flex flex-col gap-4 w-[200px] shrink-0 max-1280:w-[170px]">
@@ -98,7 +98,7 @@ const DisplayPodcast = () => {
                         </section>
 
                         <h1 className="text-white font-semibold text-2xl mt-4">Funny Podcasts</h1>
-                        <section className="flex flex-row items-start pl-4 gap-12 overflow-x-auto whitespace-nowrap left">
+                        <section className="flex flex-row items-start pl-4 gap-12 overflow-x-auto whitespace-nowrap left pb-10">
                             {funny.map((item, index) => (
                                 <Link to={`/podcast/${item.id}`} key={index}>
                                     <div className="flex flex-col gap-4 w-[200px] shrink-0 max-1280:w-[170px]" key={index}>

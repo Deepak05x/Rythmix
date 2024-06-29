@@ -98,7 +98,7 @@ const DisplayEpisodes = ({ setToggle, audio, setCurrentSong, details, setDetails
     console.log(details);
 
     return (
-        <div className="overflow-y-auto flex flex-col gap-12 max-425:gap-8 max-375:gap-8 h-full w-full">
+        <div className="overflow-y-auto flex flex-col px-4 pt-4 gap-12 max-425:gap-8 max-375:gap-8 h-full w-full">
             {loading ? (
                 <div className="flex items-center justify-center w-full h-full">
                     <ClipLoader color="white" loading={true} size={60} />

@@ -1,3 +1,4 @@
+import { data } from 'autoprefixer';
 import axios from 'axios';
 import React, { useState } from 'react';
 import { useEffect } from 'react';
@@ -35,23 +36,13 @@ const DisplaySearch = () => {
             });
             const data = response.data.albums.items;
             setSearch(data);
-            console.log(response.data.albums.items);
         } catch (e) {
             console.log(e.message);
         }
     };
 
-    // const timeConverter = (time) => {
-    //     const totalSeconds = Math.floor(time / 1000);
-    //     const minutes = Math.floor(totalSeconds / 60);
-    //     const seconds = totalSeconds % 60;
-    //     const paddedSeconds = seconds.toString().padStart(2, '0');
-
-    //     return `${minutes}:${paddedSeconds}`;
-    // };
-
     return (
-        <div className="flex flex-col gap-16 overflow-y-auto h-full ">
+        <div className="flex flex-col gap-16 overflow-y-auto h-full px-4 pt-4 ">
             <div className="flex flex-row items-start justify-between py-1 px-1 w-full max-640:justify-center max-1024:flex-col max-1024:gap-12 max-768:flex-col max-640:flex-col  max-768:gap-12 max-640:gap-12 exact-425:flex-col exact-425:items-start  exact-425:justify-center exact-425:gap-8 max-425:flex-col max-425:items-start max-425:gap-12  max-375:flex-col max-375:gap-12 ">
                 <div className="flex flex-row items-start justify-start gap-12  flex-grow-0 h-full w-[25%] max-1024:w-full max-768:w-full max-640:w-full max-425:w-full max-375:w-full ">
                     <div className="flex flex-row gap-4 ">
@@ -91,20 +82,7 @@ const DisplaySearch = () => {
                     <img src={assets.search_icon} alt="" className="w-[30px] h-[30px]" onClick={() => getSearchItems()} />
                 </form>
             </div>
-            <div className="flex flex-row w-full gap-8  max-1024:gap-6 max-640:gap-6 max-425:gap-3 max-425:text-[15px] max-375:text-[12px] max-375:gap-2">
-                <div>
-                    <button className="bg-white py-1 px-3 rounded-full text-black hover:scale-105 transition-all ease-in">Album</button>
-                </div>
-                <div>
-                    <button className="bg-[#ffffff1d] py-1 px-3 rounded-full text-white hover:scale-105 transition-all ease-in">Tracks</button>
-                </div>
-                <div>
-                    <button className="bg-[#ffffff1d] py-1 px-3 rounded-full text-white hover:scale-105 transition-all ease-in">Artists</button>
-                </div>
-                <button className="bg-[#ffffff1d] py-1 px-3 rounded-full text-white hidden max-1024:flex max-768:flex max-640:flex max-425:flex max-375:flex hover:scale-105 transition-all ease-in">
-                    Library
-                </button>
-            </div>
+            <div className="w-full bg-[#ffffff83] h-[1px] rounded-[10px]"></div>
             <section className="flex flex-col mb-4 gap-12 overflow-x-hidden down max-2560:gap-14 max-1440:gap-14 ">
                 {search.map((item, index) => (
                     <div className="flex flex-col gap-12 " key={index}>
@@ -122,7 +100,7 @@ const DisplaySearch = () => {
                                     </Link>
                                 </div>
                             </div>
-                            <div className="flex flex-col gap-2 justify-center items-center">
+                            <div className="flex flex-col gap-2 justify-center items-center max-640:items-start max-425:items-start max-375:items-start ">
                                 <p className="text-white text-md ">{item.total_tracks}</p>
                                 <a href={item.external_urls.spotify} target="_blank">
                                     <p className="text-[15px] text-neutral-400 hover:underline">

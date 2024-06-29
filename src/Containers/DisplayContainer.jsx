@@ -220,7 +220,7 @@ const DisplayContainer = () => {
                 <div className="flex flex-row gap-2 h-[90%]">
                     <Sidebar />
 
-                    <div className="w-[75%] bg-[#121212] rounded flex flex-col gap-12 pt-4 px-4  max-1024:w-full max-768:w-full max-640:w-full max-425:w-full max-425:gap-8 max-375:w-full max-375:gap-8">
+                    <div className="w-[75%] bg-[#121212] rounded flex flex-col gap-12  max-1024:w-full max-768:w-full max-640:w-full max-425:w-full max-425:gap-8 max-375:w-full max-375:gap-8">
                         <Suspense fallback={<div>...</div>}>
                             <Routes>
                                 <Route path="/" element={<DisplayHome />} />

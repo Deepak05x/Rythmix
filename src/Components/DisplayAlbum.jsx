@@ -73,7 +73,7 @@ const DisplayAlbum = ({ setCurrentSong, audio, setToggle, setCurrentType, album,
     };
 
     return (
-        <div className="overflow-y-auto flex flex-col gap-12 max-425:gap-8 max-375:gap-8 relative h-full w-full">
+        <div className="overflow-y-auto flex flex-col px-4 pt-4 gap-12 max-425:gap-8 max-375:gap-8 relative h-full w-full">
             {loading ? (
                 <div className="flex items-center justify-center w-full h-full overflow-hidden">
                     <ClipLoader color={'white'} loading={true} size={60} />

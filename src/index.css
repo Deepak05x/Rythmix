@@ -39,8 +39,8 @@ body {
 }
 
 .left::-webkit-scrollbar {
-    height: 1px;
     width: 1px;
+    background-color: #121212;
 }
 
 button {
@@ -48,31 +48,29 @@ button {
 }
 
 .down::-webkit-scrollbar {
-    height: 1px;
-    width: 1px;
+    background-color: #121212;
+    width: 10px;
 }
 
-.heading-col {
-    grid-template-columns: 300px 200px 30px;
+.down::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.514);
+    border-radius: 10px;
+    cursor: pointer;
 }
 
-.normal-col {
-    grid-template-columns: 300px 200px 30px;
+.down::-webkit-scrollbar-thumb:hover {
+    background-color: gray;
 }
 
-.bg-url {
-    background: url('./assets/img1.jpg');
-    background-repeat: no-repeat;
-    background-position: start;
-    background-size: contain;
-    width: 100%;
+.left::-webkit-scrollbar {
+    background-color: #121212;
+    width: 10px;
+    height: 5px;
 }
 
-.hide {
-    display: none;
-}
-
-.minmax {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+.left::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.514);
+    border-radius: 10px;
+    cursor: pointer;
+    height: 100%;
 }
