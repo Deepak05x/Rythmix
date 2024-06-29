@@ -1,7 +1,6 @@
 import React, { useState, Suspense } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Sidebar from '../Components/Sidebar';
-import Navbar from '../Components/Navbar';
 import { assets } from '../assets/assets';
 import MusicPlayer from '../Components/MusicPlayer';
 
