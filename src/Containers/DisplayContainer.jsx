@@ -17,7 +17,7 @@ const DisplaySearch = React.lazy(() => import('../Components/DisplaySearch'));
 const DisplayContainer = () => {
     const [currentSong, setCurrentSong] = useState({
         song: 'Sweater Weather',
-        artist: 'Neighboor',
+        artist: 'The Neighbourhood',
         image: `${assets.img1}`,
         id: '',
     });
