@@ -9,6 +9,7 @@
     margin: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
+    scroll-behavior: smooth;
 }
 
 body {
@@ -47,7 +48,7 @@ button {
 }
 
 .down::-webkit-scrollbar-button {
-    background-color: rgba(255, 255, 255, 0.514);
+    background-color: grey;
     border-radius: 10px;
     width: 50px;
     height: 50px;
@@ -64,7 +65,7 @@ button {
     width: 100%;
 }
 
-.left::-webkit-scrollbar-button:start {
+.left::-webkit-scrollbar-button {
     background-color: grey;
     border-radius: 10px;
     width: 50px;
@@ -73,19 +74,6 @@ button {
     cursor: pointer;
 }
 
-.left::-webkit-scrollbar-button:start:hover {
+.left::-webkit-scrollbar-button:hover {
     background-color: white;
-}
-
-.left::-webkit-scrollbar-button:end:hover {
-    background-color: white;
-}
-
-.left::-webkit-scrollbar-button:end {
-    background-color: grey;
-    border-radius: 10px;
-    width: 50px;
-    height: 50px;
-    display: flex;
-    cursor: pointer;
 }

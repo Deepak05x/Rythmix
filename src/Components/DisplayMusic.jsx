@@ -107,14 +107,16 @@ const DisplayMusic = ({ setCurrentSong, audio, setToggle, setCurrentType, setInd
     }, [accessToken]);
 
     return (
-        <div className="flex flex-col w-full mb-1 h-[100%] gap-16 overflow-y-auto down  px-4 pt-4 ">
+        <div className="flex flex-col w-full mb-1 h-[100%] gap-16 overflow-y-auto down   py-4 ">
             {loading ? (
                 <div className="flex items-center justify-center w-full h-full">
                     <ClipLoader color="white" loading={true} size={60} />
                 </div>
             ) : (
                 <>
-                    <Navbar />
+                    <div className="px-4">
+                        <Navbar />
+                    </div>
                     <div className="flex flex-row w-full gap-8 max-1024:gap-6 max-425:gap-3 max-425:text-[15px] max-375:text-[12px] max-375:gap-2 px-5">
                         <Link to={'/'}>
                             <button className="bg-[#ffffff1d] py-1 px-3 rounded-full text-white hover:scale-105 transition-all ease-in">All</button>

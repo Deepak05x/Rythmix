@@ -86,14 +86,16 @@ const DisplayHome = () => {
     }, [accessToken]);
 
     return (
-        <div className="flex flex-col w-full mb-1 h-[100%] gap-16 overflow-y-auto down overflow-x-hidden  px-4 pt-4 ">
+        <div className="flex flex-col w-full mb-1 h-[100%] gap-16 overflow-y-auto down overflow-x-hidden  py-4 ">
             {loading ? (
                 <div className="flex items-center justify-center h-full w-full overflow-hidden">
                     <ClipLoader loading={loading} size={60} color={'white'} />
                 </div>
             ) : (
                 <>
-                    <Navbar />
+                    <div className="px-4">
+                        <Navbar />
+                    </div>
                     <div className="flex flex-row w-full gap-8 max-1024:gap-6 max-425:gap-3 max-425:text-[15px] max-375:text-[12px] max-375:gap-2 px-5">
                         <Link to={'/'}>
                             <button className="bg-white py-1 px-3 rounded-full hover:scale-105 transition-all ease-in">All</button>
@@ -110,7 +112,7 @@ const DisplayHome = () => {
                     </div>
                     <div className="flex flex-col gap-10 mb-4 px-5">
                         <h1 className="text-white font-semibold text-2xl">Featured Albums</h1>
-                        <section className="flex flex-row items-start   gap-12 overflow-x-auto  whitespace-nowrap left pb-10 ">
+                        <section className="flex flex-row items-start  pl-4  gap-12 overflow-x-auto  whitespace-nowrap left pb-10 ">
                             {albums.map((item, index) => (
                                 <Link to={`/albums/${item.id}`} className="flex flex-col gap-4 w-[200px] shrink-0 max-1280:w-[170px]" key={index}>
                                     <div className="hover:scale-105 transition-all ease-in">
