@@ -52,7 +52,7 @@ const DisplayHome = () => {
     const getArtist = async () => {
         try {
             const url =
-                'https://api.spotify.com/v1/artists?ids=0Y5tJX1MQlPlqiwlOH1tJY%2C5VVN3xZw1i2qihfITZlvCZ%2C1mYsTxnqsietFxj1OgoGbG%2C4zCH9qm4R2DADamUHMCa6O%2C5cB4d4jPYjMT326sjihQ4m%2C5yoqPvofOHrBc3Z6VZyTsj%2C6VuMaDnrHyPL1p4EHjYLi7';
+                'https://api.spotify.com/v1/artists?ids=0Y5tJX1MQlPlqiwlOH1tJY%2C5VVN3xZw1i2qihfITZlvCZ%2C1mYsTxnqsietFxj1OgoGbG%2C4zCH9qm4R2DADamUHMCa6O%2C5cB4d4jPYjMT326sjihQ4m%2C5yoqPvofOHrBc3Z6VZyTsj%2C6VuMaDnrHyPL1p4EHjYLi7%2C7vk5e3vY1uw9plTHJAMwjN%2C1lDx24tVvy8JVKOVjnlJfv%2C0C8ZW7ezQVs4URX5aX7Kqx';
             const response = await axios.get(url, {
                 headers: {
                     Authorization: `Bearer ${accessToken}`,
@@ -65,17 +65,6 @@ const DisplayHome = () => {
         }
     };
 
-    const simulateRightArrowPress = () => {
-        const event = new KeyboardEvent('keydown', {
-            key: 'ArrowRight',
-            code: 'ArrowRight',
-            keyCode: 39, // keyCode for the right arrow key
-            which: 39,
-            bubbles: true,
-        });
-        document.dispatchEvent(event);
-    };
-
     useEffect(() => {
         getAlbums();
         getArtist();
@@ -86,7 +75,7 @@ const DisplayHome = () => {
     }, [accessToken]);
 
     return (
-        <div className="flex flex-col w-full mb-1 h-[100%] gap-16 overflow-y-auto down overflow-x-hidden  py-4 ">
+        <div className="flex flex-col w-full  h-[100%] gap-16 overflow-y-auto down overflow-x-hidden my-4 pt-4 px-4">
             {loading ? (
                 <div className="flex items-center justify-center h-full w-full overflow-hidden">
                     <ClipLoader loading={loading} size={60} color={'white'} />
@@ -96,7 +85,7 @@ const DisplayHome = () => {
                     <div className="px-4">
                         <Navbar />
                     </div>
-                    <div className="flex flex-row w-full gap-8 max-1024:gap-6 max-425:gap-3 max-425:text-[15px] max-375:text-[12px] max-375:gap-2 px-5">
+                    <div className="flex flex-row w-full gap-8 max-1024:gap-6 max-768:gap-6 max-640:gap-3 max-425:gap-3 max-425:text-[15px] max-375:text-[12px] max-375:gap-2 px-4">
                         <Link to={'/'}>
                             <button className="bg-white py-1 px-3 rounded-full hover:scale-105 transition-all ease-in">All</button>
                         </Link>
@@ -110,11 +99,11 @@ const DisplayHome = () => {
                             Library
                         </button>
                     </div>
-                    <div className="flex flex-col gap-10 mb-4 px-5">
+                    <div className="flex flex-col gap-10 mb-4 px-4 ">
                         <h1 className="text-white font-semibold text-2xl">Featured Albums</h1>
-                        <section className="flex flex-row items-start  pl-4  gap-12 overflow-x-auto  whitespace-nowrap left pb-10 ">
+                        <section className="flex flex-row items-start  pl-4  gap-12 overflow-x-auto  whitespace-nowrap left pb-10  ">
                             {albums.map((item, index) => (
-                                <Link to={`/albums/${item.id}`} className="flex flex-col gap-4 w-[200px] shrink-0 max-1280:w-[170px]" key={index}>
+                                <Link to={`/albums/${item.id}`} className="flex flex-col gap-4 w-[200px] shrink-0" key={index}>
                                     <div className="hover:scale-105 transition-all ease-in">
                                         <LazyLoadImage src={item.images[0].url} alt={item.name} width={200} height={200} className="rounded-[10px]" effect="blur" />
                                     </div>
@@ -129,7 +118,7 @@ const DisplayHome = () => {
                         <h1 className="text-white font-semibold text-2xl mt-4">Top Playlists</h1>
                         <section className="flex flex-row items-start pl-4 gap-12 overflow-x-auto whitespace-nowrap left pb-10">
                             {playList.map((item, index) => (
-                                <Link to={`/playlist/${item.id}`} className="flex flex-col gap-4 w-[200px] shrink-0 max-1280:w-[170px] cursor-pointer" key={index}>
+                                <Link to={`/playlist/${item.id}`} className="flex flex-col gap-4 w-[200px] shrink-0  cursor-pointer" key={index}>
                                     <div className="hover:scale-105 transition-all ease-in">
                                         <LazyLoadImage src={item.images[0].url} alt={item.name} width={200} height={200} className="rounded-[10px] " effect="blur" />
                                     </div>

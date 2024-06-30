@@ -87,15 +87,18 @@ const DisplayArtist = ({ setCurrentSong, audio, setToggle, tracks, setTracks, se
     }, [accessToken, id]);
 
     return (
-        <div className="overflow-y-auto flex flex-col px-4 pt-4 gap-12 max-425:gap-8 max-375:gap-8 h-full w-full">
+        <div className="overflow-y-auto flex flex-col my-4 pt-4 px-4 gap-12 max-425:gap-8 max-375:gap-8 h-full w-full">
             {loading ? (
                 <div className="flex items-center justify-center w-full h-full overflow-hidden">
                     <ClipLoader loading={true} size={60} color={'white'} />
                 </div>
             ) : (
                 <>
-                    <Navbar />
-                    <section className="flex flex-row w-full pl-8 max-2560:gap-16 max-1440:gap-16 max-1280:gap-8 max-1170:gap-12 max-1024:gap-12 max-768:gap-8 max-640:gap-4 max-640:flex-col max-425:flex-col max-425:items-start max-425:gap-8 max-375:flex-col max-375:items-start max-375:gap-4 ">
+                    <div className="px-4">
+                        <Navbar />
+                    </div>
+
+                    <section className="flex flex-row w-full pl-8 max-2560:gap-16 max-1440:gap-16 max-1280:gap-8 max-1170:gap-12 max-1024:gap-12 max-768:gap-8 max-640:gap-1 max-640:flex-col max-425:flex-col max-425:items-start max-425:gap-1 max-375:flex-col max-375:items-start max-375:gap-1">
                         {artist && artist.images && artist.images[1] && (
                             <div className="transition-all ease-in hover:opacity-70">
                                 <LazyLoadImage
@@ -108,9 +111,9 @@ const DisplayArtist = ({ setCurrentSong, audio, setToggle, tracks, setTracks, se
                         )}
                         <div className="flex flex-col items-start justify-end  max-2560:gap-8 max-1440:gap-8 max-1170:gap-4 max-1280:gap-6 max-1024:gap-4 max-768:gap-6  max-640:gap-6 max-425:items-start max-425:gap-4 max-375:items-start max-375:gap-4">
                             <h4 className="text-white max-425:hidden max-375:hidden">Artist</h4>
-                            <div className="flex flex-col gap-1 max-640:flex-col max-640:gap-1 max-425:flex-col max-425:gap-1 max-375:flex-col max-375:gap-1">
-                                <h1 className="text-white text-[40px] font-bold">{artist.name}</h1>
-                            </div>
+
+                            <h1 className="text-white text-[25px] font-bold">{artist.name}</h1>
+
                             <div className="flex flex-row gap-4 items-center justify-center">
                                 <p className="text-neutral-400 text-[18px]"> &bull; &nbsp; {artist && artist.followers && formatNumberWithCommas(artist.followers.total)} &nbsp; Followers</p>
                             </div>

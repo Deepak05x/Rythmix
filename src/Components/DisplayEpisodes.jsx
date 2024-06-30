@@ -98,14 +98,17 @@ const DisplayEpisodes = ({ setToggle, audio, setCurrentSong, details, setDetails
     console.log(details);
 
     return (
-        <div className="overflow-y-auto flex flex-col px-4 pt-4 gap-12 max-425:gap-8 max-375:gap-8 h-full w-full">
+        <div className="overflow-y-auto flex flex-col my-4 pt-4 px-4  gap-12 max-425:gap-8 max-375:gap-8 h-full w-full">
             {loading ? (
                 <div className="flex items-center justify-center w-full h-full">
                     <ClipLoader color="white" loading={true} size={60} />
                 </div>
             ) : (
                 <>
-                    <Navbar />
+                    <div className="px-4">
+                        <Navbar />
+                    </div>
+
                     <section className="flex flex-row w-full pl-8 max-2560:gap-16 max-1440:gap-16 max-1280:gap-8 max-1170:gap-12 max-1024:gap-12 max-768:gap-8 max-640:gap-4 max-640:flex-col max-425:flex-col max-425:items-start max-425:gap-8 max-375:flex-col max-375:items-start max-375:gap-4 ">
                         {main && main.images[0] && main.images[0].url && (
                             <div className="transition-all ease-in hover:opacity-70">

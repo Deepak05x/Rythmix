@@ -10,6 +10,7 @@ import { ClipLoader } from 'react-spinners';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import Navbar from './Navbar';
+import { FaRegHeart } from 'react-icons/fa';
 
 const DisplayAlbum = ({ setCurrentSong, audio, setToggle, setCurrentType, album, setAlbum, mainImageAlbum, setMainImageAlbum, setIndex }) => {
     const { accessToken } = useContext(AccessContext);
@@ -73,25 +74,30 @@ const DisplayAlbum = ({ setCurrentSong, audio, setToggle, setCurrentType, album,
     };
 
     return (
-        <div className="overflow-y-auto flex flex-col px-4 pt-4 gap-12 max-425:gap-8 max-375:gap-8 relative h-full w-full">
+        <div className="overflow-y-auto flex flex-col gap-12 max-425:gap-8 max-375:gap-8 relative h-full w-full my-4 pt-4 px-4">
             {loading ? (
                 <div className="flex items-center justify-center w-full h-full overflow-hidden">
                     <ClipLoader color={'white'} loading={true} size={60} />
                 </div>
             ) : (
                 <>
-                    <Navbar />
-                    <section className="flex flex-row w-full pl-8 max-2560:gap-16 max-1440:gap-16 max-1280:gap-8 max-1170:gap-12 max-1024:gap-12 max-768:gap-8 max-640:gap-4 max-640:flex-col max-425:flex-col max-425:items-start max-425:gap-8 max-375:flex-col max-375:items-start max-375:gap-4 ">
+                    <div className="px-4">
+                        <Navbar />
+                    </div>
+
+                    <section className="flex flex-row w-full pl-8 max-2560:gap-16 max-1440:gap-16 max-1280:gap-8 max-1170:gap-12 max-1024:gap-12 max-768:gap-8 max-640:gap-1 max-640:flex-col max-425:flex-col max-425:items-start max-425:gap-1 max-375:flex-col max-375:items-start max-375:gap-1 ">
                         {mainImageAlbum && mainImageAlbum[0] && mainImageAlbum[0].url && (
-                            <LazyLoadImage
-                                effect="blur"
-                                src={mainImageAlbum[0].url}
-                                alt=""
-                                className=" transition-all ease-in rounded-[10px] hover:opacity-70 max-2560:w-[250px] max-2560:h-[250px] max-1440:w-[230px] max-1440:h-[230px] max-1280:h-[180px] max-1280:w-[180px] max-1170:w-[160px] max-1170:h-[160px] max-1024:w-[160px] max-1024:h-[160px] max-768:w-[180px] max-640:hidden max-425:hidden max-375:hidden "
-                            />
+                            <div className="transition-all ease-in hover:opacity-70">
+                                <LazyLoadImage
+                                    effect="blur"
+                                    src={mainImageAlbum[0].url}
+                                    alt=""
+                                    className=" transition-all ease-in rounded-[10px] hover:opacity-70 max-2560:w-[250px] max-2560:h-[250px] max-1440:w-[230px] max-1440:h-[230px] max-1280:h-[180px] max-1280:w-[180px] max-1170:w-[160px] max-1170:h-[160px] max-1024:w-[160px] max-1024:h-[160px] max-768:w-[180px] max-640:hidden max-425:hidden max-375:hidden "
+                                />
+                            </div>
                         )}
                         <div className="flex flex-col items-start justify-end  max-2560:gap-8 max-1440:gap-8 max-1170:gap-4 max-1280:gap-6 max-1024:gap-4 max-768:gap-6  max-640:gap-6 max-425:items-start max-425:gap-4 max-375:items-start max-375:gap-4">
-                            <h4 className="text-white max-425:hidden max-375:hidden">Album</h4>
+                            <h4 className="text-white max-425:hidden max-375:hidden max-640:hidden">Album</h4>
                             <h1 className="text-white text-[25px] font-bold">{albumContent.name}</h1>
                             <div className="flex flex-row gap-4 max-640:flex-col max-640:gap-1 max-425:flex-col max-425:gap-1 max-375:flex-col max-375:gap-1">
                                 {artist.map((item, index) => (
@@ -100,11 +106,11 @@ const DisplayAlbum = ({ setCurrentSong, audio, setToggle, setCurrentType, album,
                                     </Link>
                                 ))}
                             </div>
-                            <p className="text-white max-1280:text-sm max-425:hidden max-375:hidden">{arrayLength} Songs</p>
+                            <p className="text-white max-1280:text-sm max-640:hidden max-425:hidden max-375:hidden">{arrayLength} Songs</p>
                         </div>
                     </section>
                     <hr className="w-full" />
-                    <section className="flex flex-col mb-4 gap-12 overflow-x-hidden down max-2560:gap-14 max-1440:gap-14">
+                    <section className="flex flex-col mb-4 gap-12 overflow-x-hidden down max-2560:gap-14 max-1440:gap-14 ">
                         {album.map((item, index) => (
                             <div className="flex flex-col gap-12" key={index}>
                                 <div className="flex flex-row gap-8 w-[90%] h-full pl-8 max-425:flex-col max-640:flex-col max-375:flex-col ">
@@ -124,8 +130,9 @@ const DisplayAlbum = ({ setCurrentSong, audio, setToggle, setCurrentType, album,
                                         <div className="flex flex-col gap-2 justify-center">
                                             <p className="text-white text-md ">{timeConverter(item.duration_ms)}</p>
                                             <a href={item.external_urls.spotify} target="_blank">
-                                                <p className="text-[15px] text-neutral-400 hover:underline">
+                                                <p className="text-[15px] text-neutral-400 hover:underline flex flex-col items-center ">
                                                     <CiLink className="w-[25px] h-[25px] hover:scale-125" />
+                                                    <FaRegHeart className="w[25px] h-[25px] " />
                                                 </p>
                                             </a>
                                         </div>

@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { CiLink } from 'react-icons/ci';
 import { Link } from 'react-router-dom';
 import { ClipLoader } from 'react-spinners';
+import Navbar from './Navbar';
 
 const ExplorePage = () => {
     const [loading, setLoading] = useState(true);
@@ -14,14 +15,16 @@ const ExplorePage = () => {
     }, []);
 
     return (
-        <div className="flex flex-col w-full mb-1 h-[100%] gap-16 overflow-y-auto down max-1280:pr-0">
+        <div className="flex flex-col w-full  h-[100%] gap-16 overflow-y-auto down mt-4 mb-4  pt-4 px-8">
             {loading ? (
                 <div className="flex items-center justify-center h-full w-full overflow-hidden">
                     <ClipLoader loading={loading} size={60} color={'white'} />
                 </div>
             ) : (
                 <>
-                    <div className="flex flex-row w-full gap-8 max-1280:gap-4 max-1024:gap-6 max-425:gap-3 max-425:text-[15px] max-375:text-[12px] max-375:gap-2">
+                    <Navbar />
+
+                    <div className="flex  flex-row w-full gap-8 max-1280:gap-4 max-1024:gap-6 max-425:gap-3 max-425:text-[15px] max-375:text-[12px] max-375:gap-2">
                         <Link to={'/'}>
                             <button className="bg-[#ffffff1d] text-white py-1 px-3 rounded-full hover:scale-105 transition-all ease-in">All</button>
                         </Link>
@@ -40,6 +43,14 @@ const ExplorePage = () => {
                         <h1 className="text-lg text-neutral-400 leading-8 ">
                             The music streaming app I created just for music lovers like you. Think of it as your new musical sidekick, kind of like Spotify but with my own personal touch. When I was
                             creating Rythmix, I learned a lot of cool stuff and poured all that knowledge into making this app as awesome as possible.
+                        </h1>
+                    </div>
+                    <div className="text-white flex flex-col items-start gap-8">
+                        <h1 className="font-semibold text-2xl"> Scroll</h1>
+                        <h1 className="text-lg text-neutral-400 leading-8 flex gap-4 flex-col ">
+                            <div className="w-[50px] h-[10px]  bg-[#808080]"></div>
+                            This is the Scroll button for the website, the normal scroll bar is lame :/ , so i have made this scroll buttons, if the button is on top then that means the button will
+                            scroll towards up and button on bottom means it will take you to down
                         </h1>
                     </div>
                     <div className="text-white flex flex-col items-start gap-8">

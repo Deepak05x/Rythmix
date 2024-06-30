@@ -43,11 +43,11 @@ button {
     cursor: pointer;
 }
 
-.down::-webkit-scrollbar {
+/* .down::-webkit-scrollbar {
     width: 10px;
-}
+} */
 
-.down::-webkit-scrollbar-button {
+/* .down::-webkit-scrollbar-button {
     background-color: grey;
     border-radius: 10px;
     width: 50px;
@@ -58,22 +58,51 @@ button {
 
 .down::-webkit-scrollbar-button:hover {
     background-color: white;
+} */
+
+.down::-webkit-scrollbar {
+    background-color: #121212;
+    width: 5px;
+    height: 1px;
+    transition: all ease-in 0.5s;
+}
+
+.down::-webkit-scrollbar-thumb {
+    background-color: grey;
+    transition: all ease-in 0.5s;
+    cursor: pointer;
+    width: 8px;
+    border-radius: 10px;
 }
 
 .left::-webkit-scrollbar {
-    height: 10px;
-    width: 100%;
+    background-color: #121212;
+    height: 4px;
 }
 
-.left::-webkit-scrollbar-button {
+.left:hover::-webkit-scrollbar {
+    background-color: #121212;
+    width: 4px;
+    height: 4px;
+}
+
+.left:hover::-webkit-scrollbar-thumb {
     background-color: grey;
-    border-radius: 10px;
-    width: 50px;
-    height: 50px;
-    display: flex;
     cursor: pointer;
+    height: 4px;
+    width: 4px;
+    border-radius: 10px;
 }
 
-.left::-webkit-scrollbar-button:hover {
-    background-color: white;
+@media screen and (max-width: 768px) {
+    .down::-webkit-scrollbar {
+        background-color: #121212;
+        width: 1px;
+        height: 1px;
+    }
+    .down::-webkit-scrollbar-thumb {
+        background-color: #121212;
+        width: 1px;
+        height: 1px;
+    }
 }

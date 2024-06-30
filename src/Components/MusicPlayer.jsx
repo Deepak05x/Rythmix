@@ -2,6 +2,7 @@ import React from 'react';
 import { assets } from '../assets/assets';
 import { MdPlayArrow, MdPause } from 'react-icons/md';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const MusicPlayer = ({ currentSong, audio, toggle, setToggle, handleForward, handleBackward }) => {
     const [isMuted, setIsMuted] = useState(false);
@@ -51,13 +52,18 @@ const MusicPlayer = ({ currentSong, audio, toggle, setToggle, handleForward, han
                     <>
                         <hr className="text-white absolute right-[6.5rem] w-[30px] rotate-45" />
                         <img src={assets.volume_icon} alt="" width={23} height={23} onClick={() => handleMute()} className="relative cursor-pointer" />
-                        <img src={assets.mini_player_icon} alt="" width={17} height={17} />
+                        <Link className="cursor-pointer" to={'/explore'}>
+                            <img src={assets.mini_player_icon} alt="" width={17} height={17} />
+                        </Link>
+
                         <img src={assets.zoom_icon} alt="" width={17} height={17} />
                     </>
                 ) : (
                     <>
                         <img src={assets.volume_icon} alt="" width={23} height={23} onClick={() => handleMute()} className="relative cursor-pointer" />
-                        <img src={assets.mini_player_icon} alt="" width={17} height={17} />
+                        <Link to={'/explore'}>
+                            <img src={assets.mini_player_icon} alt="" width={17} height={17} />
+                        </Link>
                         <img src={assets.zoom_icon} alt="" width={17} height={17} />
                     </>
                 )}
