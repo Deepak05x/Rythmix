@@ -86,7 +86,7 @@ const DisplayHome = () => {
     }, [accessToken]);
 
     return (
-        <div className="flex flex-col w-full mb-1 h-[100%] gap-16 overflow-y-auto down  px-4 pt-4 ">
+        <div className="flex flex-col w-full mb-1 h-[100%] gap-16 overflow-y-auto down overflow-x-hidden  px-4 pt-4 ">
             {loading ? (
                 <div className="flex items-center justify-center h-full w-full overflow-hidden">
                     <ClipLoader loading={loading} size={60} color={'white'} />

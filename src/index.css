@@ -38,39 +38,54 @@ body {
     white-space: normal;
 }
 
-.left::-webkit-scrollbar {
-    width: 1px;
-    background-color: #121212;
-}
-
 button {
     cursor: pointer;
 }
 
 .down::-webkit-scrollbar {
-    background-color: #121212;
     width: 10px;
 }
 
-.down::-webkit-scrollbar-thumb {
+.down::-webkit-scrollbar-button {
     background-color: rgba(255, 255, 255, 0.514);
     border-radius: 10px;
+    width: 50px;
+    height: 50px;
     cursor: pointer;
+    display: flex;
 }
 
-.down::-webkit-scrollbar-thumb:hover {
-    background-color: gray;
+.down::-webkit-scrollbar-button:hover {
+    background-color: white;
 }
 
 .left::-webkit-scrollbar {
-    background-color: #121212;
-    width: 10px;
-    height: 5px;
+    height: 10px;
+    width: 100%;
 }
 
-.left::-webkit-scrollbar-thumb {
-    background-color: rgba(255, 255, 255, 0.514);
+.left::-webkit-scrollbar-button:start {
+    background-color: grey;
     border-radius: 10px;
+    width: 50px;
+    height: 50px;
+    display: flex;
     cursor: pointer;
-    height: 100%;
+}
+
+.left::-webkit-scrollbar-button:start:hover {
+    background-color: white;
+}
+
+.left::-webkit-scrollbar-button:end:hover {
+    background-color: white;
+}
+
+.left::-webkit-scrollbar-button:end {
+    background-color: grey;
+    border-radius: 10px;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    cursor: pointer;
 }
