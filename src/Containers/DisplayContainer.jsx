@@ -35,6 +35,41 @@ const DisplayContainer = () => {
     const [hindi, setHindi] = useState([]);
     const [likedSongs, setLikedSongs] = useState([]);
 
+    const getSongUrl = (item) => {
+        if (item.preview_url) {
+            return item.preview_url;
+        } else if (item.track && item.track.preview_url) {
+            return item.track.preview_url;
+        } else if (item.audio_preview_url) {
+            return item.audio_preview_url;
+        }
+    };
+
+    const getArtistName = (item) => {
+        if (item.artists) {
+            return item.artists[0].name;
+        } else if (item.track && item.track.artists) {
+            return item.track.artists[0].name;
+        }
+        return 'Unknown Artist';
+    };
+
+    const getSongName = (item) => {
+        if (item.name) {
+            return item.name;
+        } else if (item.track && item.track.name) {
+            return item.track.name;
+        }
+    };
+
+    const getSongImage = (item) => {
+        if (item.track && item.track.album && item.track.album.images[0].url) {
+            return item.track.album.images[0].url;
+        } else if (item.album && item.album.images && item.album.images[0].url) {
+            item.album.images[0].url;
+        }
+    };
+
     const handleForward = () => {
         if (currentType === 'album') {
             const nextIndex = (index + 1) % album.length;
@@ -45,7 +80,7 @@ const DisplayContainer = () => {
                 artist: nextSong.artists[0].name,
                 image: mainImageAlbum[0].url,
             });
-            audio.src = nextSong.preview_url;
+            audio.src = getSongUrl(nextSong);
             audio.play();
             setToggle(false);
         } else if (currentType === 'episodes') {
@@ -57,7 +92,7 @@ const DisplayContainer = () => {
                 artist: nextSong.type,
                 image: nextSong.images[0].url,
             });
-            audio.src = nextSong.audio_preview_url;
+            audio.src = getSongUrl(nextSong);
             audio.play();
             setToggle(false);
         } else if (currentType === 'playlist') {
@@ -69,7 +104,7 @@ const DisplayContainer = () => {
                 artist: nextSong.track.artists[0].name,
                 image: nextSong.track.album.images[0].url,
             });
-            audio.src = nextSong.track.preview_url;
+            audio.src = getSongUrl(nextSong);
             audio.play();
             setToggle(false);
         } else if (currentType === 'artist') {
@@ -81,7 +116,7 @@ const DisplayContainer = () => {
                 artist: nextSong.artists[0].name,
                 image: nextSong.album.images[0].url,
             });
-            audio.src = nextSong.preview_url;
+            audio.src = getSongUrl(nextSong);
             audio.play();
             setToggle(false);
         } else if (currentType === 'tamil') {
@@ -94,7 +129,7 @@ const DisplayContainer = () => {
                 artist: nextSong.artists[0].name,
                 image: nextSong.album.images[0].url,
             });
-            audio.src = nextSong.preview_url;
+            audio.src = getSongUrl(nextSong);
             audio.play();
             setToggle(false);
         } else if (currentType === 'english') {
@@ -107,7 +142,7 @@ const DisplayContainer = () => {
                 artist: nextSong.artists[0].name,
                 image: nextSong.album.images[0].url,
             });
-            audio.src = nextSong.preview_url;
+            audio.src = getSongUrl(nextSong);
             audio.play();
             setToggle(false);
         } else if (currentType === 'hindi') {
@@ -120,7 +155,20 @@ const DisplayContainer = () => {
                 artist: nextSong.artists[0].name,
                 image: nextSong.album.images[0].url,
             });
-            audio.src = nextSong.preview_url;
+            audio.src = getSongUrl(nextSong);
+            audio.play();
+            setToggle(false);
+        } else if (currentType === 'fav') {
+            const nextIndex = (index + 1) % likedSongs.length;
+            const nextSong = likedSongs[nextIndex];
+
+            setIndex(nextIndex);
+            setCurrentSong({
+                song: getSongName(nextSong),
+                artist: getArtistName(nextSong),
+                image: getSongImage(nextSong),
+            });
+            audio.src = getSongUrl(nextSong);
             audio.play();
             setToggle(false);
         }
@@ -136,7 +184,7 @@ const DisplayContainer = () => {
                 artist: nextSong.artists[0].name,
                 image: mainImageAlbum[0].url,
             });
-            audio.src = nextSong.preview_url;
+            audio.src = getSongUrl(nextSong);
             audio.play();
             setToggle(false);
         } else if (currentType === 'episodes') {
@@ -148,7 +196,7 @@ const DisplayContainer = () => {
                 artist: nextSong.type,
                 image: nextSong.images[0].url,
             });
-            audio.src = nextSong.audio_preview_url;
+            audio.src = getSongUrl(nextSong);
             audio.play();
             setToggle(false);
         } else if (currentType === 'playlist') {
@@ -160,7 +208,7 @@ const DisplayContainer = () => {
                 artist: nextSong.track.artists[0].name,
                 image: nextSong.track.album.images[0].url,
             });
-            audio.src = nextSong.track.preview_url;
+            audio.src = getSongUrl(nextSong);
             audio.play();
             setToggle(false);
         } else if (currentType === 'artist') {
@@ -172,7 +220,7 @@ const DisplayContainer = () => {
                 artist: nextSong.artists[0].name,
                 image: nextSong.album.images[0].url,
             });
-            audio.src = nextSong.preview_url;
+            audio.src = getSongUrl(nextSong);
             audio.play();
             setToggle(false);
         } else if (currentType === 'tamil') {
@@ -184,7 +232,7 @@ const DisplayContainer = () => {
                 artist: nextSong.artists[0].name,
                 image: nextSong.album.images[0].url,
             });
-            audio.src = nextSong.preview_url;
+            audio.src = getSongUrl(nextSong);
             audio.play();
             setToggle(false);
         } else if (currentType === 'english') {
@@ -196,7 +244,7 @@ const DisplayContainer = () => {
                 artist: nextSong.artists[0].name,
                 image: nextSong.album.images[0].url,
             });
-            audio.src = nextSong.preview_url;
+            audio.src = getSongUrl(nextSong);
             audio.play();
             setToggle(false);
         } else if (currentType === 'hindi') {
@@ -208,7 +256,7 @@ const DisplayContainer = () => {
                 artist: nextSong.artists[0].name,
                 image: nextSong.album.images[0].url,
             });
-            audio.src = nextSong.preview_url;
+            audio.src = getSongUrl(nextSong);
             audio.play();
             setToggle(false);
         }
@@ -227,6 +275,11 @@ const DisplayContainer = () => {
                         mainImageAlbum={mainImageAlbum}
                         setToggle={setToggle}
                         setLikedSongs={setLikedSongs}
+                        currentType={currentType}
+                        getSongUrl={getSongUrl}
+                        getArtistName={getArtistName}
+                        getSongName={getSongName}
+                        getSongImage={getSongImage}
                     />
 
                     <div className="w-[80%] bg-[#121212]  rounded flex flex-col gap-12  max-1024:w-full max-768:w-full max-640:w-full max-425:w-full max-425:gap-8 max-375:w-full max-375:gap-8">
@@ -244,6 +297,8 @@ const DisplayContainer = () => {
                                             setList={setList}
                                             setCurrentType={setCurrentType}
                                             setIndex={setIndex}
+                                            setLikedSongs={setLikedSongs}
+                                            likedSongs={likedSongs}
                                         />
                                     }
                                 />
@@ -277,6 +332,8 @@ const DisplayContainer = () => {
                                             setTracks={setTracks}
                                             setCurrentType={setCurrentType}
                                             setIndex={setIndex}
+                                            likedSongs={likedSongs}
+                                            setLikedSongs={setLikedSongs}
                                         />
                                     }
                                 />
