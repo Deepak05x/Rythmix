@@ -20,7 +20,7 @@ const Navbar = () => {
                         alt="left"
                         width={35}
                         height={35}
-                        className="border-black bg-[#ffffff1d] rounded-full p-2 hover:scale-110 cursor-pointer"
+                        className="border-black bg-[#ffffff1d] rounded-full p-2 hover:scale-110 transition-all ease-in cursor-pointer"
                         onClick={() => handleBackClick()}
                     />
                     <img
@@ -28,7 +28,7 @@ const Navbar = () => {
                         alt="left"
                         width={35}
                         height={35}
-                        className="border-black bg-[#ffffff1d] rounded-full p-2 hover:scale-110 cursor-pointer"
+                        className="border-black bg-[#ffffff1d] rounded-full p-2 hover:scale-110 transition-all ease-in cursor-pointer"
                         onClick={() => handleForwardClick()}
                     />
                 </div>

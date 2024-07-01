@@ -1,4 +1,3 @@
-import { assets } from '../assets/assets';
 import { useContext } from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
@@ -11,8 +10,9 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import Navbar from './Navbar';
 import { FaRegHeart } from 'react-icons/fa';
+import { FaHeart } from 'react-icons/fa';
 
-const DisplayAlbum = ({ setCurrentSong, audio, setToggle, setCurrentType, album, setAlbum, mainImageAlbum, setMainImageAlbum, setIndex }) => {
+const DisplayAlbum = ({ setCurrentSong, audio, setToggle, setCurrentType, album, setAlbum, mainImageAlbum, setMainImageAlbum, setIndex, likedSongs, setLikedSongs }) => {
     const { accessToken } = useContext(AccessContext);
 
     const [albumContent, setAlbumContent] = useState({});
@@ -57,6 +57,15 @@ const DisplayAlbum = ({ setCurrentSong, audio, setToggle, setCurrentType, album,
         const seconds = totalSeconds % 60;
         const paddedSeconds = seconds.toString().padStart(2, '0');
         return `${minutes}:${paddedSeconds}`;
+    };
+
+    const handleLike = (item) => {
+        const isLiked = likedSongs.some((song) => song.id === item.id);
+        if (isLiked) {
+            setLikedSongs(likedSongs.filter((song) => song.id !== item.id));
+        } else {
+            setLikedSongs([...likedSongs, item]);
+        }
     };
 
     const handleSelection = async (song, index) => {
@@ -127,14 +136,20 @@ const DisplayAlbum = ({ setCurrentSong, audio, setToggle, setCurrentType, album,
                                                 <p className="text-neutral-400 max-1440:text-[15px] max-2000:text-[15px] hover:underline">{item.artists[0].name}</p>
                                             </Link>
                                         </div>
-                                        <div className="flex flex-col gap-2 justify-center">
+                                        <div className="flex flex-col gap-2 justify-center items-center">
                                             <p className="text-white text-md ">{timeConverter(item.duration_ms)}</p>
                                             <a href={item.external_urls.spotify} target="_blank">
                                                 <p className="text-[15px] text-neutral-400 hover:underline flex flex-col items-center ">
-                                                    <CiLink className="w-[25px] h-[25px] hover:scale-125" />
-                                                    <FaRegHeart className="w[25px] h-[25px] " />
+                                                    <CiLink className="w-[25px] h-[25px] hover:scale-125 transition-all ease-in" />
                                                 </p>
                                             </a>
+                                            <div className="text-neutral-400 cursor-pointer " onClick={() => handleLike(item)}>
+                                                {likedSongs.some((song) => song.id === item.id) ? (
+                                                    <FaHeart className="w-[20px] h-[20px] hover:scale-125 transition-all ease-in" />
+                                                ) : (
+                                                    <FaRegHeart className="w-[20px] h-[20px] hover:scale-125 transition-all ease-in" />
+                                                )}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
