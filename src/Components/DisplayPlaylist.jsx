@@ -79,9 +79,9 @@ const DisplayPlaylist = ({ setCurrentSong, audio, setToggle, list, setList, setC
     };
 
     const handleLike = (item) => {
-        const isLiked = likedSongs.some((song) => song.id === item.id);
+        const isLiked = item?.track?.id && likedSongs.some((song) => song.track?.id === item.track.id);
         if (isLiked) {
-            setLikedSongs(likedSongs.filter((song) => song.id !== item.id));
+            setLikedSongs(likedSongs.filter((song) => song.track?.id !== item.track.id));
         } else {
             setLikedSongs([...likedSongs, item]);
         }
@@ -148,7 +148,7 @@ const DisplayPlaylist = ({ setCurrentSong, audio, setToggle, list, setList, setC
                                                 </p>
                                             </a>
                                             <div className="text-neutral-400 cursor-pointer " onClick={() => handleLike(item)}>
-                                                {likedSongs.some((song) => song.id === item.id) ? (
+                                                {likedSongs.some((song) => song.track?.id === item.track.id) ? (
                                                     <FaHeart className="w-[20px] h-[20px] hover:scale-125 transition-all ease-in" />
                                                 ) : (
                                                     <FaRegHeart className="w-[20px] h-[20px] hover:scale-125 transition-all ease-in" />

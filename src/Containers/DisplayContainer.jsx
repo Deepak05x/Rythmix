@@ -1,4 +1,4 @@
-import React, { useState, Suspense } from 'react';
+import React, { useState, Suspense, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Sidebar from '../Components/Sidebar';
 import { assets } from '../assets/assets';
@@ -33,7 +33,16 @@ const DisplayContainer = () => {
     const [tamil, setTamil] = useState([]);
     const [english, setEnglish] = useState([]);
     const [hindi, setHindi] = useState([]);
-    const [likedSongs, setLikedSongs] = useState([]);
+    const [likedSongs, setLikedSongs] = useState(() => {
+        const savedLikedSongs = localStorage.getItem('likedSongs');
+        return savedLikedSongs ? JSON.parse(savedLikedSongs) : [];
+    });
+
+    useEffect(() => {
+        setTimeout(() => {
+            localStorage.setItem('likedSongs', JSON.stringify(likedSongs));
+        }, 1000);
+    }, [likedSongs]);
 
     const getSongUrl = (item) => {
         if (item.preview_url) {
@@ -66,7 +75,9 @@ const DisplayContainer = () => {
         if (item.track && item.track.album && item.track.album.images[0].url) {
             return item.track.album.images[0].url;
         } else if (item.album && item.album.images && item.album.images[0].url) {
-            item.album.images[0].url;
+            return item.album.images[0].url;
+        } else if (mainImageAlbum && mainImageAlbum[0].url) {
+            return mainImageAlbum[0]?.url;
         }
     };
 
@@ -255,6 +266,19 @@ const DisplayContainer = () => {
                 song: nextSong.name,
                 artist: nextSong.artists[0].name,
                 image: nextSong.album.images[0].url,
+            });
+            audio.src = getSongUrl(nextSong);
+            audio.play();
+            setToggle(false);
+        } else if (currentType === 'fav') {
+            const nextIndex = (index - 1 + likedSongs.length) % likedSongs.length;
+            const nextSong = likedSongs[nextIndex];
+
+            setIndex(nextIndex);
+            setCurrentSong({
+                song: getSongName(nextSong),
+                artist: getArtistName(nextSong),
+                image: getSongImage(nextSong),
             });
             audio.src = getSongUrl(nextSong);
             audio.play();
