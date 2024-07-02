@@ -94,7 +94,7 @@ const DisplaySearch = () => {
                             className="flex flex-row  h-full gap-8 items-center justify-center w-[75%] max-1024:w-full max-768:w-full max-640:w-full max-425:w-full max-375:w-full"
                         >
                             <input type="text" className="border-2 bg-[#121212] border-[#ffffff1d] rounded-[10px] outline-none text-white px-4 py-2 w-[90%]" value={input} onChange={handleChange} />
-                            <img src={assets.search_icon} alt="" className="w-[30px] h-[30px] cursor-pointer hover:scale-110" onClick={() => getSearchItems()} />
+                            <img src={assets.search_icon} alt="" className="w-[30px] h-[30px] cursor-pointer hover:scale-125 transition-all ease-in" onClick={() => getSearchItems()} />
                         </form>
                     </div>
                     <div className="w-full bg-[#ffffff83] h-[1px] rounded-[10px]"></div>

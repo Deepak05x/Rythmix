@@ -75,9 +75,11 @@ const DisplayPodcast = () => {
                             <button className="bg-[#ffffff1d] py-1 px-3 rounded-full text-white hover:scale-105 transition-all ease-in">Music</button>
                         </Link>
                         <button className="bg-white py-1 px-3 rounded-full text-black hover:scale-105 transition-all ease-in">Podcasts</button>
-                        <button className="bg-[#ffffff1d] py-1 px-3 rounded-full text-white hidden max-1024:flex max-768:flex max-640:flex max-425:flex max-375:flex hover:scale-105 transition-all ease-in">
-                            Library
-                        </button>
+                        <Link to={'/library'}>
+                            <button className="bg-[#ffffff1d] py-1 px-3 rounded-full text-white hidden max-1024:flex max-768:flex max-640:flex max-425:flex max-375:flex hover:scale-105 transition-all ease-in">
+                                Library
+                            </button>
+                        </Link>
                     </div>
                     <div className="flex flex-col gap-10 mb-4 px-5">
                         <h1 className="text-white font-semibold text-2xl">Featured Podcasts</h1>

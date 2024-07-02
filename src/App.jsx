@@ -1,15 +1,15 @@
-import { React } from 'react';
+import React from 'react';
 import { AccessProvider } from './Contexts/AcessContext';
 import DisplayContainer from './Containers/DisplayContainer';
 
-const App = () => {
+function App() {
     return (
-        <>
+        <div className="App">
             <AccessProvider>
                 <DisplayContainer />
             </AccessProvider>
-        </>
+        </div>
     );
-};
+}
 
 export default App;

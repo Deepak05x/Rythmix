@@ -1,7 +1,6 @@
 import React, { useState, Suspense, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Sidebar from '../Components/Sidebar';
-import { assets } from '../assets/assets';
 import MusicPlayer from '../Components/MusicPlayer';
 import DisplayLib from '../Components/DisplayLib';
 
@@ -17,8 +16,8 @@ const DisplaySearch = React.lazy(() => import('../Components/DisplaySearch'));
 
 const DisplayContainer = () => {
     const [currentSong, setCurrentSong] = useState({
-        song: 'Sweater Weather',
-        artist: 'Neighbourhood',
+        song: 'After Dark x Sweater Weather',
+        artist: 'mikeeysmind',
         image: `https://i.scdn.co/image/ab67616d0000b273d425066031fb32f5916a0099`,
     });
 
@@ -38,8 +37,6 @@ const DisplayContainer = () => {
         const savedLikedSongs = localStorage.getItem('likedSongs');
         return savedLikedSongs ? JSON.parse(savedLikedSongs) : [];
     });
-
-    console.log(audio);
 
     useEffect(() => {
         setTimeout(() => {
@@ -73,8 +70,6 @@ const DisplayContainer = () => {
             return item.track.name;
         }
     };
-
-    console.log(mainImageAlbum);
 
     const getSongImage = (item) => {
         if (item.track && item.track.album && item.track.album.images[0].url) {
@@ -289,8 +284,6 @@ const DisplayContainer = () => {
             setToggle(false);
         }
     };
-
-    console.log(likedSongs);
 
     return (
         <>

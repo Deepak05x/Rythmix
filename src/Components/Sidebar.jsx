@@ -57,6 +57,21 @@ const Sidebar = ({ likedSongs, setCurrentSong, audio, setCurrentType, setIndex, 
                         <img src={assets.stack_icon} alt="stack" width={25} height={25} />
                         <p className="text-white  max-1280:hidden max-1170:hidden">Favourites</p>
                     </div>
+                    <div className="w-full h-full gap-6 flex flex-col">
+                        <div className="w-full h-full flex flex-col justify-center gap-2 pl-4 items-start">
+                            <Link to={`/artist/0g0ZYLiNYI4kMg8MX76bkN`}>
+                                <h1 className="text-white font-semibold cursor-pointer hover:underline">After Dark x Sweater Weather</h1>
+                            </Link>
+
+                            <Link to={`/artist/0g0ZYLiNYI4kMg8MX76bkN`}>
+                                <p className="text-neutral-400 cursor-pointer hover:underline">mikeeysmind</p>
+                            </Link>
+                            <div className="text-neutral-400 ">
+                                <p className="text-neutral-400  text-sm">( Creator's Favourite )</p>
+                            </div>
+                        </div>
+                        <hr className="w-[90%] text-neutral-400" />
+                    </div>
                     {likedSongs.map((item, index) => (
                         <div className="w-full h-full gap-6 flex flex-col" key={index}>
                             <div className="w-full h-full flex flex-col justify-center gap-2 pl-4 items-start">

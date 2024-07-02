@@ -78,11 +78,30 @@ const DisplayLib = ({ likedSongs, setCurrentSong, audio, setCurrentType, setInde
                         </Link>
                     </div>
                     <div className="flex flex-col gap-10 mb-4 px-4 ">
-                        <div className="flex flex-row gap-8 px-2">
-                            <img src={assets.stack_icon} alt="" className="w-[30px] h-[30px]" />
-                            <h1 className="text-white font-semibold text-2xl">Favourites</h1>
+                        <div className="flex flex-col gap-12">
+                            <div className="flex flex-row gap-8 px-2">
+                                <img src={assets.stack_icon} alt="" className="w-[30px] h-[30px]" />
+                                <h1 className="text-white font-semibold text-2xl">Favourites</h1>
+                            </div>
+
+                            <hr className="w-full" />
+                            <div className="w-full h-full gap-8 flex flex-col">
+                                <div className="w-full h-full flex flex-col justify-center gap-2 px-5 items-start">
+                                    <Link to={`/artist/0g0ZYLiNYI4kMg8MX76bkN`}>
+                                        <h1 className="text-white font-semibold cursor-pointer hover:underline">After Dark x Sweater Weather</h1>
+                                    </Link>
+
+                                    <Link to={`/artist/0g0ZYLiNYI4kMg8MX76bkN`}>
+                                        <p className="text-neutral-400 cursor-pointer hover:underline">mikeeysmind</p>
+                                    </Link>
+                                    <div className="text-neutral-400 ">
+                                        <p className="text-neutral-400 cursor-pointer hover:underline text-sm">( Creator's Favourite )</p>
+                                    </div>
+                                </div>
+                                <hr className="w-[90%] text-neutral-400" />
+                            </div>
                         </div>
-                        <hr className="w-full" />
+
                         <section className="flex flex-col items-start   gap-12 overflow-x-auto  whitespace-nowrap left pb-10  ">
                             {likedSongs.map((item, index) => (
                                 <div className="w-full h-full gap-8 flex flex-col overflow-x-hidden" key={index}>

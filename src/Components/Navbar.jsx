@@ -47,7 +47,7 @@ const Navbar = () => {
                 <Link to={'/explore'} className="bg-white text-black py-1.5 px-4 rounded-full font-medium  max-640:px-4 max-425:px-4  max-375:px-4  hover:scale-105 transition-all ease-in">
                     Explore Rythmix
                 </Link>
-                <p className="bg-purple-500 py-2 px-4 rounded-full font-medium text-base">D</p>
+                <p className="bg-purple-500 py-2 px-4 rounded-full cursor-pointer font-medium text-base hover:scale-110 transition-all ease-in">D</p>
             </div>
         </div>
     );

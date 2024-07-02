@@ -46,11 +46,10 @@ const ExplorePage = () => {
                         </h1>
                     </div>
                     <div className="text-white flex flex-col items-start gap-8">
-                        <h1 className="font-semibold text-2xl"> Scroll</h1>
+                        <h1 className="font-semibold text-2xl">Favourites</h1>
                         <h1 className="text-lg text-neutral-400 leading-8 flex gap-4 flex-col ">
-                            <div className="w-[50px] h-[10px]  bg-[#808080]"></div>
-                            This is the Scroll button for the website, the normal scroll bar is lame :/ , so i have made this scroll buttons, if the button is on top then that means the button will
-                            scroll towards up and button on bottom means it will take you to down
+                            By simply clicking a like button, users can add their favorite songs to their collection, which is securely stored in local storage. This feature ensures that users can
+                            easily access and enjoy their preferred tracks across sessions on the same device, enhancing their personalized music streaming experience.
                         </h1>
                     </div>
                     <div className="text-white flex flex-col items-start gap-8">

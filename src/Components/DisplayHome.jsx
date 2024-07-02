@@ -9,7 +9,6 @@ import { ClipLoader } from 'react-spinners';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import Navbar from './Navbar';
-import { assets } from '../assets/assets';
 
 const DisplayHome = () => {
     const { accessToken } = useContext(AccessContext);
