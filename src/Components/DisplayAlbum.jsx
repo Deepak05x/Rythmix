@@ -11,6 +11,7 @@ import 'react-lazy-load-image-component/src/effects/blur.css';
 import Navbar from './Navbar';
 import { FaRegHeart } from 'react-icons/fa';
 import { FaHeart } from 'react-icons/fa';
+import { albumsData } from '../assets/assets';
 
 const DisplayAlbum = ({ setCurrentSong, audio, setToggle, setCurrentType, album, setAlbum, mainImageAlbum, setMainImageAlbum, setIndex, likedSongs, setLikedSongs }) => {
     const { accessToken } = useContext(AccessContext);
@@ -61,7 +62,6 @@ const DisplayAlbum = ({ setCurrentSong, audio, setToggle, setCurrentType, album,
 
     const handleLike = (item) => {
         const isLiked = likedSongs.some((song) => song.id === item.id);
-
         if (isLiked) {
             setLikedSongs(likedSongs.filter((song) => song.id !== item.id));
         } else {
@@ -82,6 +82,8 @@ const DisplayAlbum = ({ setCurrentSong, audio, setToggle, setCurrentType, album,
         setIndex(index);
         if (song.preview_url === null) alert(' \n \n No Preview URL For This Song \n \n Click The Link Icon To Visit The Song ');
     };
+
+    console.log(album);
 
     return (
         <div className="overflow-y-auto down flex flex-col gap-12 max-425:gap-8 max-375:gap-8 relative h-full w-full my-4 pt-4 px-4">

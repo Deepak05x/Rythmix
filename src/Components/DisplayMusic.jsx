@@ -10,8 +10,10 @@ import { ClipLoader } from 'react-spinners';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import Navbar from './Navbar';
+import { FaRegHeart } from 'react-icons/fa';
+import { FaHeart } from 'react-icons/fa';
 
-const DisplayMusic = ({ setCurrentSong, audio, setToggle, setCurrentType, setIndex, tamil, setTamil, english, setEnglish, hindi, setHindi }) => {
+const DisplayMusic = ({ setCurrentSong, audio, setToggle, setCurrentType, setIndex, tamil, setTamil, english, setEnglish, hindi, setHindi, likedSongs, setLikedSongs }) => {
     const { accessToken } = useContext(AccessContext);
 
     const [loading, setLoading] = useState(true);
@@ -97,6 +99,15 @@ const DisplayMusic = ({ setCurrentSong, audio, setToggle, setCurrentType, setInd
         setToggle(false);
     };
 
+    const handleLike = (item) => {
+        const isLiked = likedSongs.some((song) => song.id === item.id);
+        if (isLiked) {
+            setLikedSongs(likedSongs.filter((song) => song.id !== item.id));
+        } else {
+            setLikedSongs([...likedSongs, item]);
+        }
+    };
+
     useEffect(() => {
         getSingleTrackTamil();
         getSingleTrackEnglish();
@@ -140,17 +151,26 @@ const DisplayMusic = ({ setCurrentSong, audio, setToggle, setCurrentType, setInd
                                         <LazyLoadImage src={item.album.images[0].url} alt="" width={200} height={200} className="rounded-[10px] " effect="blur" />
                                     </div>
 
-                                    <div className="flex flex-col gap-1">
+                                    <div className="flex flex-col gap-2">
                                         <h4 className="text-white truncate-sm pl-2 hover:underline cursor-pointer" onClick={() => handleSelectionTamil(item, index)}>
                                             {item.name}
                                         </h4>
-                                        <div className="flex flex-col">
+                                        <div className="flex flex-col gap-2">
                                             <Link to={`/artist/${item?.artists[0]?.id}`}>
-                                                <p className="text-neutral-400 text-sm w-full truncate pl-2 cursor-pointer hover:underline">{item.artists[0].name}</p>
+                                                <p className="text-neutral-400 text-sm w-full truncate pl-2 cursor-pointer hover:underline ">{item.artists[0].name}</p>
                                             </Link>
-                                            <a href={item.external_urls.spotify} target="_blank">
-                                                <CiLink className=" text-neutral-400 w-[30px] h-[30px] hover:scale-125 pl-2" />
-                                            </a>
+                                            <div className="flex flex-row items-center gap-4 pl-2">
+                                                <a href={item.external_urls.spotify} target="_blank">
+                                                    <CiLink className=" text-neutral-400 w-[30px] h-[30px] hover:scale-125 transition-all ease-in " />
+                                                </a>
+                                                <div className="text-neutral-400 cursor-pointer " onClick={() => handleLike(item)}>
+                                                    {likedSongs.some((song) => song.id === item.id) ? (
+                                                        <FaHeart className="w-[20px] h-[20px] hover:scale-125 transition-all ease-in" />
+                                                    ) : (
+                                                        <FaRegHeart className="w-[20px] h-[20px] hover:scale-125 transition-all ease-in" />
+                                                    )}
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -164,17 +184,26 @@ const DisplayMusic = ({ setCurrentSong, audio, setToggle, setCurrentType, setInd
                                         <LazyLoadImage effect="blur" src={item.album.images[0].url} alt="" width={200} height={200} className="rounded-[10px] " />
                                     </div>
 
-                                    <div className="flex flex-col gap-1">
+                                    <div className="flex flex-col gap-2">
                                         <h4 className="text-white truncate-sm pl-2 hover:underline cursor-pointer" onClick={() => handleSelectionEnglish(item, index)}>
                                             {item.name}
                                         </h4>
-                                        <div className="flex flex-col">
+                                        <div className="flex flex-col gap-2">
                                             <Link to={`/artist/${item?.artists[0]?.id}`}>
                                                 <p className="text-neutral-400 text-sm w-full truncate pl-2 cursor-pointer hover:underline">{item.artists[0].name}</p>
                                             </Link>
-                                            <a href={item.external_urls.spotify} target="_blank">
-                                                <CiLink className=" text-neutral-400 w-[30px] h-[30px] hover:scale-125 pl-2" />
-                                            </a>
+                                            <div className="flex flex-row items-center gap-4 pl-2">
+                                                <a href={item.external_urls.spotify} target="_blank">
+                                                    <CiLink className=" text-neutral-400 w-[30px] h-[30px] hover:scale-125 transition-all ease-in " />
+                                                </a>
+                                                <div className="text-neutral-400 cursor-pointer " onClick={() => handleLike(item)}>
+                                                    {likedSongs.some((song) => song.id === item.id) ? (
+                                                        <FaHeart className="w-[20px] h-[20px] hover:scale-125 transition-all ease-in" />
+                                                    ) : (
+                                                        <FaRegHeart className="w-[20px] h-[20px] hover:scale-125 transition-all ease-in" />
+                                                    )}
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -188,17 +217,26 @@ const DisplayMusic = ({ setCurrentSong, audio, setToggle, setCurrentType, setInd
                                         <LazyLoadImage effect="blur" src={item.album.images[0].url} alt="" width={200} height={200} className="rounded-[10px] " />
                                     </div>
 
-                                    <div className="flex flex-col gap-1">
+                                    <div className="flex flex-col gap-2">
                                         <h4 className="text-white truncate-sm pl-2 hover:underline cursor-pointer" onClick={() => handleSelectionHindi(item, index)}>
                                             {item.name}
                                         </h4>
-                                        <div className="flex flex-col">
+                                        <div className="flex flex-col gap-2">
                                             <Link to={`/artist/${item?.artists[0]?.id}`}>
                                                 <p className="text-neutral-400 text-sm w-full truncate pl-2 cursor-pointer hover:underline">{item.artists[0].name}</p>
                                             </Link>
-                                            <a href={item.external_urls.spotify} target="_blank">
-                                                <CiLink className=" text-neutral-400 w-[30px] h-[30px] hover:scale-125 pl-2" />
-                                            </a>
+                                            <div className="flex flex-row items-center gap-4 pl-2">
+                                                <a href={item.external_urls.spotify} target="_blank">
+                                                    <CiLink className=" text-neutral-400 w-[30px] h-[30px] hover:scale-125 transition-all ease-in " />
+                                                </a>
+                                                <div className="text-neutral-400 cursor-pointer " onClick={() => handleLike(item)}>
+                                                    {likedSongs.some((song) => song.id === item.id) ? (
+                                                        <FaHeart className="w-[20px] h-[20px] hover:scale-125 transition-all ease-in" />
+                                                    ) : (
+                                                        <FaRegHeart className="w-[20px] h-[20px] hover:scale-125 transition-all ease-in" />
+                                                    )}
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

@@ -20,9 +20,11 @@ const Sidebar = ({ likedSongs, setCurrentSong, audio, setCurrentType, setIndex, 
     };
 
     const handleLike = (item) => {
-        const isLiked = likedSongs.some((song) => song.id === item.id);
+        const songId = item.id || item.track?.id;
+        const isLiked = likedSongs.some((song) => song.id === songId || song.track?.id === songId);
+
         if (isLiked) {
-            setLikedSongs(likedSongs.filter((song) => song.id !== item.id));
+            setLikedSongs(likedSongs.filter((song) => song.id !== songId && song.track?.id !== songId));
         } else {
             setLikedSongs([...likedSongs, item]);
         }
@@ -38,7 +40,7 @@ const Sidebar = ({ likedSongs, setCurrentSong, audio, setCurrentType, setIndex, 
     };
 
     return (
-        <div className="items-start flex-col flex w-[20%]  max-1024:hidden max-768:hidden max-640:hidden max-425:hidden max-375:hidden">
+        <div className="items-start flex-col flex w-[20%] h-full  max-1024:hidden max-768:hidden max-640:hidden max-425:hidden max-375:hidden">
             <div className="items-start justify-center flex-col bg-[#121212] w-full  py-6 px-8 gap-y-5 rounded flex">
                 <Link to={'/'} className="flex items-center justify-start gap-x-8 cursor-auto">
                     <img src={assets.home_icon} alt="home" height={25} width={25} className="cursor-pointer" />
@@ -50,13 +52,13 @@ const Sidebar = ({ likedSongs, setCurrentSong, audio, setCurrentType, setIndex, 
                 </Link>
             </div>
             <div className="bg-[#121212] w-full mt-2 py-6 px-3 rounded h-[100%] down overflow-y-auto">
-                <div className="w-full flex flex-col gap-12 px-3 justify-start items-start">
+                <div className="w-full flex flex-col gap-12 px-3 justify-start items-start ">
                     <div className="flex items-center w-full flex-row gap-4 ml-2 ">
                         <img src={assets.stack_icon} alt="stack" width={25} height={25} />
                         <p className="text-white  max-1280:hidden max-1170:hidden">Favourites</p>
                     </div>
                     {likedSongs.map((item, index) => (
-                        <div className="w-full h-full gap-8 flex flex-col" key={index}>
+                        <div className="w-full h-full gap-6 flex flex-col" key={index}>
                             <div className="w-full h-full flex flex-col justify-center gap-2 pl-4 items-start">
                                 <h1 className="text-white font-semibold cursor-pointer hover:underline" onClick={() => handleSelection(item, index)}>
                                     {getSongName(item)}

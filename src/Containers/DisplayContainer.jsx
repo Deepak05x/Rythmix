@@ -3,6 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 import Sidebar from '../Components/Sidebar';
 import { assets } from '../assets/assets';
 import MusicPlayer from '../Components/MusicPlayer';
+import DisplayLib from '../Components/DisplayLib';
 
 const DisplayArtist = React.lazy(() => import('../Components/DisplayArtist'));
 const DisplayAlbum = React.lazy(() => import('../Components/DisplayAlbum'));
@@ -18,10 +19,10 @@ const DisplayContainer = () => {
     const [currentSong, setCurrentSong] = useState({
         song: 'Sweater Weather',
         artist: 'Neighbourhood',
-        image: `${assets.img1}`,
+        image: `https://i.scdn.co/image/ab67616d0000b273d425066031fb32f5916a0099`,
     });
 
-    const [audio] = useState(new Audio());
+    const [audio] = useState(new Audio('https://p.scdn.co/mp3-preview/b428f5e0e7f6a11f7058bfedd113d8a5d9305469?cid=622d5e3ea1ed4286a4efbda2736a94f3'));
     const [toggle, setToggle] = useState(true);
     const [details, setDetails] = useState([]);
     const [album, setAlbum] = useState([]);
@@ -37,6 +38,8 @@ const DisplayContainer = () => {
         const savedLikedSongs = localStorage.getItem('likedSongs');
         return savedLikedSongs ? JSON.parse(savedLikedSongs) : [];
     });
+
+    console.log(audio);
 
     useEffect(() => {
         setTimeout(() => {
@@ -71,13 +74,15 @@ const DisplayContainer = () => {
         }
     };
 
+    console.log(mainImageAlbum);
+
     const getSongImage = (item) => {
         if (item.track && item.track.album && item.track.album.images[0].url) {
             return item.track.album.images[0].url;
         } else if (item.album && item.album.images && item.album.images[0].url) {
             return item.album.images[0].url;
         } else if (mainImageAlbum && mainImageAlbum[0].url) {
-            return mainImageAlbum[0]?.url;
+            return mainImageAlbum[0].url;
         }
     };
 
@@ -172,7 +177,6 @@ const DisplayContainer = () => {
         } else if (currentType === 'fav') {
             const nextIndex = (index + 1) % likedSongs.length;
             const nextSong = likedSongs[nextIndex];
-
             setIndex(nextIndex);
             setCurrentSong({
                 song: getSongName(nextSong),
@@ -286,6 +290,8 @@ const DisplayContainer = () => {
         }
     };
 
+    console.log(likedSongs);
+
     return (
         <>
             <div className="px-2 py-2 w-full h-[100vh] flex flex-col gap-0.5">
@@ -377,6 +383,8 @@ const DisplayContainer = () => {
                                             setEnglish={setEnglish}
                                             hindi={hindi}
                                             setHindi={setHindi}
+                                            likedSongs={likedSongs}
+                                            setLikedSongs={setLikedSongs}
                                         />
                                     }
                                 />
@@ -393,6 +401,26 @@ const DisplayContainer = () => {
                                             index={index}
                                             setIndex={setIndex}
                                             setCurrentType={setCurrentType}
+                                        />
+                                    }
+                                />
+                                <Route
+                                    path="/library"
+                                    element={
+                                        <DisplayLib
+                                            likedSongs={likedSongs}
+                                            audio={audio}
+                                            setCurrentSong={setCurrentSong}
+                                            setCurrentType={setCurrentType}
+                                            setIndex={setIndex}
+                                            mainImageAlbum={mainImageAlbum}
+                                            setToggle={setToggle}
+                                            setLikedSongs={setLikedSongs}
+                                            currentType={currentType}
+                                            getSongUrl={getSongUrl}
+                                            getArtistName={getArtistName}
+                                            getSongName={getSongName}
+                                            getSongImage={getSongImage}
                                         />
                                     }
                                 />
