@@ -288,7 +288,7 @@ const DisplayContainer = () => {
     return (
         <>
             <div className="px-2 py-2 w-full h-[100vh] flex flex-col gap-0.5">
-                <div className="flex flex-row gap-2 h-[90%]">
+                <div className="flex flex-row gap-2 h-[88vh]">
                     <Sidebar
                         likedSongs={likedSongs}
                         audio={audio}
@@ -423,7 +423,7 @@ const DisplayContainer = () => {
                         </Suspense>
                     </div>
                 </div>
-                <div className="h-auto">
+                <div className="h-[9.8vh] ">
                     <MusicPlayer
                         currentSong={currentSong}
                         audio={audio}

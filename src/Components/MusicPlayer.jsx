@@ -22,7 +22,7 @@ const MusicPlayer = ({ currentSong, audio, toggle, setToggle, handleForward, han
     };
 
     return (
-        <div className="flex items-center justify-between w-full h-full  bg-[#121212] py-4 px-4 flex-row mt-1  max-768:justify-between">
+        <div className="flex items-center justify-between w-full h-full  bg-[#121212] py-4 px-4 flex-row mt-1 max-768:justify-between">
             <div className="flex flex-row gap-x-3 w-full max-1440:items-center max-1170:items-center max-1280:items-center max-1024:items-center max-768:w-[10%] max-640:w-[10%] max-375:hidden">
                 <img
                     src={currentSong.image}
