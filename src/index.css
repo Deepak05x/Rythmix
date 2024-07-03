@@ -4,6 +4,10 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+    height: 100vh;
+}
+
 * {
     padding: 0;
     margin: 0;
@@ -42,23 +46,6 @@ body {
 button {
     cursor: pointer;
 }
-
-/* .down::-webkit-scrollbar {
-    width: 10px;
-} */
-
-/* .down::-webkit-scrollbar-button {
-    background-color: grey;
-    border-radius: 10px;
-    width: 50px;
-    height: 50px;
-    cursor: pointer;
-    display: flex;
-}
-
-.down::-webkit-scrollbar-button:hover {
-    background-color: white;
-} */
 
 .down::-webkit-scrollbar {
     background-color: #121212;
