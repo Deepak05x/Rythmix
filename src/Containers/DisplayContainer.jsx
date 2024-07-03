@@ -423,7 +423,7 @@ const DisplayContainer = () => {
                         </Suspense>
                     </div>
                 </div>
-                <div className="h-[9.5%] ">
+                <div className="h-auto">
                     <MusicPlayer
                         currentSong={currentSong}
                         audio={audio}
