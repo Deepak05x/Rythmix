@@ -140,7 +140,7 @@ const DisplayPlaylist = ({ setCurrentSong, audio, setToggle, list, setList, setC
                                                 </Link>
                                             </div>
                                         </div>
-                                        <div className="flex flex-col gap-2 justify-center items-center">
+                                        <div className="flex flex-col gap-2 justify-center items-center  max-640:items-start max-425:items-start max-375:items-start">
                                             <p className="text-white text-md">{timeConverter(item.track.duration_ms)}</p>
                                             <a href={item.track.external_urls.spotify} target="_blank">
                                                 <p className="text-[15px] text-neutral-400 hover:underline">
