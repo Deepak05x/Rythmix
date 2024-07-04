@@ -89,13 +89,20 @@ button {
 @media screen and (max-width: 1024px) {
     .side-container {
         display: flex;
+        align-items: center;
+        justify-content: center;
         position: absolute;
-        width: 100%;
+        right: 0;
     }
 
     .music {
         border: 1px solid gray;
-        width: 90%;
+        width: 100%;
+        margin-right: 10px;
+    }
+
+    .icons {
+        display: none;
     }
 
     .main-container {
