@@ -14,7 +14,7 @@ const Navbar = () => {
     return (
         <div className="flex flex-row items-start justify-between py-1 w-full max-640:justify-center max-1024:flex-col max-1024:gap-12 max-768:flex-col max-640:flex-col  max-768:gap-12 max-640:gap-12 exact-425:flex-col exact-425:items-start  exact-425:justify-center exact-425:gap-8 max-425:flex-col max-425:items-start max-425:gap-12  max-375:flex-col max-375:gap-12 ">
             <div className="flex flex-row items-start justify-start gap-12 flex-grow-0 h-full w-full ">
-                <div className="flex flex-row gap-4">
+                <div className="flex flex-row gap-4 arrow">
                     <img
                         src={assets.arrow_left}
                         alt="left"

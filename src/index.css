@@ -88,10 +88,22 @@ button {
 
 @media screen and (max-width: 1024px) {
     .side-container {
-        display: none;
+        display: flex;
+        position: absolute;
+        width: 100%;
+    }
+
+    .music {
+        border: 1px solid gray;
+        width: 90%;
     }
 
     .main-container {
         height: 100vh;
+        position: relative;
+    }
+
+    .arrow {
+        display: none;
     }
 }
