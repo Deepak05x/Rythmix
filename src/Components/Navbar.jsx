@@ -33,7 +33,7 @@ const Navbar = () => {
                     />
                 </div>
 
-                <div className="flex flex-row gap-8 max-2560:hidden max-1440:hidden max-1280:hidden max-1170:hidden exact-1024:flex w-full h-full justify-end max-425:gap-4 icons">
+                <div className="flex flex-row gap-8 max-2560:hidden max-1440:hidden max-1280:hidden max-1170:hidden exact-1024:flex w-full h-full justify-end max-425:gap-4">
                     <Link to={'/search'}>
                         <img src={assets.search_icon} alt="" width={35} height={35} className="border-black bg-[#ffffff1d] rounded-full p-2.5 hover:scale-110 cursor-pointer" />
                     </Link>

@@ -91,8 +91,6 @@ button {
         display: flex;
         align-items: center;
         justify-content: center;
-        position: absolute;
-        right: 0;
     }
 
     .music {
@@ -101,13 +99,8 @@ button {
         margin-right: 10px;
     }
 
-    .icons {
-        display: none;
-    }
-
     .main-container {
         height: 100vh;
-        position: relative;
     }
 
     .arrow {
