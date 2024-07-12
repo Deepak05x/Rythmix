@@ -88,22 +88,58 @@ button {
 
 @media screen and (max-width: 1024px) {
     .side-container {
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        position: absolute;
     }
 
     .music {
-        border: 1px solid gray;
-        width: 100%;
-        margin-right: 10px;
+        border: 2px solid gray;
+        width: 700px;
     }
 
     .main-container {
+        position: relative;
+        width: 100%;
         height: 100vh;
     }
+}
 
-    .arrow {
+@media screen and (max-width: 870px) {
+    .music {
+        width: 600px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .music {
+        width: 500px;
+        justify-content: center;
+    }
+    .image {
         display: none;
+    }
+}
+
+@media screen and (max-width: 660px) {
+    .music {
+        width: 400px;
+    }
+}
+
+@media screen and (max-width: 575px) {
+    .music {
+        width: 300px;
+    }
+}
+
+@media screen and (max-width: 462px) {
+    .music {
+        width: 200px;
+    }
+}
+
+@media screen and (max-width: 375px) {
+    .music {
+        width: 150px;
+        padding: 0 3px;
     }
 }

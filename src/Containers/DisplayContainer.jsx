@@ -304,7 +304,6 @@ const DisplayContainer = () => {
                         getSongName={getSongName}
                         getSongImage={getSongImage}
                     />
-
                     <div className="w-[80%] bg-[#121212]  rounded flex flex-col gap-12  max-1024:w-full max-768:w-full max-640:w-full max-425:w-full max-425:gap-8 max-375:w-full max-375:gap-8">
                         <Suspense fallback={<div>...</div>}>
                             <Routes>
